@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/InsertCleverNameHere/cleverjobserver#readme",
   "dependencies": {
+    "bcrypt": "^0.8.7",
     "express": "^4.14.0",
+    "jsonwebtoken": "^7.1.9",
     "mongoose": "^4.5.9"
   },
   "devDependencies": {
