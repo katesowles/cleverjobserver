@@ -54,20 +54,26 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _routes = __webpack_require__(31);
+	var _routes = __webpack_require__(64);
 	
 	var _routes2 = _interopRequireDefault(_routes);
 	
-	__webpack_require__(32);
+	var _auth = __webpack_require__(65);
+	
+	var _auth2 = _interopRequireDefault(_auth);
+	
+	var _http = __webpack_require__(66);
+	
+	var _http2 = _interopRequireDefault(_http);
+	
+	__webpack_require__(67);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// app.config(http);
+	_app2.default.config(_http2.default);
 	_app2.default.config(_routes2.default);
-	// app.run(auth);
+	_app2.default.run(_auth2.default);
 	
-	// import auth from './auth';
-	// import http from './http';
 	_app2.default.value('apiUrl', ("http://localhost:3000/api") || '/api');
 	
 	_angular2.default.bootstrap(document, [_app2.default.name]);
@@ -16797,15 +16803,15 @@
 	
 	var _components2 = _interopRequireDefault(_components);
 	
-	var _services = __webpack_require__(19);
+	var _services = __webpack_require__(49);
 	
 	var _services2 = _interopRequireDefault(_services);
 	
-	var _angularMaterial = __webpack_require__(21);
+	var _angularMaterial = __webpack_require__(56);
 	
 	var _angularMaterial2 = _interopRequireDefault(_angularMaterial);
 	
-	__webpack_require__(27);
+	__webpack_require__(62);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -20348,10 +20354,18 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./header/header.js": 11,
-		"./positions/position-info/position-info.js": 13,
-		"./positions/position/position.js": 15,
-		"./positions/positions.js": 17
+		"./contacts/contact-list/contact-list.js": 11,
+		"./contacts/contacts.js": 17,
+		"./contacts/edit-contact/edit-contact.js": 21,
+		"./contacts/new-contact/new-contact.js": 23,
+		"./header/header.js": 25,
+		"./landing/landing.js": 27,
+		"./list-companies/company-detail/company-detail.js": 29,
+		"./list-companies/list-companies.js": 33,
+		"./list-companies/new-company/new-company.js": 37,
+		"./list-users/user-detail/user-detail.js": 39,
+		"./positions/position/position.js": 43,
+		"./positions/positions.js": 47
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -20377,7 +20391,256 @@
 	  value: true
 	});
 	
-	var _header = __webpack_require__(12);
+	var _contactList = __webpack_require__(12);
+	
+	var _contactList2 = _interopRequireDefault(_contactList);
+	
+	var _contactList3 = __webpack_require__(13);
+	
+	var _contactList4 = _interopRequireDefault(_contactList3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _contactList2.default,
+	  bindings: {
+	    contact: '<'
+	  },
+	  controller: controller
+	};
+	
+	
+	controller.$inject = ['$mdDialog'];
+	function controller($mdDialog) {
+	  var _this = this;
+	
+	  this.styles = _contactList4.default;
+	
+	  this.edit = function ($event) {
+	    var parentEl = angular.element(document.body);
+	    $mdDialog.show({
+	      parent: parentEl,
+	      targetEvent: $event,
+	      controllerAs: '$ctrl',
+	      bindToController: true,
+	      template: '<edit-contact contact="$ctrl.contact"></edit-contact>',
+	      controller: function controller() {},
+	
+	      locals: {
+	        contact: _this.contact
+	      },
+	      clickOutsideToClose: true,
+	      escapeToClose: true
+	    }).then(function (updatedContact) {
+	      if (!updatedContact) return;
+	      //pass copied and updated version to original
+	      angular.copy(updatedContact, _this.contact);
+	    });
+	  };
+	};
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	module.exports = "<md-content>\n  <md-list flex>\n\n    <md-list-item class=\"md-3-line\">\n      <md-button class=\"md-secondary md-icon-button\"\n        ng-click=\"$ctrl.edit($event)\">Edit Contact\n      </md-button>\n      <div class=\"md-list-item-text\" layout=\"column\">\n        <h3>{{ $ctrl.contact.name }}: {{ $ctrl.contact.role }} at {{ $ctrl.contact.company || \"'Not Yet Specified'\" }}</h3>\n        <h4>{{ $ctrl.contact.email }}</h4>\n        <p>{{ $ctrl.contact.phone }}</p>\n      </div>\n    </md-list-item>\n    <md-list-item class=\"md-3-line\">\n      <div class=\"md-list-item-text\" layout=\"column\">\n        <p>{{ $ctrl.contact.info }}</p>\n      </div>\n    </md-list-item>\n    <md-divider ></md-divider>\n  </md-list>\n</md-content>\n";
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _contacts = __webpack_require__(18);
+	
+	var _contacts2 = _interopRequireDefault(_contacts);
+	
+	var _contacts3 = __webpack_require__(19);
+	
+	var _contacts4 = _interopRequireDefault(_contacts3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _contacts2.default,
+	  bindings: {},
+	  controller: controller
+	};
+	
+	
+	controller.$inject = ['contactService', '$window'];
+	function controller(contactService, $window) {
+	  var _this = this;
+	
+	  this.styles = _contacts4.default;
+	  this.addButton = 'add';
+	  this.userId = $window.localStorage['id'];
+	
+	  contactService.getByUser(this.userId).then(function (contacts) {
+	    _this.contacts = contacts;
+	  }).catch(function (err) {
+	    return console.log(err);
+	  });
+	
+	  this.add = function (contactToAdd, userId) {
+	    contactService.add(contactToAdd, userId).then(function (addedContact) {
+	      _this.contacts.unshift(addedContact);
+	      _this.addButton = 'add';
+	    }).catch(function (err) {
+	      return console.log(err);
+	    });
+	  };
+	
+	  this.remove = function (contactId) {
+	    contactService.remove(contactId).then(function (message) {
+	      return console.log(message);
+	    }).catch(function (err) {
+	      return console.log(err);
+	    });
+	  };
+	};
+
+/***/ },
+/* 18 */
+/***/ function(module, exports) {
+
+	module.exports = "<div ng-cloak layout-gt-sm=\"row\" layout=\"column\">\n\n  <div flex-gt-sm=\"50\" flex>\n\n    <md-toolbar layout=\"row\" class=\"md-hue-3\">\n      <div class=\"md-toolbar-tools\">\n        <span>Contacts List</span>\n      </div>\n    </md-toolbar>\n    <md-button class=\"md-secondary md-icon-button\"\n      ng-click=\"$ctrl.addButton = 'save'\"\n      ng-show=\"$ctrl.addButton === 'add'\">Add Contact\n    </md-button>\n    <new-contact add=\"$ctrl.add\" add-button=\"$ctrl.addButton\" ng-if=\"$ctrl.addButton === 'save'\"></new-contact>\n    <div ng-repeat=\"contact in $ctrl.contacts\">\n      <contact-list contact=\"contact\"></contact-list>\n    </div>\n  </div>\n</div>\n";
+
+/***/ },
+/* 19 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 20 */,
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _editContact = __webpack_require__(22);
+	
+	var _editContact2 = _interopRequireDefault(_editContact);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _editContact2.default,
+	  transclude: true,
+	  bindings: {
+	    contactToEdit: '<contact'
+	  },
+	  controller: controller
+	};
+	
+	
+	controller.$inject = ['$mdDialog', 'contactService'];
+	function controller($mdDialog, contactService) {
+	  var _this = this;
+	
+	  this.contact = angular.copy(this.contactToEdit);
+	
+	  this.cancel = function () {
+	    $mdDialog.hide();
+	  };
+	
+	  this.save = function () {
+	    contactService.update(_this.contact).then(function (updatedContact) {
+	      $mdDialog.hide(updatedContact);
+	    });
+	  };
+	}
+
+/***/ },
+/* 22 */
+/***/ function(module, exports) {
+
+	module.exports = "<!-- <md-dialog> -->\n  <md-dialog-content layout-gt-sm=\"row\" layout-padding>\n      <md-content layout-gt-sm=\"row\" layout-padding>\n          <div>\n\n            <form name=\"editContact\" novalidate>\n                <md-input-container>\n                    <label>Name:</label>\n                    <input\n                        name=\"editName\"\n                        required\n                        ng-model=\"$ctrl.contact.name\"/>\n                        <div ng-messages=\"editContact.editName.$error\" role=\"alert\">\n                            <div ng-message=\"required\">A name is required</div>\n                        </div>\n                </md-input-container>\n                <md-input-container>\n                    <label>E-mail:</label>\n                    <input\n                        name=\"editEmail\"\n                        required\n                        ng-model=\"$ctrl.contact.email\"/>\n                    <!-- <div ng-messages=\"addContact.addEmail.$error\" role=\"alert\">\n                        <div ng-message=\"required\">An e-mail is required</div>\n                    </div> -->\n                </md-input-container>\n                <md-input-container>\n                    <label>Phone:</label>\n                    <input\n                        name=\"editPhone\"\n                        required\n                        ng-model=\"$ctrl.contact.phone\"/>\n                    <!-- <div ng-messages=\"addContact.addEmail.$error\" role=\"alert\">\n                        <div ng-message=\"required\">An e-mail is required</div>\n                    </div> -->\n                </md-input-container>\n                <md-input-container>\n                    <label>Company:</label>\n                    <!-- <select>\n                      For selecting company from companies that already exist?\n                    </select>\n                    <p>Would also need option to add company if it does not exist. -->\n                    <input\n                        name=\"editCompany\"\n                        required\n                        ng-model=\"$ctrl.contact.company\"/>\n                    <!-- <div ng-messages=\"addContact.addEmail.$error\" role=\"alert\">\n                        <div ng-message=\"required\">An e-mail is required</div>\n                    </div> -->\n                </md-input-container>\n                <md-input-container>\n                    <label>Relevant Information:</label>\n                    <textarea\n                        name=\"editInformation\"\n                        required\n                        ng-model=\"$ctrl.contact.info\">\n                      <!-- <div ng-messages=\"addContact.addInformation.$error\" role=\"alert\">\n                          <ng-message when=\"required\">This field is required</ng-message>\n                      </div> -->\n                    </textarea>\n                </md-input-container>\n            </form>\n          </div>\n      </md-content>\n  </md-dialog-content>\n  <div>\n  </div>\n  <md-dialog-actions>\n      <md-button ng-click=\"$ctrl.cancel()\" class=\"md-primary\">\n          Cancel\n      </md-button>\n      <md-button ng-click=\"$ctrl.save()\" class=\"md-primary\">\n          Save\n      </md-button>\n  </md-dialog-actions>\n<!-- </md-dialog> -->\n";
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _newContact = __webpack_require__(24);
+	
+	var _newContact2 = _interopRequireDefault(_newContact);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _newContact2.default,
+	  bindings: {
+	    add: '<',
+	    addButton: '='
+	  },
+	  controller: controller
+	};
+	
+	
+	controller.$inject = ['$scope', '$window'];
+	function controller($scope, $window) {
+	  var _this = this;
+	
+	  this.userId = $window.localStorage['id'];
+	  console.log(this.userId);
+	
+	  var resetContact = function resetContact() {
+	    console.log('new-contact resetContact function');
+	    _this.contact = {};
+	  };
+	
+	  resetContact();
+	
+	  this.submit = function () {
+	    console.log('got here to new-contact form submit');
+	    _this.add(_this.contact, _this.userId);
+	    resetContact();
+	    $scope.addContact.$setPristine();
+	    $scope.addContact.$setUntouched();
+	  };
+	};
+
+/***/ },
+/* 24 */
+/***/ function(module, exports) {
+
+	module.exports = "<form name=\"addContact\" ng-submit=\"addContact.$valid && $ctrl.submit()\"\n      novalidate>\n    <md-input-container>\n        <label>Name:</label>\n        <input\n            name=\"addName\"\n            required\n            ng-model=\"$ctrl.contact.name\"/>\n            <div ng-messages=\"addContact.addName.$error\" role=\"alert\">\n                <div ng-message=\"required\">A name is required</div>\n            </div>\n    </md-input-container>\n    <md-input-container>\n        <label>E-mail:</label>\n        <input\n            name=\"addEmail\"\n            required\n            ng-model=\"$ctrl.contact.email\"/>\n        <!-- <div ng-messages=\"addContact.addEmail.$error\" role=\"alert\">\n            <div ng-message=\"required\">An e-mail is required</div>\n        </div> -->\n    </md-input-container>\n    <md-input-container>\n        <label>Phone:</label>\n        <input\n            name=\"addPhone\"\n            required\n            ng-model=\"$ctrl.contact.phone\"/>\n        <!-- <div ng-messages=\"addContact.addEmail.$error\" role=\"alert\">\n            <div ng-message=\"required\">An e-mail is required</div>\n        </div> -->\n    </md-input-container>\n    <md-input-container>\n        <label>Company:</label>\n        <!-- <select>\n          For selecting company from companies that already exist?\n        </select>\n        <p>Would also need option to add company if it does not exist. -->\n        <input\n            name=\"addCompany\"\n            \n            ng-model=\"$ctrl.contact.company\"/>\n        <!-- <div ng-messages=\"addContact.addEmail.$error\" role=\"alert\">\n            <div ng-message=\"required\">An e-mail is required</div>\n        </div> -->\n    </md-input-container>\n    <md-input-container>\n        <label>Role:</label>\n        <input\n            name=\"addRole\"\n            required\n            ng-model=\"$ctrl.contact.role\"/>\n        <!-- <div ng-messages=\"addContact.addEmail.$error\" role=\"alert\">\n            <div ng-message=\"required\">An e-mail is required</div>\n        </div> -->\n    </md-input-container>\n    <md-input-container>\n        <label>Relevant Information:</label>\n        <textarea\n            name=\"addInformation\"\n            required\n            ng-model=\"$ctrl.contact.info\">\n          <!-- <div ng-messages=\"addContact.addInformation.$error\" role=\"alert\">\n              <ng-message when=\"required\">This field is required</ng-message>\n          </div> -->\n        </textarea>\n    </md-input-container>\n    <md-dialog-actions>\n      <md-button type=\"submit\" class=\"md-primary\">Save Contact</md-button>\n    </md-dialog-actions>\n    <md-dialog-actions>\n      <md-button ng-click=\"$ctrl.addButton = 'add'\" class=\"md-primary\">Cancel</md-button>\n    </md-dialog-actions>\n</form>\n";
+
+/***/ },
+/* 25 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _header = __webpack_require__(26);
 	
 	var _header2 = _interopRequireDefault(_header);
 	
@@ -20388,24 +20651,20 @@
 	  controller: controller
 	};
 	
-	// controller.$inject = ['$state', '$rootScope'];
 	
-	function controller() {
-	  // console.log('in header controller');
-	
-	  // $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-	
-	  // });
+	controller.$inject = ['$state'];
+	function controller($state) {
+	  this.username = 'Name-Goes-Here';
 	};
 
 /***/ },
-/* 12 */
+/* 26 */
 /***/ function(module, exports) {
 
-	module.exports = "<!--<div>\n  <span>Job Hunter</span>\n  <span>Home</span>\n  <span>Positions</span>\n  <span>Companies</span>\n  <span>Contacts</span>\n  <span>Welcome, {{username}}</span>\n</div>-->\n\n<div ng-cloak>\n  <md-content class=\"md-padding\">\n    <md-nav-bar md-selected-nav-item=\"currentNavItem\" nav-bar-aria-label=\"navigation links\">\n      <md-nav-item md-nav-sref=\"home\" name=\"home\">Job Hunter</md-nav-item> <!-- doesn't break -->\n      <md-nav-item md-nav-sref=\"dashboard\" name=\"dashboard\">Home</md-nav-item> <!-- breaks -->\n      <md-nav-item md-nav-sref=\"positions\" name=\"positions\">Positions</md-nav-item> <!-- doesn't break -->\n      <md-nav-item md-nav-sref=\"companies\" name=\"companies\">Companies</md-nav-item> <!-- doesn't break -->\n      <md-nav-item md-nav-sref=\"contacts\" name=\"contacts\">Contacts</md-nav-item> <!-- breaks -->\n      <md-nav-item md-nav-sref=\"userDetail\" name=\"userDetail\">Welcome, {{username}}</md-nav-item> <!-- doesn't break -->\n      <!-- these require actual routing with ui-router or ng-route, so they won't work in the demo\n      <md-nav-item md-nav-sref=\"app.page4\" name=\"page4\">Page Four</md-nav-item>\n      <md-nav-item md-nav-href=\"#page5\" name=\"page5\">Page Five</md-nav-item>\n      -->\n    </md-nav-bar>\n  </md-content>";
+	module.exports = "<!--<div>\n  <span>Job Hunter</span>\n  <span>Home</span>\n  <span>Positions</span>\n  <span>Companies</span>\n  <span>Contacts</span>\n  <span>Welcome, {{username}}</span>\n</div>-->\n\n<div ng-cloak>\n  <md-content class=\"md-padding\">\n    <md-nav-bar md-selected-nav-item=\"currentNavItem\" nav-bar-aria-label=\"navigation links\">\n\n      <md-nav-item md-nav-sref=\"home\" name=\"home\">Job Hunter</md-nav-item>\n      <md-nav-item md-nav-sref=\"dashboard\" name=\"dashboard\">Home</md-nav-item>\n      <md-nav-item md-nav-sref=\"positions\" name=\"positions\">Positions</md-nav-item>\n      <md-nav-item md-nav-sref=\"companies\" name=\"companies\">Companies</md-nav-item>\n      <md-nav-item md-nav-sref=\"contacts\" name=\"contacts\">Contacts</md-nav-item>\n      <md-nav-item md-nav-sref=\"user\" name=\"user\">Welcome, {{$ctrl.username}}</md-nav-item>\n\n      <!-- these require actual routing with ui-router or ng-route, so they won't work in the demo\n      <md-nav-item md-nav-sref=\"app.page4\" name=\"page4\">Page Four</md-nav-item>\n      <md-nav-item md-nav-href=\"#page5\" name=\"page5\">Page Five</md-nav-item>\n      -->\n    </md-nav-bar>\n  </md-content>\n</div>\n";
 
 /***/ },
-/* 13 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20414,30 +20673,34 @@
 	  value: true
 	});
 	
-	var _positionInfo = __webpack_require__(14);
+	var _landing = __webpack_require__(28);
 	
-	var _positionInfo2 = _interopRequireDefault(_positionInfo);
+	var _landing2 = _interopRequireDefault(_landing);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = {
-	  template: _positionInfo2.default,
-	  bindings: {
-	    position: '='
-	  },
-	  controller: function controller() {
-	    var $ctrl = this;
-	  }
+	  template: _landing2.default,
+	  controller: controller
+	};
+	
+	
+	controller.$inject = ['$state'];
+	
+	function controller($state) {
+	  this.styles = _landing2.default;
+	
+	  // something to do with $state potentially
 	};
 
 /***/ },
-/* 14 */
+/* 28 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3 class=\"md-primary\">{{$ctrl.position.title}}</h3>";
+	module.exports = "<section class=\"landing\">\n  <!-- TODO : insert **real** app name here once we've decided on it -->\n  <h1>Welcome to Clever Job Hunter </h1>\n\n  <!-- TODO : maybe we'll have some description here of the app and what it is, similar to the front page of any service? -->\n  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed diam eget risus varius blandit sit amet non magna. Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla.</p>\n\n  <!-- TODO : once we have auth components, feed those in here -->\n  <h3>Choose one of the following options to get started:</h3>\n  <button>Create Account</button>\n  <button>Login</button>\n</section>\n";
 
 /***/ },
-/* 15 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20446,28 +20709,353 @@
 	  value: true
 	});
 	
-	var _position = __webpack_require__(16);
+	var _companyDetail = __webpack_require__(30);
+	
+	var _companyDetail2 = _interopRequireDefault(_companyDetail);
+	
+	var _companyDetail3 = __webpack_require__(31);
+	
+	var _companyDetail4 = _interopRequireDefault(_companyDetail3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _companyDetail2.default,
+	  controller: controller
+	};
+	
+	
+	function controller() {
+	  this.styles = _companyDetail4.default;
+	  //dummy data for now, but will eventually be a company id in the bindings
+	  this.company = {
+	    name: 'Apple Inc.',
+	    service: 'Computer hardware/software',
+	    location: 'Cupertino, CA',
+	    info: 'This is a company that built the iPhone and Mac OSX. They are also involved in selling digitial media view the iTunes and Mac App stores.',
+	    tech: 'iOS, Mac OSX',
+	    pros: ['pro1', 'pro2', 'pro3'],
+	    cons: ['con1', 'con2'],
+	    questions: ['question1', 'question2'],
+	    contacts: [{ _id: '123' }, { _id: '456' }],
+	    links: [{ url: 'http://apple.com', desc: 'Apple homepage' }],
+	    actionItems: [{ date: 'Aug. 10, 2016', plan: 'Applied for job' }, { date: 'Sept. 1, 2016', plan: 'First round interview' }]
+	  };
+	}
+
+/***/ },
+/* 30 */
+/***/ function(module, exports) {
+
+	module.exports = "<section ng-class=\"$ctrl.styles.companyDetail\">\n    <h1>{{$ctrl.company.name}}</h1>\n    <h2>Service: {{$ctrl.company.service}}</h2> \n        <h3>Location: {{$ctrl.company.location}}</h3>\n        <h3>Info: {{$ctrl.company.info}}</h3>\n        <h3>Technology Stack: {{$ctrl.company.tech}}</h3>\n        <div ng-if=\"$ctrl.company.actionItems.length\">Action Items: \n            <ul>\n                <li ng-repeat=\"item in $ctrl.company.actionItems\">{{item.date}} {{item.plan}}</li>\n            </ul>\n        </div>\n        <div ng-if=\"$ctrl.company.pros.length\">Pros: \n            <ul>\n                <li ng-repeat=\"item in $ctrl.company.pros\">{{item}}</li>\n            </ul>\n        </div>\n        <div ng-if=\"$ctrl.company.cons.length\">Cons: \n            <ul>\n                <li ng-repeat=\"item in $ctrl.company.cons\">{{item}}</li>\n            </ul>\n        </div>\n        <div ng-if=\"$ctrl.company.question.length\">Questions: \n            <ul>\n                <li ng-repeat=\"item in $ctrl.company.questions\">{{item}}</li>\n            </ul>\n        </div>\n        <div ng-if=\"$ctrl.company.contacts.length\">Contacts: \n            <ul>\n            <!--ui-sref to the contact???-->\n                <li>Populate with the peron's name linking to their contact data</li>\n                <li ng-repeat=\"item in $ctrl.company.contacts\">{{item._id}}</li>\n            </ul>\n        </div>\n        <div ng-if=\"$ctrl.company.links.length\">Links: \n            <ul>\n                <li ng-repeat=\"item in $ctrl.company.links\"><a ng-href=\"{{item.url}}\">{{item.desc}}</a></li>\n            </ul>\n        </div>\n</section>";
+
+/***/ },
+/* 31 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 32 */,
+/* 33 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _listCompanies = __webpack_require__(34);
+	
+	var _listCompanies2 = _interopRequireDefault(_listCompanies);
+	
+	var _listCompanies3 = __webpack_require__(35);
+	
+	var _listCompanies4 = _interopRequireDefault(_listCompanies3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _listCompanies2.default,
+	  controller: controller
+	};
+	
+	
+	controller.$inject = ['companyService', '$window'];
+	function controller(companyService, $window) {
+	  var _this = this;
+	
+	  this.styles = _listCompanies4.default;
+	  this.userId = $window.localStorage['id'];
+	  this.addButton = 'add';
+	  // dummy data to remove later once services are added
+	  companyService.getByUser(this.userId).then(function (companies) {
+	    _this.companies = companies;
+	  }).catch(function (err) {
+	    return console.log(err);
+	  });
+	
+	  this.add = function (companyToAdd, userId) {
+	    companyService.add(companyToAdd, userId).then(function (addedcompany) {
+	      _this.companies.unshift(addedcompany);
+	      _this.addButton = 'add';
+	    }).catch(function (err) {
+	      return console.log(err);
+	    });
+	  };
+	
+	  this.remove = function (companyId) {
+	    companyService.remove(companyId).then(function (message) {
+	      return console.log(message);
+	    }).catch(function (err) {
+	      return console.log(err);
+	    });
+	  };
+	
+	  // this.companies = [
+	  //   {
+	  //     name: 'Apple Inc.',
+	  //     service: 'Computer hardware/software',
+	  //     location: 'Cupertino, CA',
+	  //     info: 'This is a company that built the iPhone and Mac OSX. They are also involved in selling digitial media view the iTunes and Mac App stores.',
+	  //     tech: 'iOS, Mac OSX',
+	  //     pros: ['pro1', 'pro2', 'pro3'],
+	  //     cons: ['con1', 'con2'],
+	  //     questions: ['question1', 'question2'],
+	  //     companys: [{_id: '123'}, {_id: '456'}],
+	  //     links: [{url: 'http://apple.com', desc: 'Apple homepage'}],
+	  //     actionItems: [{date: 'Aug. 10, 2016', plan: 'Applied for job'}, {date: 'Sept. 1, 2016', plan: 'First round interview'}]
+	  //   },
+	  //   {
+	  //     name: 'Google',
+	  //     service: 'Search engine',
+	  //     location: 'Mountain View, CA',
+	  //     info: 'Google started out as a search engine but has since moved onto other online software as a service products.',
+	  //     tech: 'AngularJS, Android',
+	  //     pros: ['pro1', 'pro2', 'pro3'],
+	  //     cons: ['con1', 'con2'],
+	  //     questions: ['question1', 'question2'],
+	  //     contacts: [{_id: '123'}, {_id: '456'}],
+	  //     links: [{url: 'http://google.com', desc: 'Google homepage'}],
+	  //     actionItems: [{date: 'Sept. 10, 2016', plan: 'Applied for job'}, {date: 'Oct. 10, 2016', plan: 'Check application status'}]
+	  //   },
+	  //   {
+	  //     name: 'Facebook',
+	  //     service: 'Social media',
+	  //     location: 'Menlo Park, CA',
+	  //     info: 'Facebook is a social media network designed to help you stay in touch with those that matter most to you.',
+	  //     tech: 'React',
+	  //     pros: ['pro1', 'pro2', 'pro3'],
+	  //     cons: ['con1', 'con2'],
+	  //     questions: ['question1', 'question2'],
+	  //     contacts: [{_id: '123'}, {_id: '456'}],
+	  //     links: [{url: 'http://facebook.com', desc: 'Facebook homepage'}],
+	  //     actionItems: []
+	  //   }
+	  // ];
+	}
+
+/***/ },
+/* 34 */
+/***/ function(module, exports) {
+
+	module.exports = "<section ng-class=\"$ctrl.styles.listCompanies\">\n\n<!--buttons for adding a new company-->\n    <md-button class=\"md-secondary md-icon-button\"\n      ng-click=\"$ctrl.addButton = 'save'\"\n      ng-show=\"$ctrl.addButton === 'add'\">Add Company\n    </md-button>\n    <new-company add=\"$ctrl.add\" add-button=\"$ctrl.addButton\" ng-if=\"$ctrl.addButton === 'save'\"></new-company>\n    \n\n<!--list of user's current companies-->\n    <div ng-repeat=\"company in $ctrl.companies\">\n        <h1>{{company.name}}</h1>\n        <h3>{{company.info}}</h3>\n            <div ng-if=\"company.actionItems.length\">\n                <p>Action Items: </p>\n                <ul>\n                    <li ng-repeat=\"item in company.actionItems\">{{item.date}} {{item.plan}}</li>\n                </ul>\n            </div>\n            <!--TODO: feed company id into the ui-sref value as a param-->\n            <p> VVVV Leading to profile with dummy data for Apple</p>\n            <a ui-sref=\"company\">More Details</a>\n    </div>\n</section>\n\n\n";
+
+/***/ },
+/* 35 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 36 */,
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _newCompany = __webpack_require__(38);
+	
+	var _newCompany2 = _interopRequireDefault(_newCompany);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _newCompany2.default,
+	  bindings: {
+	    add: '<',
+	    addButton: '='
+	  },
+	  controller: controller
+	};
+	
+	
+	controller.$inject = ['$scope', '$window'];
+	function controller($scope, $window) {
+	  var _this = this;
+	
+	  this.userId = $window.localStorage['id'];
+	  console.log(this.userId);
+	
+	  var resetCompany = function resetCompany() {
+	    console.log('new-company reset');
+	    _this.company = {};
+	  };
+	
+	  resetCompany();
+	
+	  this.submit = function () {
+	    console.log('got here to new-company form submit');
+	    _this.add(_this.company, _this.userId);
+	    resetCompany();
+	    $scope.addCompany.$setPristine();
+	    $scope.addCompany.$setUntouched();
+	  };
+	};
+
+/***/ },
+/* 38 */
+/***/ function(module, exports) {
+
+	module.exports = "<form name=\"addCompany\" ng-submit=\"addCompany.$valid && $ctrl.submit()\"\n      novalidate>\n    <md-input-container>\n        <label>Name:</label>\n        <input\n            name=\"addName\"\n            required\n            ng-model=\"$ctrl.company.name\"/>\n            <div ng-messages=\"addCompany.addName.$error\" role=\"alert\">\n                <div ng-message=\"required\">A name is required</div>\n            </div>\n    </md-input-container>\n    <md-input-container>\n        <label>Service:</label>\n        <input\n            name=\"addService\"\n            required\n            ng-model=\"$ctrl.company.service\"/>\n        <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n            <div ng-message=\"required\">An Service is required</div>\n        </div> -->\n    </md-input-container>\n    <md-input-container>\n        <label>Location:</label>\n        <input\n            name=\"addLocation\"\n            required\n            ng-model=\"$ctrl.company.location\"/>\n        <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n            <div ng-message=\"required\">An e-mail is required</div>\n        </div> -->\n    </md-input-container>\n    <md-input-container>\n        <label>Info:</label>\n        <!-- <select>\n          For selecting company from companies that already exist?\n        </select>\n        <p>Would also need option to add company if it does not exist. -->\n        <input\n            name=\"addInfo\"\n            \n            ng-model=\"$ctrl.company.info\"/>\n        <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n            <div ng-message=\"required\">An e-mail is required</div>\n        </div> -->\n    </md-input-container>\n    <md-input-container>\n        <label>Tech:</label>\n        <input\n            name=\"addTech\"\n            required\n            ng-model=\"$ctrl.company.tech\"/>\n        <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n            <div ng-message=\"required\">An e-mail is required</div>\n        </div> -->\n    </md-input-container>\n    <!--<md-input-container>\n        <label>Pros:</label>\n        <textarea\n            name=\"addPros\"\n            required\n            ng-model=\"$ctrl.company.info\">\n           <div ng-messages=\"addPosition.addInformation.$error\" role=\"alert\">\n              <ng-message when=\"required\">This field is required</ng-message>\n          </div> \n        </textarea>\n    </md-input-container>-->\n    <!--<md-input-container>\n        <label>Questions:</label>\n         <select>\n          For selecting company from companies that already exist?\n        </select>\n        <input\n            name=\"addQuestions\"\n            \n            ng-model=\"$ctrl.company.company\"/>\n         <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n            <div ng-message=\"required\">An e-mail is required</div>\n        </div> \n    </md-input-container>-->\n    <!--<md-input-container>\n        <label>Contact:</label>\n         <select>\n          For selecting company from companies that already exist?\n        </select>\n        <input\n            name=\"addContact\"\n            \n            ng-model=\"$ctrl.company.company\"/>\n         <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n            <div ng-message=\"required\">An e-mail is required</div>\n        </div> \n    </md-input-container>-->\n    <!--<md-input-container>\n        <label>Links:</label>\n        <input\n            name=\"addLinks\"\n            \n            ng-model=\"$ctrl.company.links\"/>\n         <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n            <div ng-message=\"required\">An e-mail is required</div>\n        </div> \n    </md-input-container>-->\n    <!--<md-input-container>\n        <label>Action Items:</label>\n         <select>\n          For selecting company from companies that already exist?\n        </select>\n        <input\n            name=\"addActionItems\"\n            \n            ng-model=\"$ctrl.company.actionItems\"/>\n         <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n            <div ng-message=\"required\">An e-mail is required</div>\n        </div> \n    </md-input-container>-->\n    <md-dialog-actions>\n      <md-button type=\"submit\" class=\"md-primary\">Save Company</md-button>\n    </md-dialog-actions>\n    <md-dialog-actions>\n      <md-button ng-click=\"$ctrl.addButton = 'add'\" class=\"md-primary\">Cancel</md-button>\n    </md-dialog-actions>\n</form>\n";
+
+/***/ },
+/* 39 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _userDetail = __webpack_require__(40);
+	
+	var _userDetail2 = _interopRequireDefault(_userDetail);
+	
+	var _userDetail3 = __webpack_require__(41);
+	
+	var _userDetail4 = _interopRequireDefault(_userDetail3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _userDetail2.default,
+	  controller: controller
+	};
+	
+	
+	function controller() {
+	  this.styles = _userDetail4.default;
+	
+	  this.user = {
+	    name: 'Joe User',
+	    username: 'joe@email.com',
+	    positions: [{
+	      dateApplied: '2016-09-19',
+	      title: 'Web Developer',
+	      company: 'ABC Corp'
+	    }, {
+	      dateApplied: '2016-09-19',
+	      title: 'Front-End Developer',
+	      company: 'XYZ Inc.'
+	    }, {
+	      dateApplied: '2016-09-20',
+	      title: 'Back-End Developer',
+	      company: 'Cool Company'
+	    }],
+	    companies: [{
+	      name: 'ABC Corp'
+	    }, {
+	      name: 'IJK Corp'
+	    }, {
+	      name: 'Sweet Company'
+	    }],
+	    contacts: [{
+	      name: 'Jane Recruiter',
+	      role: 'Lead Assistant',
+	      company: 'Jobby Jobs'
+	    }, {
+	      name: 'Jack',
+	      role: 'HR',
+	      company: 'Klassic Korp'
+	    }]
+	  };
+	}
+
+/***/ },
+/* 40 */
+/***/ function(module, exports) {
+
+	module.exports = "<section ng-class=\"$ctrl.styles.userDetail\">\n  <h1>{{$ctrl.user.name}}</h1>\n  <div>Display: {{$ctrl.user.name}}</div>\n  <div>Login: {{$ctrl.user.username}}</div>\n  <div ng-if=\"$ctrl.user.positions.length\">My Submissions:\n    <ul>\n        <li ng-repeat=\"position in $ctrl.user.positions\">{{position.dateApplied}} | {{position.title}} | {{position.company}}</li>\n    </ul>\n  </div>\n  <div ng-if=\"$ctrl.user.companies.length\">Company Research:\n    <ul>\n        <li ng-repeat=\"company in $ctrl.user.companies\">{{company.name}}</li>\n    </ul>\n  </div>\n  <div ng-if=\"$ctrl.user.contacts.length\">My Contacts:\n    <ul>\n        <li ng-repeat=\"contact in $ctrl.user.contacts\">{{contact.name}} | {{contact.role}} | {{contact.company}}</li>\n    </ul>\n  </div>\n</section>\n";
+
+/***/ },
+/* 41 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 42 */,
+/* 43 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _position = __webpack_require__(44);
 	
 	var _position2 = _interopRequireDefault(_position);
+	
+	var _position3 = __webpack_require__(45);
+	
+	var _position4 = _interopRequireDefault(_position3);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = {
 	  template: _position2.default,
-	  bindings: {
-	    position: '<'
-	  },
-	  controller: function controller() {}
+	  controller: controller
 	};
+	
+	
+	function controller() {
+	  this.styles = _position4.default;
+	  //dummy data for now, but will eventually be a company id in the bindings
+	  this.position = {
+	    title: 'abcs',
+	    postingInfo: 'Take this Job!',
+	    dateAdvertised: new Date(),
+	    actionItems: [{
+	      date: new Date(),
+	      plan: 'Get money, yo'
+	    }]
+	  };
+	}
 
 /***/ },
-/* 16 */
+/* 44 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3 class=\"md-primary\">{{$ctrl.position.title}}</h3>\n<p class=\"md-primary\">{{$ctrl.position.method}}</p>";
+	module.exports = "<section ng-class=\"$ctrl.styles.position\">\n    <h1>{{$ctrl.position.title}}</h1>\n        <h3>Info: {{$ctrl.position.postingInfo}}</h3>\n        <h3>Method Applied: {{$ctrl.position.method}}</h3>\n        <div ng-if=\"$ctrl.position.actionItems.length\">Action Items: \n            <ul>\n                <li ng-repeat=\"item in $ctrl.position.actionItems\">{{item.date}} {{item.plan}}</li>\n            </ul>\n        </div>\n        <div ng-if=\"$ctrl.position.followups.length\">Follow Ups: \n            <ul>\n                <li ng-repeat=\"item in $ctrl.position.followups\">{{item}}</li>\n            </ul>\n        </div>\n        <div ng-if=\"$ctrl.position.question.length\">Questions: \n            <ul>\n                <li ng-repeat=\"item in $ctrl.position.questions\">{{item}}</li>\n            </ul>\n        </div>\n        <!--<div ng-if=\"$ctrl.position.contacts.length\">Contacts: \n            <ul>\n            ui-sref to the contact???\n                <li>Populate with the peron's name linking to their contact data</li>\n                <li ng-repeat=\"item in $ctrl.position.contacts\">{{item._id}}</li>\n            </ul>\n        </div>-->\n        \n</section>";
 
 /***/ },
-/* 17 */
+/* 45 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 46 */,
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20476,7 +21064,7 @@
 	  value: true
 	});
 	
-	var _positions = __webpack_require__(18);
+	var _positions = __webpack_require__(48);
 	
 	var _positions2 = _interopRequireDefault(_positions);
 	
@@ -20504,13 +21092,13 @@
 	// });
 
 /***/ },
-/* 18 */
+/* 48 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div layout-md=\"row\" layout-padding>\n    <section ng-repeat=\"position in $ctrl.positions\">\n        <position position=\"position\"></position>\n    </section>\n</div>";
+	module.exports = "<section ng-class=\"$ctrl.styles.listCompanies\">\n    <div ng-repeat=\"position in $ctrl.positions\">\n        <h1>{{position.title}}</h1>\n        <h3>{{position.postingInfo}}</h3>\n            <div ng-if=\"position.actionItems.length\">\n                <p>Action Items: </p>\n                <ul>\n                    <li ng-repeat=\"item in position.actionItems\">{{item.date}} {{item.plan}}</li>\n                </ul>\n            </div>\n            <!--TODO: feed position id into the ui-sref value as a param-->\n            <p> VVVV Leading to profile with dummy data for Apple</p>\n            <a ui-sref=\"position\">More Details</a>\n    </div>\n</section>\n\n\n";
 
 /***/ },
-/* 19 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20533,7 +21121,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var reqContext = __webpack_require__(20);
+	var reqContext = __webpack_require__(50);
 	
 	var services = _angular2.default.module('services', []);
 	
@@ -20545,20 +21133,258 @@
 	exports.default = services.name;
 
 /***/ },
-/* 20 */
-/***/ function(module, exports) {
+/* 50 */
+/***/ function(module, exports, __webpack_require__) {
 
+	var map = {
+		"./company-service.js": 51,
+		"./contact-service.js": 52,
+		"./position-service.js": 53,
+		"./token-service.js": 54,
+		"./user-service.js": 55
+	};
 	function webpackContext(req) {
-		throw new Error("Cannot find module '" + req + "'.");
-	}
-	webpackContext.keys = function() { return []; };
-	webpackContext.resolve = webpackContext;
+		return __webpack_require__(webpackContextResolve(req));
+	};
+	function webpackContextResolve(req) {
+		return map[req] || (function() { throw new Error("Cannot find module '" + req + "'.") }());
+	};
+	webpackContext.keys = function webpackContextKeys() {
+		return Object.keys(map);
+	};
+	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 20;
+	webpackContext.id = 50;
 
 
 /***/ },
-/* 21 */
+/* 51 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = companyService;
+	companyService.$inject = ['$http', 'apiUrl'];
+	
+	function companyService($http, apiUrl) {
+	  return {
+	    getByUser: function getByUser(userId) {
+	      return $http.get(apiUrl + '/companies/byUser/' + userId).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    add: function add(company, userId) {
+	      return $http.post(apiUrl + '/companies/' + userId, company).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    remove: function remove(company) {
+	      return $http.delete(apiUrl + '/companies/' + company._id).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    update: function update(company) {
+	      return $http.put(apiUrl + '/companies/' + company._id, company).then(function (response) {
+	        return response.data;
+	      });
+	    }
+	  };
+	}
+
+/***/ },
+/* 52 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = contactService;
+	contactService.$inject = ['$http', 'apiUrl'];
+	
+	function contactService($http, apiUrl) {
+	  return {
+	    getAll: function getAll() {
+	      return $http.get(apiUrl + '/contacts').then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    get: function get(contact) {
+	      return $http.get(apiUrl + '/contacts/' + contact._id).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    getByUser: function getByUser(userId) {
+	      return $http.get(apiUrl + '/contacts/byUser/' + userId).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    add: function add(contact, userId) {
+	      return $http.post(apiUrl + '/contacts/' + userId, contact).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    remove: function remove(contact) {
+	      return $http.delete(apiUrl + '/contacts/' + contact._id).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    update: function update(contact) {
+	      return $http.put(apiUrl + '/contacts/' + contact._id, contact).then(function (response) {
+	        return response.data;
+	      });
+	    }
+	  };
+	}
+
+/***/ },
+/* 53 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = positionService;
+	positionService.$inject = ['$http', 'apiUrl'];
+	
+	function positionService($http, apiUrl) {
+	  return {
+	    getAll: function getAll() {
+	      return $http.get(apiUrl + '/positions').then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    get: function get(position) {
+	      return $http.get(apiUrl + '/positions/' + position._id).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    getByUser: function getByUser(userId) {
+	      return $http.get(apiUrl + '/positions/byUser/' + userId).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    add: function add(position, userId) {
+	      return $http.post(apiUrl + '/positions/' + userId, position).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    remove: function remove(position) {
+	      return $http.delete(apiUrl + '/positions/' + position._id).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    update: function update(position) {
+	      return $http.put(apiUrl + '/positions/' + position._id, position).then(function (response) {
+	        return response.data;
+	      });
+	    }
+	  };
+	}
+
+/***/ },
+/* 54 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = tokenService;
+	tokenService.$inject = ['$window'];
+	
+	var TOKEN_NAME = 'token';
+	var ID = 'id';
+	
+	function tokenService($window) {
+	  return {
+	    get: function get() {
+	      return $window.localStorage.getItem(TOKEN_NAME);
+	    },
+	    remove: function remove() {
+	      $window.localStorage.removeItem(TOKEN_NAME);
+	      $window.localStorage.removeItem(ID);
+	    },
+	    set: function set(payload) {
+	      $window.localStorage.setItem(TOKEN_NAME, payload.token);
+	      $window.localStorage.setItem(ID, payload.id);
+	    }
+	  };
+	}
+
+/***/ },
+/* 55 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = userService;
+	userService.$inject = ['tokenService', '$http', 'apiUrl'];
+	
+	function userService(token, $http, apiUrl) {
+	
+	  var current = token.get();
+	  if (current) {
+	    $http.get(apiUrl + '/auth/verify').catch(function () {
+	      return token.remove();
+	    });
+	  }
+	
+	  function credential(endpoint) {
+	    return function (credentials) {
+	      return $http.post(apiUrl + '/auth/' + endpoint, credentials).then(function (result) {
+	        token.set(result.data.token);
+	      }).catch(function (err) {
+	        throw err.data;
+	      });
+	    };
+	  }
+	
+	  function getMe(id) {
+	    return $http.get(apiUrl + '/users/' + id).then(function (result) {
+	      return result.data;
+	    });
+	  };
+	
+	  function update(userToUpdate) {
+	    return $http.put(apiUrl + '/users/' + userToUpdate._id, userToUpdate).then(function (result) {
+	      return result.data;
+	    });
+	  };
+	
+	  return {
+	    //do we have token?
+	    isAuthenticated: function isAuthenticated() {
+	      return !!token.get();
+	    },
+	
+	    //remove token
+	    logout: function logout() {
+	      token.remove();
+	    },
+	
+	    //call API and set token
+	    signin: credential('signin'),
+	    signup: credential('signup'),
+	    //update user information
+	    update: update,
+	    //get current user information
+	    getMe: getMe
+	  };
+	}
+
+/***/ },
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20567,26 +21393,26 @@
 	__webpack_require__(1);
 	
 	// Load Angular and dependent libs
-	__webpack_require__(22);
-	__webpack_require__(24);
+	__webpack_require__(57);
+	__webpack_require__(59);
 	
 	// Now load Angular Material
-	__webpack_require__(26);
+	__webpack_require__(61);
 	
 	// Export namespace
 	module.exports = 'ngMaterial';
 
 /***/ },
-/* 22 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	__webpack_require__(23);
+	__webpack_require__(58);
 	module.exports = 'ngAnimate';
 
 /***/ },
-/* 23 */
+/* 58 */
 /***/ function(module, exports) {
 
 	'use strict';/**
@@ -22036,16 +22862,16 @@
 	noop=angular.noop;copy=angular.copy;extend=angular.extend;jqLite=angular.element;forEach=angular.forEach;isArray=angular.isArray;isString=angular.isString;isObject=angular.isObject;isUndefined=angular.isUndefined;isDefined=angular.isDefined;isFunction=angular.isFunction;isElement=angular.isElement;}).directive('ngAnimateSwap',ngAnimateSwapDirective).directive('ngAnimateChildren',$$AnimateChildrenDirective).factory('$$rAFScheduler',$$rAFSchedulerFactory).provider('$$animateQueue',$$AnimateQueueProvider).provider('$$animation',$$AnimationProvider).provider('$animateCss',$AnimateCssProvider).provider('$$animateCssDriver',$$AnimateCssDriverProvider).provider('$$animateJs',$$AnimateJsProvider).provider('$$animateJsDriver',$$AnimateJsDriverProvider);})(window,window.angular);
 
 /***/ },
-/* 24 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	__webpack_require__(25);
+	__webpack_require__(60);
 	module.exports = 'ngAria';
 
 /***/ },
-/* 25 */
+/* 60 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22439,7 +23265,7 @@
 	})(window, window.angular);
 
 /***/ },
-/* 26 */
+/* 61 */
 /***/ function(module, exports) {
 
 	"use strict";var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol?"symbol":typeof obj;};/*!
@@ -32968,16 +33794,14 @@
 	scope.$on('$destroy',function(){disconnect();});}};}})();(function(){"use strict";MdTabsTemplate.$inject=["$compile","$mdUtil"];angular.module('material.components.tabs').directive('mdTabsTemplate',MdTabsTemplate);function MdTabsTemplate($compile,$mdUtil){return{restrict:'A',link:link,scope:{template:'=mdTabsTemplate',connected:'=?mdConnectedIf',compileScope:'=mdScope'},require:'^?mdTabs'};function link(scope,element,attr,ctrl){if(!ctrl)return;var compileScope=ctrl.enableDisconnect?scope.compileScope.$new():scope.compileScope;element.html(scope.template);$compile(element.contents())(compileScope);return $mdUtil.nextTick(handleScope);function handleScope(){scope.$watch('connected',function(value){value===false?disconnect():reconnect();});scope.$on('$destroy',reconnect);}function disconnect(){if(ctrl.enableDisconnect)$mdUtil.disconnectScope(compileScope);}function reconnect(){if(ctrl.enableDisconnect)$mdUtil.reconnectScope(compileScope);}}}})();(function(){angular.module("material.core").constant("$MD_THEME_CSS","md-autocomplete.md-THEME_NAME-theme {  background: '{{background-A100}}'; }  md-autocomplete.md-THEME_NAME-theme[disabled]:not([md-floating-label]) {    background: '{{background-100}}'; }  md-autocomplete.md-THEME_NAME-theme button md-icon path {    fill: '{{background-600}}'; }  md-autocomplete.md-THEME_NAME-theme button:after {    background: '{{background-600-0.3}}'; }.md-autocomplete-suggestions-container.md-THEME_NAME-theme {  background: '{{background-A100}}'; }  .md-autocomplete-suggestions-container.md-THEME_NAME-theme li {    color: '{{background-900}}'; }    .md-autocomplete-suggestions-container.md-THEME_NAME-theme li .highlight {      color: '{{background-600}}'; }    .md-autocomplete-suggestions-container.md-THEME_NAME-theme li:hover, .md-autocomplete-suggestions-container.md-THEME_NAME-theme li.selected {      background: '{{background-200}}'; }md-backdrop {  background-color: '{{background-900-0.0}}'; }  md-backdrop.md-opaque.md-THEME_NAME-theme {    background-color: '{{background-900-1.0}}'; }md-bottom-sheet.md-THEME_NAME-theme {  background-color: '{{background-50}}';  border-top-color: '{{background-300}}'; }  md-bottom-sheet.md-THEME_NAME-theme.md-list md-list-item {    color: '{{foreground-1}}'; }  md-bottom-sheet.md-THEME_NAME-theme .md-subheader {    background-color: '{{background-50}}'; }  md-bottom-sheet.md-THEME_NAME-theme .md-subheader {    color: '{{foreground-1}}'; }.md-button.md-THEME_NAME-theme:not([disabled]):hover {  background-color: '{{background-500-0.2}}'; }.md-button.md-THEME_NAME-theme:not([disabled]).md-focused {  background-color: '{{background-500-0.2}}'; }.md-button.md-THEME_NAME-theme:not([disabled]).md-icon-button:hover {  background-color: transparent; }.md-button.md-THEME_NAME-theme.md-fab {  background-color: '{{accent-color}}';  color: '{{accent-contrast}}'; }  .md-button.md-THEME_NAME-theme.md-fab md-icon {    color: '{{accent-contrast}}'; }  .md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover {    background-color: '{{accent-A700}}'; }  .md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused {    background-color: '{{accent-A700}}'; }.md-button.md-THEME_NAME-theme.md-primary {  color: '{{primary-color}}'; }  .md-button.md-THEME_NAME-theme.md-primary.md-raised, .md-button.md-THEME_NAME-theme.md-primary.md-fab {    color: '{{primary-contrast}}';    background-color: '{{primary-color}}'; }    .md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]) md-icon {      color: '{{primary-contrast}}'; }    .md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]):hover {      background-color: '{{primary-600}}'; }    .md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]).md-focused {      background-color: '{{primary-600}}'; }  .md-button.md-THEME_NAME-theme.md-primary:not([disabled]) md-icon {    color: '{{primary-color}}'; }.md-button.md-THEME_NAME-theme.md-fab {  background-color: '{{accent-color}}';  color: '{{accent-contrast}}'; }  .md-button.md-THEME_NAME-theme.md-fab:not([disabled]) .md-icon {    color: '{{accent-contrast}}'; }  .md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover {    background-color: '{{accent-A700}}'; }  .md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused {    background-color: '{{accent-A700}}'; }.md-button.md-THEME_NAME-theme.md-raised {  color: '{{background-900}}';  background-color: '{{background-50}}'; }  .md-button.md-THEME_NAME-theme.md-raised:not([disabled]) md-icon {    color: '{{background-900}}'; }  .md-button.md-THEME_NAME-theme.md-raised:not([disabled]):hover {    background-color: '{{background-50}}'; }  .md-button.md-THEME_NAME-theme.md-raised:not([disabled]).md-focused {    background-color: '{{background-200}}'; }.md-button.md-THEME_NAME-theme.md-warn {  color: '{{warn-color}}'; }  .md-button.md-THEME_NAME-theme.md-warn.md-raised, .md-button.md-THEME_NAME-theme.md-warn.md-fab {    color: '{{warn-contrast}}';    background-color: '{{warn-color}}'; }    .md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]) md-icon {      color: '{{warn-contrast}}'; }    .md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]):hover {      background-color: '{{warn-600}}'; }    .md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]).md-focused {      background-color: '{{warn-600}}'; }  .md-button.md-THEME_NAME-theme.md-warn:not([disabled]) md-icon {    color: '{{warn-color}}'; }.md-button.md-THEME_NAME-theme.md-accent {  color: '{{accent-color}}'; }  .md-button.md-THEME_NAME-theme.md-accent.md-raised, .md-button.md-THEME_NAME-theme.md-accent.md-fab {    color: '{{accent-contrast}}';    background-color: '{{accent-color}}'; }    .md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]) md-icon {      color: '{{accent-contrast}}'; }    .md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]):hover {      background-color: '{{accent-A700}}'; }    .md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]).md-focused {      background-color: '{{accent-A700}}'; }  .md-button.md-THEME_NAME-theme.md-accent:not([disabled]) md-icon {    color: '{{accent-color}}'; }.md-button.md-THEME_NAME-theme[disabled], .md-button.md-THEME_NAME-theme.md-raised[disabled], .md-button.md-THEME_NAME-theme.md-fab[disabled], .md-button.md-THEME_NAME-theme.md-accent[disabled], .md-button.md-THEME_NAME-theme.md-warn[disabled] {  color: '{{foreground-3}}';  cursor: default; }  .md-button.md-THEME_NAME-theme[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-raised[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-fab[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-accent[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-warn[disabled] md-icon {    color: '{{foreground-3}}'; }.md-button.md-THEME_NAME-theme.md-raised[disabled], .md-button.md-THEME_NAME-theme.md-fab[disabled] {  background-color: '{{foreground-4}}'; }.md-button.md-THEME_NAME-theme[disabled] {  background-color: transparent; }._md a.md-THEME_NAME-theme:not(.md-button).md-primary {  color: '{{primary-color}}'; }  ._md a.md-THEME_NAME-theme:not(.md-button).md-primary:hover {    color: '{{primary-700}}'; }._md a.md-THEME_NAME-theme:not(.md-button).md-accent {  color: '{{accent-color}}'; }  ._md a.md-THEME_NAME-theme:not(.md-button).md-accent:hover {    color: '{{accent-700}}'; }._md a.md-THEME_NAME-theme:not(.md-button).md-accent {  color: '{{accent-color}}'; }  ._md a.md-THEME_NAME-theme:not(.md-button).md-accent:hover {    color: '{{accent-A700}}'; }._md a.md-THEME_NAME-theme:not(.md-button).md-warn {  color: '{{warn-color}}'; }  ._md a.md-THEME_NAME-theme:not(.md-button).md-warn:hover {    color: '{{warn-700}}'; }md-card.md-THEME_NAME-theme {  color: '{{foreground-1}}';  background-color: '{{background-hue-1}}';  border-radius: 2px; }  md-card.md-THEME_NAME-theme .md-card-image {    border-radius: 2px 2px 0 0; }  md-card.md-THEME_NAME-theme md-card-header md-card-avatar md-icon {    color: '{{background-color}}';    background-color: '{{foreground-3}}'; }  md-card.md-THEME_NAME-theme md-card-header md-card-header-text .md-subhead {    color: '{{foreground-2}}'; }  md-card.md-THEME_NAME-theme md-card-title md-card-title-text:not(:only-child) .md-subhead {    color: '{{foreground-2}}'; }md-chips.md-THEME_NAME-theme .md-chips {  box-shadow: 0 1px '{{foreground-4}}'; }  md-chips.md-THEME_NAME-theme .md-chips.md-focused {    box-shadow: 0 2px '{{primary-color}}'; }  md-chips.md-THEME_NAME-theme .md-chips .md-chip-input-container input {    color: '{{foreground-1}}'; }    md-chips.md-THEME_NAME-theme .md-chips .md-chip-input-container input::-webkit-input-placeholder {      color: '{{foreground-3}}'; }    md-chips.md-THEME_NAME-theme .md-chips .md-chip-input-container input:-moz-placeholder {      color: '{{foreground-3}}'; }    md-chips.md-THEME_NAME-theme .md-chips .md-chip-input-container input::-moz-placeholder {      color: '{{foreground-3}}'; }    md-chips.md-THEME_NAME-theme .md-chips .md-chip-input-container input:-ms-input-placeholder {      color: '{{foreground-3}}'; }    md-chips.md-THEME_NAME-theme .md-chips .md-chip-input-container input::-webkit-input-placeholder {      color: '{{foreground-3}}'; }md-chips.md-THEME_NAME-theme md-chip {  background: '{{background-300}}';  color: '{{background-800}}'; }  md-chips.md-THEME_NAME-theme md-chip md-icon {    color: '{{background-700}}'; }  md-chips.md-THEME_NAME-theme md-chip.md-focused {    background: '{{primary-color}}';    color: '{{primary-contrast}}'; }    md-chips.md-THEME_NAME-theme md-chip.md-focused md-icon {      color: '{{primary-contrast}}'; }  md-chips.md-THEME_NAME-theme md-chip._md-chip-editing {    background: transparent;    color: '{{background-800}}'; }md-chips.md-THEME_NAME-theme md-chip-remove .md-button md-icon path {  fill: '{{background-500}}'; }.md-contact-suggestion span.md-contact-email {  color: '{{background-400}}'; }md-checkbox.md-THEME_NAME-theme .md-ripple {  color: '{{accent-A700}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-ripple {  color: '{{background-600}}'; }md-checkbox.md-THEME_NAME-theme.md-checked.md-focused .md-container:before {  background-color: '{{accent-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme .md-ink-ripple {  color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-ink-ripple {  color: '{{accent-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not(.md-checked) .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-icon {  background-color: '{{accent-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-icon:after {  border-color: '{{accent-contrast-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary .md-ripple {  color: '{{primary-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ripple {  color: '{{background-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary .md-ink-ripple {  color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ink-ripple {  color: '{{primary-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary:not(.md-checked) .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-icon {  background-color: '{{primary-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked.md-focused .md-container:before {  background-color: '{{primary-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-icon:after {  border-color: '{{primary-contrast-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary .md-indeterminate[disabled] .md-container {  color: '{{foreground-3}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn .md-ripple {  color: '{{warn-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn .md-ink-ripple {  color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-ink-ripple {  color: '{{warn-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn:not(.md-checked) .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-icon {  background-color: '{{warn-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked.md-focused:not([disabled]) .md-container:before {  background-color: '{{warn-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-icon:after {  border-color: '{{background-200}}'; }md-checkbox.md-THEME_NAME-theme[disabled]:not(.md-checked) .md-icon {  border-color: '{{foreground-3}}'; }md-checkbox.md-THEME_NAME-theme[disabled].md-checked .md-icon {  background-color: '{{foreground-3}}'; }md-checkbox.md-THEME_NAME-theme[disabled].md-checked .md-icon:after {  border-color: '{{background-200}}'; }md-checkbox.md-THEME_NAME-theme[disabled] .md-icon:after {  border-color: '{{foreground-3}}'; }md-checkbox.md-THEME_NAME-theme[disabled] .md-label {  color: '{{foreground-3}}'; }md-content.md-THEME_NAME-theme {  color: '{{foreground-1}}';  background-color: '{{background-default}}'; }/** Theme styles for mdCalendar. */.md-calendar.md-THEME_NAME-theme {  background: '{{background-A100}}';  color: '{{background-A200-0.87}}'; }  .md-calendar.md-THEME_NAME-theme tr:last-child td {    border-bottom-color: '{{background-200}}'; }.md-THEME_NAME-theme .md-calendar-day-header {  background: '{{background-300}}';  color: '{{background-A200-0.87}}'; }.md-THEME_NAME-theme .md-calendar-date.md-calendar-date-today .md-calendar-date-selection-indicator {  border: 1px solid '{{primary-500}}'; }.md-THEME_NAME-theme .md-calendar-date.md-calendar-date-today.md-calendar-date-disabled {  color: '{{primary-500-0.6}}'; }.md-calendar-date.md-focus .md-THEME_NAME-theme .md-calendar-date-selection-indicator, .md-THEME_NAME-theme .md-calendar-date-selection-indicator:hover {  background: '{{background-300}}'; }.md-THEME_NAME-theme .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator,.md-THEME_NAME-theme .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator {  background: '{{primary-500}}';  color: '{{primary-500-contrast}}';  border-color: transparent; }.md-THEME_NAME-theme .md-calendar-date-disabled,.md-THEME_NAME-theme .md-calendar-month-label-disabled {  color: '{{background-A200-0.435}}'; }/** Theme styles for mdDatepicker. */.md-THEME_NAME-theme .md-datepicker-input {  color: '{{foreground-1}}'; }  .md-THEME_NAME-theme .md-datepicker-input::-webkit-input-placeholder {    color: '{{foreground-3}}'; }  .md-THEME_NAME-theme .md-datepicker-input:-moz-placeholder {    color: '{{foreground-3}}'; }  .md-THEME_NAME-theme .md-datepicker-input::-moz-placeholder {    color: '{{foreground-3}}'; }  .md-THEME_NAME-theme .md-datepicker-input:-ms-input-placeholder {    color: '{{foreground-3}}'; }  .md-THEME_NAME-theme .md-datepicker-input::-webkit-input-placeholder {    color: '{{foreground-3}}'; }.md-THEME_NAME-theme .md-datepicker-input-container {  border-bottom-color: '{{foreground-4}}'; }  .md-THEME_NAME-theme .md-datepicker-input-container.md-datepicker-focused {    border-bottom-color: '{{primary-color}}'; }    .md-accent .md-THEME_NAME-theme .md-datepicker-input-container.md-datepicker-focused {      border-bottom-color: '{{accent-color}}'; }    .md-warn .md-THEME_NAME-theme .md-datepicker-input-container.md-datepicker-focused {      border-bottom-color: '{{warn-A700}}'; }  .md-THEME_NAME-theme .md-datepicker-input-container.md-datepicker-invalid {    border-bottom-color: '{{warn-A700}}'; }.md-THEME_NAME-theme .md-datepicker-calendar-pane {  border-color: '{{background-hue-1}}'; }.md-THEME_NAME-theme .md-datepicker-triangle-button .md-datepicker-expand-triangle {  border-top-color: '{{foreground-3}}'; }.md-THEME_NAME-theme .md-datepicker-triangle-button:hover .md-datepicker-expand-triangle {  border-top-color: '{{foreground-2}}'; }.md-THEME_NAME-theme .md-datepicker-open .md-datepicker-calendar-icon {  color: '{{primary-color}}'; }.md-THEME_NAME-theme .md-datepicker-open.md-accent .md-datepicker-calendar-icon, .md-accent .md-THEME_NAME-theme .md-datepicker-open .md-datepicker-calendar-icon {  color: '{{accent-color}}'; }.md-THEME_NAME-theme .md-datepicker-open.md-warn .md-datepicker-calendar-icon, .md-warn .md-THEME_NAME-theme .md-datepicker-open .md-datepicker-calendar-icon {  color: '{{warn-A700}}'; }.md-THEME_NAME-theme .md-datepicker-calendar {  background: '{{background-A100}}'; }.md-THEME_NAME-theme .md-datepicker-input-mask-opaque {  box-shadow: 0 0 0 9999px \"{{background-hue-1}}\"; }.md-THEME_NAME-theme .md-datepicker-open .md-datepicker-input-container {  background: \"{{background-hue-1}}\"; }md-dialog.md-THEME_NAME-theme {  border-radius: 4px;  background-color: '{{background-hue-1}}';  color: '{{foreground-1}}'; }  md-dialog.md-THEME_NAME-theme.md-content-overflow .md-actions, md-dialog.md-THEME_NAME-theme.md-content-overflow md-dialog-actions {    border-top-color: '{{foreground-4}}'; }md-divider.md-THEME_NAME-theme {  border-top-color: '{{foreground-4}}'; }.layout-row > md-divider.md-THEME_NAME-theme,.layout-xs-row > md-divider.md-THEME_NAME-theme, .layout-gt-xs-row > md-divider.md-THEME_NAME-theme,.layout-sm-row > md-divider.md-THEME_NAME-theme, .layout-gt-sm-row > md-divider.md-THEME_NAME-theme,.layout-md-row > md-divider.md-THEME_NAME-theme, .layout-gt-md-row > md-divider.md-THEME_NAME-theme,.layout-lg-row > md-divider.md-THEME_NAME-theme, .layout-gt-lg-row > md-divider.md-THEME_NAME-theme,.layout-xl-row > md-divider.md-THEME_NAME-theme {  border-right-color: '{{foreground-4}}'; }md-icon.md-THEME_NAME-theme {  color: '{{foreground-2}}'; }  md-icon.md-THEME_NAME-theme.md-primary {    color: '{{primary-color}}'; }  md-icon.md-THEME_NAME-theme.md-accent {    color: '{{accent-color}}'; }  md-icon.md-THEME_NAME-theme.md-warn {    color: '{{warn-color}}'; }md-input-container.md-THEME_NAME-theme .md-input {  color: '{{foreground-1}}';  border-color: '{{foreground-4}}'; }  md-input-container.md-THEME_NAME-theme .md-input::-webkit-input-placeholder {    color: '{{foreground-3}}'; }  md-input-container.md-THEME_NAME-theme .md-input:-moz-placeholder {    color: '{{foreground-3}}'; }  md-input-container.md-THEME_NAME-theme .md-input::-moz-placeholder {    color: '{{foreground-3}}'; }  md-input-container.md-THEME_NAME-theme .md-input:-ms-input-placeholder {    color: '{{foreground-3}}'; }  md-input-container.md-THEME_NAME-theme .md-input::-webkit-input-placeholder {    color: '{{foreground-3}}'; }md-input-container.md-THEME_NAME-theme > md-icon {  color: '{{foreground-1}}'; }md-input-container.md-THEME_NAME-theme label,md-input-container.md-THEME_NAME-theme .md-placeholder {  color: '{{foreground-3}}'; }md-input-container.md-THEME_NAME-theme label.md-required:after {  color: '{{warn-A700}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-focused):not(.md-input-invalid) label.md-required:after {  color: '{{foreground-2}}'; }md-input-container.md-THEME_NAME-theme .md-input-messages-animation, md-input-container.md-THEME_NAME-theme .md-input-message-animation {  color: '{{warn-A700}}'; }  md-input-container.md-THEME_NAME-theme .md-input-messages-animation .md-char-counter, md-input-container.md-THEME_NAME-theme .md-input-message-animation .md-char-counter {    color: '{{foreground-1}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-has-value label {  color: '{{foreground-2}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused .md-input, md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-resized .md-input {  border-color: '{{primary-color}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused label,md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused md-icon {  color: '{{primary-color}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-accent .md-input {  border-color: '{{accent-color}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-accent label,md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-accent md-icon {  color: '{{accent-color}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-warn .md-input {  border-color: '{{warn-A700}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-warn label,md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-warn md-icon {  color: '{{warn-A700}}'; }md-input-container.md-THEME_NAME-theme.md-input-invalid .md-input {  border-color: '{{warn-A700}}'; }md-input-container.md-THEME_NAME-theme.md-input-invalid label,md-input-container.md-THEME_NAME-theme.md-input-invalid .md-input-message-animation,md-input-container.md-THEME_NAME-theme.md-input-invalid .md-char-counter {  color: '{{warn-A700}}'; }md-input-container.md-THEME_NAME-theme .md-input[disabled],[disabled] md-input-container.md-THEME_NAME-theme .md-input {  border-bottom-color: transparent;  color: '{{foreground-3}}';  background-image: linear-gradient(to right, \"{{foreground-3}}\" 0%, \"{{foreground-3}}\" 33%, transparent 0%);  background-image: -ms-linear-gradient(left, transparent 0%, \"{{foreground-3}}\" 100%); }md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text h3, md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text h4,md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text h3,md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text h4 {  color: '{{foreground-1}}'; }md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text p,md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text p {  color: '{{foreground-2}}'; }md-list.md-THEME_NAME-theme .md-proxy-focus.md-focused div.md-no-style {  background-color: '{{background-100}}'; }md-list.md-THEME_NAME-theme md-list-item .md-avatar-icon {  background-color: '{{foreground-3}}';  color: '{{background-color}}'; }md-list.md-THEME_NAME-theme md-list-item > md-icon {  color: '{{foreground-2}}'; }  md-list.md-THEME_NAME-theme md-list-item > md-icon.md-highlight {    color: '{{primary-color}}'; }    md-list.md-THEME_NAME-theme md-list-item > md-icon.md-highlight.md-accent {      color: '{{accent-color}}'; }md-menu-content.md-THEME_NAME-theme {  background-color: '{{background-A100}}'; }  md-menu-content.md-THEME_NAME-theme md-menu-item {    color: '{{background-A200-0.87}}'; }    md-menu-content.md-THEME_NAME-theme md-menu-item md-icon {      color: '{{background-A200-0.54}}'; }    md-menu-content.md-THEME_NAME-theme md-menu-item .md-button[disabled] {      color: '{{background-A200-0.25}}'; }      md-menu-content.md-THEME_NAME-theme md-menu-item .md-button[disabled] md-icon {        color: '{{background-A200-0.25}}'; }  md-menu-content.md-THEME_NAME-theme md-menu-divider {    background-color: '{{background-A200-0.11}}'; }md-menu-bar.md-THEME_NAME-theme > button.md-button {  color: '{{foreground-2}}';  border-radius: 2px; }md-menu-bar.md-THEME_NAME-theme md-menu.md-open > button, md-menu-bar.md-THEME_NAME-theme md-menu > button:focus {  outline: none;  background: '{{background-200}}'; }md-menu-bar.md-THEME_NAME-theme.md-open:not(.md-keyboard-mode) md-menu:hover > button {  background-color: '{{ background-500-0.2}}'; }md-menu-bar.md-THEME_NAME-theme:not(.md-keyboard-mode):not(.md-open) md-menu button:hover,md-menu-bar.md-THEME_NAME-theme:not(.md-keyboard-mode):not(.md-open) md-menu button:focus {  background: transparent; }md-menu-content.md-THEME_NAME-theme .md-menu > .md-button:after {  color: '{{background-A200-0.54}}'; }md-menu-content.md-THEME_NAME-theme .md-menu.md-open > .md-button {  background-color: '{{ background-500-0.2}}'; }md-toolbar.md-THEME_NAME-theme.md-menu-toolbar {  background-color: '{{background-A100}}';  color: '{{background-A200}}'; }  md-toolbar.md-THEME_NAME-theme.md-menu-toolbar md-toolbar-filler {    background-color: '{{primary-color}}';    color: '{{background-A100-0.87}}'; }    md-toolbar.md-THEME_NAME-theme.md-menu-toolbar md-toolbar-filler md-icon {      color: '{{background-A100-0.87}}'; }md-nav-bar.md-THEME_NAME-theme .md-nav-bar {  background-color: transparent;  border-color: '{{foreground-4}}'; }md-nav-bar.md-THEME_NAME-theme .md-button._md-nav-button.md-unselected {  color: '{{foreground-2}}'; }md-nav-bar.md-THEME_NAME-theme md-nav-ink-bar {  color: '{{accent-color}}';  background: '{{accent-color}}'; }.md-panel {  background-color: '{{background-900-0.0}}'; }  .md-panel._md-panel-backdrop.md-THEME_NAME-theme {    background-color: '{{background-900-1.0}}'; }md-progress-circular.md-THEME_NAME-theme path {  stroke: '{{primary-color}}'; }md-progress-circular.md-THEME_NAME-theme.md-warn path {  stroke: '{{warn-color}}'; }md-progress-circular.md-THEME_NAME-theme.md-accent path {  stroke: '{{accent-color}}'; }md-progress-linear.md-THEME_NAME-theme .md-container {  background-color: '{{primary-100}}'; }md-progress-linear.md-THEME_NAME-theme .md-bar {  background-color: '{{primary-color}}'; }md-progress-linear.md-THEME_NAME-theme.md-warn .md-container {  background-color: '{{warn-100}}'; }md-progress-linear.md-THEME_NAME-theme.md-warn .md-bar {  background-color: '{{warn-color}}'; }md-progress-linear.md-THEME_NAME-theme.md-accent .md-container {  background-color: '{{accent-100}}'; }md-progress-linear.md-THEME_NAME-theme.md-accent .md-bar {  background-color: '{{accent-color}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-warn .md-bar1 {  background-color: '{{warn-100}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-warn .md-dashed:before {  background: radial-gradient(\"{{warn-100}}\" 0%, \"{{warn-100}}\" 16%, transparent 42%); }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-accent .md-bar1 {  background-color: '{{accent-100}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-accent .md-dashed:before {  background: radial-gradient(\"{{accent-100}}\" 0%, \"{{accent-100}}\" 16%, transparent 42%); }md-radio-button.md-THEME_NAME-theme .md-off {  border-color: '{{foreground-2}}'; }md-radio-button.md-THEME_NAME-theme .md-on {  background-color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme.md-checked .md-off {  border-color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme.md-checked .md-ink-ripple {  color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme .md-container .md-ripple {  color: '{{accent-A700}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-on, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-on,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-on,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-on {  background-color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-off {  border-color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ink-ripple {  color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-container .md-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-container .md-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-container .md-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-container .md-ripple {  color: '{{primary-600}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-on, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-on,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-on,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-on {  background-color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-off {  border-color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-ink-ripple {  color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-container .md-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-container .md-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-container .md-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-container .md-ripple {  color: '{{warn-600}}'; }md-radio-group.md-THEME_NAME-theme[disabled],md-radio-button.md-THEME_NAME-theme[disabled] {  color: '{{foreground-3}}'; }  md-radio-group.md-THEME_NAME-theme[disabled] .md-container .md-off,  md-radio-button.md-THEME_NAME-theme[disabled] .md-container .md-off {    border-color: '{{foreground-3}}'; }  md-radio-group.md-THEME_NAME-theme[disabled] .md-container .md-on,  md-radio-button.md-THEME_NAME-theme[disabled] .md-container .md-on {    border-color: '{{foreground-3}}'; }md-radio-group.md-THEME_NAME-theme .md-checked .md-ink-ripple {  color: '{{accent-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme.md-primary .md-checked:not([disabled]) .md-ink-ripple, md-radio-group.md-THEME_NAME-theme .md-checked:not([disabled]).md-primary .md-ink-ripple {  color: '{{primary-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme .md-checked.md-primary .md-ink-ripple {  color: '{{warn-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked .md-container:before {  background-color: '{{accent-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty).md-primary .md-checked .md-container:before,md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked.md-primary .md-container:before {  background-color: '{{primary-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty).md-warn .md-checked .md-container:before,md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked.md-warn .md-container:before {  background-color: '{{warn-color-0.26}}'; }md-input-container md-select.md-THEME_NAME-theme .md-select-value span:first-child:after {  color: '{{warn-A700}}'; }md-input-container:not(.md-input-focused):not(.md-input-invalid) md-select.md-THEME_NAME-theme .md-select-value span:first-child:after {  color: '{{foreground-3}}'; }md-input-container.md-input-focused:not(.md-input-has-value) md-select.md-THEME_NAME-theme .md-select-value {  color: '{{primary-color}}'; }  md-input-container.md-input-focused:not(.md-input-has-value) md-select.md-THEME_NAME-theme .md-select-value.md-select-placeholder {    color: '{{primary-color}}'; }md-input-container.md-input-invalid md-select.md-THEME_NAME-theme .md-select-value {  color: '{{warn-A700}}' !important;  border-bottom-color: '{{warn-A700}}' !important; }md-input-container.md-input-invalid md-select.md-THEME_NAME-theme.md-no-underline .md-select-value {  border-bottom-color: transparent !important; }md-select.md-THEME_NAME-theme[disabled] .md-select-value {  border-bottom-color: transparent;  background-image: linear-gradient(to right, \"{{foreground-3}}\" 0%, \"{{foreground-3}}\" 33%, transparent 0%);  background-image: -ms-linear-gradient(left, transparent 0%, \"{{foreground-3}}\" 100%); }md-select.md-THEME_NAME-theme .md-select-value {  border-bottom-color: '{{foreground-4}}'; }  md-select.md-THEME_NAME-theme .md-select-value.md-select-placeholder {    color: '{{foreground-3}}'; }  md-select.md-THEME_NAME-theme .md-select-value span:first-child:after {    color: '{{warn-A700}}'; }md-select.md-THEME_NAME-theme.md-no-underline .md-select-value {  border-bottom-color: transparent !important; }md-select.md-THEME_NAME-theme.ng-invalid.ng-touched .md-select-value {  color: '{{warn-A700}}' !important;  border-bottom-color: '{{warn-A700}}' !important; }md-select.md-THEME_NAME-theme.ng-invalid.ng-touched.md-no-underline .md-select-value {  border-bottom-color: transparent !important; }md-select.md-THEME_NAME-theme:not([disabled]):focus .md-select-value {  border-bottom-color: '{{primary-color}}';  color: '{{ foreground-1 }}'; }  md-select.md-THEME_NAME-theme:not([disabled]):focus .md-select-value.md-select-placeholder {    color: '{{ foreground-1 }}'; }md-select.md-THEME_NAME-theme:not([disabled]):focus.md-no-underline .md-select-value {  border-bottom-color: transparent !important; }md-select.md-THEME_NAME-theme:not([disabled]):focus.md-accent .md-select-value {  border-bottom-color: '{{accent-color}}'; }md-select.md-THEME_NAME-theme:not([disabled]):focus.md-warn .md-select-value {  border-bottom-color: '{{warn-color}}'; }md-select.md-THEME_NAME-theme[disabled] .md-select-value {  color: '{{foreground-3}}'; }  md-select.md-THEME_NAME-theme[disabled] .md-select-value.md-select-placeholder {    color: '{{foreground-3}}'; }md-select-menu.md-THEME_NAME-theme md-content {  background: '{{background-A100}}'; }  md-select-menu.md-THEME_NAME-theme md-content md-optgroup {    color: '{{background-600-0.87}}'; }  md-select-menu.md-THEME_NAME-theme md-content md-option {    color: '{{background-900-0.87}}'; }    md-select-menu.md-THEME_NAME-theme md-content md-option[disabled] .md-text {      color: '{{background-400-0.87}}'; }    md-select-menu.md-THEME_NAME-theme md-content md-option:not([disabled]):focus, md-select-menu.md-THEME_NAME-theme md-content md-option:not([disabled]):hover {      background: '{{background-200}}'; }    md-select-menu.md-THEME_NAME-theme md-content md-option[selected] {      color: '{{primary-500}}'; }      md-select-menu.md-THEME_NAME-theme md-content md-option[selected]:focus {        color: '{{primary-600}}'; }      md-select-menu.md-THEME_NAME-theme md-content md-option[selected].md-accent {        color: '{{accent-color}}'; }        md-select-menu.md-THEME_NAME-theme md-content md-option[selected].md-accent:focus {          color: '{{accent-A700}}'; }.md-checkbox-enabled.md-THEME_NAME-theme .md-ripple {  color: '{{primary-600}}'; }.md-checkbox-enabled.md-THEME_NAME-theme[selected] .md-ripple {  color: '{{background-600}}'; }.md-checkbox-enabled.md-THEME_NAME-theme .md-ink-ripple {  color: '{{foreground-2}}'; }.md-checkbox-enabled.md-THEME_NAME-theme[selected] .md-ink-ripple {  color: '{{primary-color-0.87}}'; }.md-checkbox-enabled.md-THEME_NAME-theme:not(.md-checked) .md-icon {  border-color: '{{foreground-2}}'; }.md-checkbox-enabled.md-THEME_NAME-theme[selected] .md-icon {  background-color: '{{primary-color-0.87}}'; }.md-checkbox-enabled.md-THEME_NAME-theme[selected].md-focused .md-container:before {  background-color: '{{primary-color-0.26}}'; }.md-checkbox-enabled.md-THEME_NAME-theme[selected] .md-icon:after {  border-color: '{{primary-contrast-0.87}}'; }.md-checkbox-enabled.md-THEME_NAME-theme .md-indeterminate[disabled] .md-container {  color: '{{foreground-3}}'; }.md-checkbox-enabled.md-THEME_NAME-theme md-option .md-text {  color: '{{background-900-0.87}}'; }md-sidenav.md-THEME_NAME-theme, md-sidenav.md-THEME_NAME-theme md-content {  background-color: '{{background-hue-1}}'; }md-slider.md-THEME_NAME-theme .md-track {  background-color: '{{foreground-3}}'; }md-slider.md-THEME_NAME-theme .md-track-ticks {  color: '{{background-contrast}}'; }md-slider.md-THEME_NAME-theme .md-focus-ring {  background-color: '{{accent-A200-0.2}}'; }md-slider.md-THEME_NAME-theme .md-disabled-thumb {  border-color: '{{background-color}}';  background-color: '{{background-color}}'; }md-slider.md-THEME_NAME-theme.md-min .md-thumb:after {  background-color: '{{background-color}}';  border-color: '{{foreground-3}}'; }md-slider.md-THEME_NAME-theme.md-min .md-focus-ring {  background-color: '{{foreground-3-0.38}}'; }md-slider.md-THEME_NAME-theme.md-min[md-discrete] .md-thumb:after {  background-color: '{{background-contrast}}';  border-color: transparent; }md-slider.md-THEME_NAME-theme.md-min[md-discrete] .md-sign {  background-color: '{{background-400}}'; }  md-slider.md-THEME_NAME-theme.md-min[md-discrete] .md-sign:after {    border-top-color: '{{background-400}}'; }md-slider.md-THEME_NAME-theme.md-min[md-discrete][md-vertical] .md-sign:after {  border-top-color: transparent;  border-left-color: '{{background-400}}'; }md-slider.md-THEME_NAME-theme .md-track.md-track-fill {  background-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-thumb:after {  border-color: '{{accent-color}}';  background-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-sign {  background-color: '{{accent-color}}'; }  md-slider.md-THEME_NAME-theme .md-sign:after {    border-top-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme[md-vertical] .md-sign:after {  border-top-color: transparent;  border-left-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-thumb-text {  color: '{{accent-contrast}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-focus-ring {  background-color: '{{warn-200-0.38}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-track.md-track-fill {  background-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-thumb:after {  border-color: '{{warn-color}}';  background-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-sign {  background-color: '{{warn-color}}'; }  md-slider.md-THEME_NAME-theme.md-warn .md-sign:after {    border-top-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn[md-vertical] .md-sign:after {  border-top-color: transparent;  border-left-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-thumb-text {  color: '{{warn-contrast}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-focus-ring {  background-color: '{{primary-200-0.38}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-track.md-track-fill {  background-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-thumb:after {  border-color: '{{primary-color}}';  background-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-sign {  background-color: '{{primary-color}}'; }  md-slider.md-THEME_NAME-theme.md-primary .md-sign:after {    border-top-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary[md-vertical] .md-sign:after {  border-top-color: transparent;  border-left-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-thumb-text {  color: '{{primary-contrast}}'; }md-slider.md-THEME_NAME-theme[disabled] .md-thumb:after {  border-color: transparent; }md-slider.md-THEME_NAME-theme[disabled]:not(.md-min) .md-thumb:after, md-slider.md-THEME_NAME-theme[disabled][md-discrete] .md-thumb:after {  background-color: '{{foreground-3}}';  border-color: transparent; }md-slider.md-THEME_NAME-theme[disabled][readonly] .md-sign {  background-color: '{{background-400}}'; }  md-slider.md-THEME_NAME-theme[disabled][readonly] .md-sign:after {    border-top-color: '{{background-400}}'; }md-slider.md-THEME_NAME-theme[disabled][readonly][md-vertical] .md-sign:after {  border-top-color: transparent;  border-left-color: '{{background-400}}'; }md-slider.md-THEME_NAME-theme[disabled][readonly] .md-disabled-thumb {  border-color: transparent;  background-color: transparent; }md-slider-container[disabled] > *:first-child:not(md-slider),md-slider-container[disabled] > *:last-child:not(md-slider) {  color: '{{foreground-3}}'; }.md-subheader.md-THEME_NAME-theme {  color: '{{ foreground-2-0.23 }}';  background-color: '{{background-default}}'; }  .md-subheader.md-THEME_NAME-theme.md-primary {    color: '{{primary-color}}'; }  .md-subheader.md-THEME_NAME-theme.md-accent {    color: '{{accent-color}}'; }  .md-subheader.md-THEME_NAME-theme.md-warn {    color: '{{warn-color}}'; }md-switch.md-THEME_NAME-theme .md-ink-ripple {  color: '{{background-500}}'; }md-switch.md-THEME_NAME-theme .md-thumb {  background-color: '{{background-50}}'; }md-switch.md-THEME_NAME-theme .md-bar {  background-color: '{{background-500}}'; }md-switch.md-THEME_NAME-theme.md-checked .md-ink-ripple {  color: '{{accent-color}}'; }md-switch.md-THEME_NAME-theme.md-checked .md-thumb {  background-color: '{{accent-color}}'; }md-switch.md-THEME_NAME-theme.md-checked .md-bar {  background-color: '{{accent-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-focused .md-thumb:before {  background-color: '{{accent-color-0.26}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary .md-ink-ripple {  color: '{{primary-color}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary .md-thumb {  background-color: '{{primary-color}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary .md-bar {  background-color: '{{primary-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary.md-focused .md-thumb:before {  background-color: '{{primary-color-0.26}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn .md-ink-ripple {  color: '{{warn-color}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn .md-thumb {  background-color: '{{warn-color}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn .md-bar {  background-color: '{{warn-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn.md-focused .md-thumb:before {  background-color: '{{warn-color-0.26}}'; }md-switch.md-THEME_NAME-theme[disabled] .md-thumb {  background-color: '{{background-400}}'; }md-switch.md-THEME_NAME-theme[disabled] .md-bar {  background-color: '{{foreground-4}}'; }md-tabs.md-THEME_NAME-theme md-tabs-wrapper {  background-color: transparent;  border-color: '{{foreground-4}}'; }md-tabs.md-THEME_NAME-theme .md-paginator md-icon {  color: '{{primary-color}}'; }md-tabs.md-THEME_NAME-theme md-ink-bar {  color: '{{accent-color}}';  background: '{{accent-color}}'; }md-tabs.md-THEME_NAME-theme .md-tab {  color: '{{foreground-2}}'; }  md-tabs.md-THEME_NAME-theme .md-tab[disabled], md-tabs.md-THEME_NAME-theme .md-tab[disabled] md-icon {    color: '{{foreground-3}}'; }  md-tabs.md-THEME_NAME-theme .md-tab.md-active, md-tabs.md-THEME_NAME-theme .md-tab.md-active md-icon, md-tabs.md-THEME_NAME-theme .md-tab.md-focused, md-tabs.md-THEME_NAME-theme .md-tab.md-focused md-icon {    color: '{{primary-color}}'; }  md-tabs.md-THEME_NAME-theme .md-tab.md-focused {    background: '{{primary-color-0.1}}'; }  md-tabs.md-THEME_NAME-theme .md-tab .md-ripple-container {    color: '{{accent-A100}}'; }md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper {  background-color: '{{accent-color}}'; }  md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {    color: '{{accent-A100}}'; }    md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {      color: '{{accent-contrast}}'; }    md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {      background: '{{accent-contrast-0.1}}'; }  md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-ink-bar {    color: '{{primary-600-1}}';    background: '{{primary-600-1}}'; }md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper {  background-color: '{{primary-color}}'; }  md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {    color: '{{primary-100}}'; }    md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {      color: '{{primary-contrast}}'; }    md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {      background: '{{primary-contrast-0.1}}'; }md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper {  background-color: '{{warn-color}}'; }  md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {    color: '{{warn-100}}'; }    md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {      color: '{{warn-contrast}}'; }    md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {      background: '{{warn-contrast-0.1}}'; }md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper {  background-color: '{{primary-color}}'; }  md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {    color: '{{primary-100}}'; }    md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {      color: '{{primary-contrast}}'; }    md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {      background: '{{primary-contrast-0.1}}'; }md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper {  background-color: '{{accent-color}}'; }  md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {    color: '{{accent-A100}}'; }    md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {      color: '{{accent-contrast}}'; }    md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {      background: '{{accent-contrast-0.1}}'; }  md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-ink-bar {    color: '{{primary-600-1}}';    background: '{{primary-600-1}}'; }md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper {  background-color: '{{warn-color}}'; }  md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {    color: '{{warn-100}}'; }    md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {      color: '{{warn-contrast}}'; }    md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {      background: '{{warn-contrast-0.1}}'; }md-toast.md-THEME_NAME-theme .md-toast-content {  background-color: #323232;  color: '{{background-50}}'; }  md-toast.md-THEME_NAME-theme .md-toast-content .md-button {    color: '{{background-50}}'; }    md-toast.md-THEME_NAME-theme .md-toast-content .md-button.md-highlight {      color: '{{accent-color}}'; }      md-toast.md-THEME_NAME-theme .md-toast-content .md-button.md-highlight.md-primary {        color: '{{primary-color}}'; }      md-toast.md-THEME_NAME-theme .md-toast-content .md-button.md-highlight.md-warn {        color: '{{warn-color}}'; }md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar) {  background-color: '{{primary-color}}';  color: '{{primary-contrast}}'; }  md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar) md-icon {    color: '{{primary-contrast}}';    fill: '{{primary-contrast}}'; }  md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar) .md-button[disabled] md-icon {    color: '{{primary-contrast-0.26}}';    fill: '{{primary-contrast-0.26}}'; }  md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar).md-accent {    background-color: '{{accent-color}}';    color: '{{accent-contrast}}'; }    md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar).md-accent .md-ink-ripple {      color: '{{accent-contrast}}'; }    md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar).md-accent md-icon {      color: '{{accent-contrast}}';      fill: '{{accent-contrast}}'; }    md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar).md-accent .md-button[disabled] md-icon {      color: '{{accent-contrast-0.26}}';      fill: '{{accent-contrast-0.26}}'; }  md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar).md-warn {    background-color: '{{warn-color}}';    color: '{{warn-contrast}}'; }md-tooltip.md-THEME_NAME-theme {  color: '{{background-700-contrast}}'; }  md-tooltip.md-THEME_NAME-theme .md-content {    background-color: '{{background-700}}'; }/*  Only used with Theme processes */html.md-THEME_NAME-theme, body.md-THEME_NAME-theme {  color: '{{foreground-1}}';  background-color: '{{background-color}}'; }");})();})(window,window.angular);;window.ngMaterial={version:{full:"1.1.1"}};
 
 /***/ },
-/* 27 */
+/* 62 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */
+/* 63 */,
+/* 64 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -32996,7 +33820,7 @@
 	        component: 'header'
 	      },
 	      main: {
-	        template: '<div>Bomb Ass Job Search</div>'
+	        component: 'landing'
 	      },
 	      footer: {
 	        template: '<div>Bomb Ass Job Search Footer</div>'
@@ -33009,12 +33833,33 @@
 	      main: {},
 	      footer: {}
 	    }
-	  }).state('company', {
+	  }).state('companies', {
+	    url: '/companies',
+	    views: {
+	      header: {
+	        component: 'header'
+	      },
+	      main: {
+	        component: 'listCompanies'
+	      },
+	      footer: {
+	        template: '<div>Footer component will go here</div>'
+	      }
+	    }
+	  })
+	  // Will be /company/:id or /company?id once the db is set up
+	  .state('company', {
 	    url: '/company',
 	    views: {
-	      header: {},
-	      main: {},
-	      footer: {}
+	      header: {
+	        component: 'header'
+	      },
+	      main: {
+	        component: 'companyDetail'
+	      },
+	      footer: {
+	        template: '<div>Footer component will go here</div>'
+	      }
 	    }
 	  }).state('positions', {
 	    url: '/positions',
@@ -33036,18 +33881,38 @@
 	        component: 'header'
 	      },
 	      main: {
-	        component: 'position-info'
+	        component: 'position'
 	      },
 	      footer: {
 	        template: '<div>Bomb Ass Job Search Footer</div>'
+	
 	      }
 	    }
 	  }).state('contacts', {
 	    url: '/contacts',
 	    views: {
-	      header: {},
-	      main: {},
-	      footer: {}
+	      header: {
+	        component: 'header'
+	      },
+	      main: {
+	        component: 'contacts'
+	      },
+	      footer: {
+	        template: '<h3>Footer</h3>'
+	      }
+	    }
+	  }).state('user', {
+	    url: '/user',
+	    views: {
+	      header: {
+	        component: 'header'
+	      },
+	      main: {
+	        component: 'userDetail'
+	      },
+	      footer: {
+	        template: '<div>Bomb Ass Job Search Footer</div>'
+	      }
 	    }
 	  });
 	
@@ -33055,7 +33920,84 @@
 	};
 
 /***/ },
-/* 32 */
+/* 65 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = auth;
+	auth.$inject = ['$rootScope', 'userService', '$mdDialog', '$state'];
+	
+	function auth($rootScope, userService, $mdDialog, $state) {
+	  $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+	    event.preventDefault();
+	
+	    $mdDialog.show({
+	      parent: angular.element(document.body),
+	      targetEvent: event,
+	      controllerAs: '$ctrl',
+	      bindToController: true,
+	      template: '<user-auth success="success()" cancel="cancel()"></user-auth>',
+	      controller: ['$scope', function ($scope) {
+	        $scope.success = function () {
+	          $mdDialog.hide();
+	          return $state.go(toState.name, toParams);
+	        };
+	        $scope.cancel = function () {
+	          $mdDialog.hide();
+	        };
+	      }],
+	      clickOutsideToClose: true,
+	      escapeToClose: true
+	    });
+	  });
+	};
+
+/***/ },
+/* 66 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = configHttp;
+	configHttp.$inject = ['$httpProvider'];
+	
+	function configHttp($httpProvider) {
+	  $httpProvider.interceptors.push(interceptor);
+	};
+	
+	interceptor.$inject = ['$window', 'tokenService', '$state'];
+	function interceptor($window, tokenService, $state) {
+	  return {
+	    request: function request(config) {
+	      config.headers = config.headers || {};
+	
+	      var token = tokenService.get();
+	
+	      if (token) {
+	        config.headers.Authorization = 'Bearer ' + token;
+	      }
+	
+	      return config;
+	    },
+	    responseError: function responseError(response) {
+	      if (response.status >= 400 && response.status < 500) {
+	        tokenService.remove();
+	        $state.go('home');
+	      }
+	      return Promise.reject(response);
+	    }
+	  };
+	};
+
+/***/ },
+/* 67 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
