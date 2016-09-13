@@ -54,20 +54,26 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _routes = __webpack_require__(43);
+	var _routes = __webpack_require__(89);
 	
 	var _routes2 = _interopRequireDefault(_routes);
 	
-	__webpack_require__(44);
+	var _auth = __webpack_require__(90);
+	
+	var _auth2 = _interopRequireDefault(_auth);
+	
+	var _http = __webpack_require__(91);
+	
+	var _http2 = _interopRequireDefault(_http);
+	
+	__webpack_require__(92);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// app.config(http);
+	_app2.default.config(_http2.default);
 	_app2.default.config(_routes2.default);
-	// app.run(auth);
+	_app2.default.run(_auth2.default);
 	
-	// import auth from './auth';
-	// import http from './http';
 	_app2.default.value('apiUrl', (undefined) || '/api');
 	
 	_angular2.default.bootstrap(document, [_app2.default.name]);
@@ -16797,19 +16803,25 @@
 	
 	var _components2 = _interopRequireDefault(_components);
 	
-	var _services = __webpack_require__(33);
+	var _services = __webpack_require__(71);
 	
 	var _services2 = _interopRequireDefault(_services);
 	
-	var _angularMaterial = __webpack_require__(35);
+	var _angularMaterial = __webpack_require__(78);
 	
 	var _angularMaterial2 = _interopRequireDefault(_angularMaterial);
 	
-	__webpack_require__(41);
+	var _angularMessages = __webpack_require__(84);
+	
+	var _angularMessages2 = _interopRequireDefault(_angularMessages);
+	
+	__webpack_require__(86);
+	
+	__webpack_require__(88);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var app = _angular2.default.module('jobHunter', [_angularUiRouter2.default, _components2.default, _services2.default, _angularMaterial2.default]);
+	var app = _angular2.default.module('jobHunter', [_angularUiRouter2.default, _angular2.default.module('ui.router.state.events').name, _components2.default, _services2.default, _angularMaterial2.default, _angularMessages2.default]);
 	
 	app.config(['$mdThemingProvider', function ($mdThemingProvider) {
 	  $mdThemingProvider.theme('default').primaryPalette('indigo').backgroundPalette('deep-purple').warnPalette('red');
@@ -20348,13 +20360,25 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./header-login/header-login.js": 11,
-		"./header-logout/header-logout.js": 13,
-		"./landing/landing.js": 15,
-		"./list-companies/company-detail/company-detail.js": 17,
-		"./list-companies/list-companies.js": 23,
-		"./list-users/user-detail/user-detail.js": 27,
-		"./visualizations/visualizations.js": 31
+		"./auth/signin/signin.js": 11,
+		"./auth/signup/signup.js": 17,
+		"./auth/user-auth.js": 21,
+		"./contacts/contact-list/contact-list.js": 22,
+		"./contacts/contacts.js": 26,
+		"./contacts/edit-contact/edit-contact.js": 30,
+		"./contacts/new-contact/new-contact.js": 32,
+		"./dashboard/dashboard.js": 34,
+		"./footer/footer.js": 38,
+		"./header/header.js": 42,
+		"./landing/landing.js": 43,
+		"./list-companies/company-detail/company-detail.js": 45,
+		"./list-companies/list-companies.js": 49,
+		"./list-companies/new-company/new-company.js": 53,
+		"./list-users/user-detail/user-detail.js": 55,
+		"./positions/new-position/new-position.js": 59,
+		"./positions/position/position.js": 61,
+		"./positions/positions.js": 65,
+		"./visualizations/visualizations.js": 69
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -20380,7 +20404,514 @@
 	  value: true
 	});
 	
-	var _headerLogin = __webpack_require__(12);
+	var _signin = __webpack_require__(12);
+	
+	var _signin2 = _interopRequireDefault(_signin);
+	
+	__webpack_require__(13);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _signin2.default,
+	  bindings: {
+	    success: '&'
+	  },
+	  controller: controller
+	};
+	
+	
+	controller.$inject = ['userService'];
+	
+	function controller(userService) {
+	  var _this = this;
+	
+	  this.credentials = {
+	    username: '',
+	    password: ''
+	  };
+	
+	  this.authenticate = function () {
+	    return userService.signin(_this.credentials).then(function () {
+	      _this.success();
+	      return true;
+	    }).catch(function (error) {
+	      _this.error = error;
+	      return false;
+	    });
+	  };
+	}
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	module.exports = "<h2>Sign in to continue job hunting</h2>\n\t<form name=\"auth\" ng-submit=\"$ctrl.authenticate()\" layout=\"column\">\n\t\t<md-input-container class=\"md-accent\">\n\t\t\t<input placeholder=\"Email\" ng-model=\"$ctrl.credentials.email\">\n\t\t</md-input-container>\n\t\t<md-input-container class=\"md-accent\">\n\t\t\t <input placeholder=\"Password\" type=\"password\" ng-model=\"$ctrl.credentials.password\">\n\t\t</md-input-container>\n\t\t</md-dialog-content>\n\t\t<md-dialog-actions>\n\t\t\t<md-button type=\"submit\">Sign In</md-button>\n\t\t</md-dialog-actions>\n\t</form>\n<div class=\"error\" ng-if='$ctrl.error'>{{$ctrl.error.message}}</div>";
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _signup = __webpack_require__(18);
+	
+	var _signup2 = _interopRequireDefault(_signup);
+	
+	__webpack_require__(19);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _signup2.default,
+	  bindings: {
+	    success: '&'
+	  },
+	  controller: controller
+	};
+	
+	
+	controller.$inject = ['userService'];
+	
+	function controller(userService) {
+	  var _this = this;
+	
+	  this.credentials = {
+	    username: '',
+	    password: ''
+	  };
+	
+	  this.authenticate = function () {
+	    return userService.signup(_this.credentials).then(function () {
+	      _this.success();
+	      return true;
+	    }).catch(function (error) {
+	      _this.error = error;
+	      return false;
+	    });
+	  };
+	}
+
+/***/ },
+/* 18 */
+/***/ function(module, exports) {
+
+	module.exports = "<h2>Create new account</h2>\n\t<form name=\"auth\" ng-submit=\"$ctrl.authenticate()\" layout=\"column\">\n\t\t<md-input-container class=\"md-accent\">\n\t\t\t<input placeholder=\"Display Name\" ng-model=\"$ctrl.credentials.name\">\n\t\t</md-input-container>\n\t\t<md-input-container class=\"md-accent\">\n\t\t\t<input placeholder=\"Email\" ng-model=\"$ctrl.credentials.email\">\n\t\t</md-input-container>\n\t\t<md-input-container class=\"md-accent\">\n\t\t\t<input placeholder=\"Password\" type=\"password\" ng-model=\"$ctrl.credentials.password\">\n\t\t</md-input-container>\n\t\t</md-dialog-content>\n\t\t<md-dialog-actions>\n\t\t\t<md-button type=\"submit\">Sign Up</md-button>\n\t\t</md-dialog-actions>\n\t</form>\n<div class=\"error\" ng-if='$ctrl.error'>{{$ctrl.error.message}}</div>\n";
+
+/***/ },
+/* 19 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 20 */,
+/* 21 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  template: '\n\t<md-dialog-content>\n    <md-radio-group ng-model="$ctrl.action" layout="row">\n      <md-radio-button class="md-accent" ng-model="$ctrl.action" value="signin">\n          Signin\n      </md-radio-button>\n      <md-radio-button class="md-accent" ng-model="$ctrl.action" value="signup">\n          Signup\n      </md-radio-button>\n    </md-radio-group>\n    <signin ng-if="$ctrl.action===\'signin\'" success="$ctrl.success()"></signin>\n    <signup ng-if="$ctrl.action===\'signup\'" success="$ctrl.success()"></signup>\n  ',
+	  bindings: {
+	    success: '&'
+	  },
+	  controller: controller
+	};
+	
+	
+	function controller() {
+	  this.action = 'signin';
+	}
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _contactList = __webpack_require__(23);
+	
+	var _contactList2 = _interopRequireDefault(_contactList);
+	
+	var _contactList3 = __webpack_require__(24);
+	
+	var _contactList4 = _interopRequireDefault(_contactList3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _contactList2.default,
+	  bindings: {
+	    contact: '<'
+	  },
+	  controller: controller
+	};
+	
+	
+	controller.$inject = ['$mdDialog'];
+	function controller($mdDialog) {
+	  var _this = this;
+	
+	  this.styles = _contactList4.default;
+	
+	  this.edit = function ($event) {
+	    var parentEl = angular.element(document.body);
+	    $mdDialog.show({
+	      parent: parentEl,
+	      targetEvent: $event,
+	      controllerAs: '$ctrl',
+	      bindToController: true,
+	      template: '<edit-contact contact="$ctrl.contact"></edit-contact>',
+	      controller: function controller() {},
+	
+	      locals: {
+	        contact: _this.contact
+	      },
+	      clickOutsideToClose: true,
+	      escapeToClose: true
+	    }).then(function (updatedContact) {
+	      if (!updatedContact) return;
+	      //pass copied and updated version to original
+	      angular.copy(updatedContact, _this.contact);
+	    });
+	  };
+	};
+
+/***/ },
+/* 23 */
+/***/ function(module, exports) {
+
+	module.exports = "<md-content>\n  <md-list flex>\n\n    <md-list-item class=\"md-3-line\">\n      <md-button class=\"md-secondary md-icon-button\"\n        ng-click=\"$ctrl.edit($event)\">Edit Contact\n      </md-button>\n      <div class=\"md-list-item-text\" layout=\"column\">\n        <h3>{{ $ctrl.contact.name }}: {{ $ctrl.contact.role }} at {{ $ctrl.contact.company.name || \"'Not Yet Specified'\" }}</h3>\n        <h4>{{ $ctrl.contact.email }}</h4>\n        <p>{{ $ctrl.contact.phone }}</p>\n      </div>\n    </md-list-item>\n    <md-list-item class=\"md-3-line\">\n      <div class=\"md-list-item-text\" layout=\"column\">\n        <p>{{ $ctrl.contact.info }}</p>\n      </div>\n    </md-list-item>\n    <md-divider ></md-divider>\n  </md-list>\n</md-content>\n";
+
+/***/ },
+/* 24 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 25 */,
+/* 26 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _contacts = __webpack_require__(27);
+	
+	var _contacts2 = _interopRequireDefault(_contacts);
+	
+	var _contacts3 = __webpack_require__(28);
+	
+	var _contacts4 = _interopRequireDefault(_contacts3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _contacts2.default,
+	  bindings: {},
+	  controller: controller
+	};
+	
+	
+	controller.$inject = ['contactService', '$window', 'companyService'];
+	function controller(contactService, $window, companyService) {
+	  var _this = this;
+	
+	  this.styles = _contacts4.default;
+	  this.addButton = 'add';
+	  this.userId = $window.localStorage['id'];
+	
+	  companyService.getByUser(this.userId).then(function (companies) {
+	    _this.companies = companies;
+	  }).catch(function (err) {
+	    return console.log(err);
+	  });
+	
+	  contactService.getByUser(this.userId).then(function (contacts) {
+	    _this.contacts = contacts;
+	  }).catch(function (err) {
+	    return console.log(err);
+	  });
+	
+	  this.add = function (contactToAdd, userId) {
+	    contactService.add(contactToAdd, userId).then(function (addedContact) {
+	      _this.contacts.unshift(addedContact);
+	      _this.addButton = 'add';
+	    }).catch(function (err) {
+	      return console.log(err);
+	    });
+	  };
+	
+	  this.remove = function (contactId) {
+	    contactService.remove(contactId).then(function (message) {
+	      return console.log(message);
+	    }).catch(function (err) {
+	      return console.log(err);
+	    });
+	  };
+	};
+
+/***/ },
+/* 27 */
+/***/ function(module, exports) {
+
+	module.exports = "<div ng-cloak layout-gt-sm=\"row\" layout=\"column\">\n\n  <div flex-gt-sm=\"50\" flex>\n\n    <md-toolbar layout=\"row\" class=\"md-hue-3\">\n      <div class=\"md-toolbar-tools\">\n        <span>Contacts List</span>\n      </div>\n    </md-toolbar>\n    <md-button class=\"md-secondary md-icon-button\"\n      ng-click=\"$ctrl.addButton = 'save'\"\n      ng-show=\"$ctrl.addButton === 'add'\">Add Contact\n    </md-button>\n    <new-contact companies=\"$ctrl.companies\" add=\"$ctrl.add\" add-button=\"$ctrl.addButton\" ng-if=\"$ctrl.addButton === 'save'\"></new-contact>\n    <div ng-repeat=\"contact in $ctrl.contacts\">\n      <contact-list contact=\"contact\"></contact-list>\n    </div>\n  </div>\n</div>\n";
+
+/***/ },
+/* 28 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 29 */,
+/* 30 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _editContact = __webpack_require__(31);
+	
+	var _editContact2 = _interopRequireDefault(_editContact);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _editContact2.default,
+	  transclude: true,
+	  bindings: {
+	    contactToEdit: '<contact'
+	  },
+	  controller: controller
+	};
+	
+	
+	controller.$inject = ['$mdDialog', 'contactService', 'companyService', '$window'];
+	function controller($mdDialog, contactService, companyService, $window) {
+	  var _this = this;
+	
+	  this.contact = angular.copy(this.contactToEdit);
+	  this.userId = $window.localStorage['id'];
+	
+	  companyService.getByUser(this.userId).then(function (companies) {
+	    _this.companies = companies;
+	  }).catch(function (err) {
+	    return console.log(err);
+	  });
+	
+	  this.cancel = function () {
+	    $mdDialog.hide();
+	  };
+	
+	  this.save = function () {
+	    contactService.update(_this.contact).then(function (updatedContact) {
+	      $mdDialog.hide(updatedContact);
+	    });
+	  };
+	}
+	// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU3ZDU3YzJiOWI4MDZiMzg2Zjc3ZGFhNSIsImlhdCI6MTQ3MzcxOTc2MX0.jqCwOANAJhTK0Fsh2Zn42B4z6fyvXv1fKXCZK8IlBio
+
+/***/ },
+/* 31 */
+/***/ function(module, exports) {
+
+	module.exports = "<!-- <md-dialog> -->\n  <md-dialog-content layout-gt-sm=\"row\" layout-padding>\n      <md-content layout-gt-sm=\"row\" layout-padding>\n          <div>\n\n            <form name=\"editContact\" novalidate>\n                <md-input-container>\n                    <label>Name:</label>\n                    <input\n                        name=\"editName\"\n                        required\n                        ng-model=\"$ctrl.contact.name\"/>\n                        <div ng-messages=\"editContact.editName.$error\" role=\"alert\">\n                            <div ng-message=\"required\">A name is required</div>\n                        </div>\n                </md-input-container>\n                <md-input-container>\n                    <label>E-mail:</label>\n                    <input\n                        name=\"editEmail\"\n                        required\n                        ng-model=\"$ctrl.contact.email\"/>\n                    <!-- <div ng-messages=\"addContact.addEmail.$error\" role=\"alert\">\n                        <div ng-message=\"required\">An e-mail is required</div>\n                    </div> -->\n                </md-input-container>\n                <md-input-container>\n                    <label>Phone:</label>\n                    <input\n                        name=\"editPhone\"\n                        required\n                        ng-model=\"$ctrl.contact.phone\"/>\n                    <!-- <div ng-messages=\"addContact.addEmail.$error\" role=\"alert\">\n                        <div ng-message=\"required\">An e-mail is required</div>\n                    </div> -->\n                </md-input-container>\n                <md-input-container>\n                  <md-select ng-model=\"$ctrl.contact.company\" placeholder=\"Select a company\">\n                    <md-option ng-value=\"company._id\" ng-repeat=\"company in $ctrl.companies\">{{company.name}}</md-option>\n                  </md-select>\n                </md-input-container>\n                <!-- <md-input-container>\n                    <label>Company:</label>\n                    <input\n                        name=\"editCompany\"\n                        required\n                        ng-model=\"$ctrl.contact.company.name\"/>\n                   <div ng-messages=\"addContact.addEmail.$error\" role=\"alert\">\n                        <div ng-message=\"required\">An e-mail is required</div>\n                    </div>\n                </md-input-container> -->\n                <md-input-container>\n                    <label>Relevant Information:</label>\n                    <textarea\n                        name=\"editInformation\"\n                        required\n                        ng-model=\"$ctrl.contact.info\">\n                      <!-- <div ng-messages=\"addContact.addInformation.$error\" role=\"alert\">\n                          <ng-message when=\"required\">This field is required</ng-message>\n                      </div> -->\n                    </textarea>\n                </md-input-container>\n            </form>\n          </div>\n      </md-content>\n  </md-dialog-content>\n  <div>\n  </div>\n  <md-dialog-actions>\n      <md-button ng-click=\"$ctrl.cancel()\" class=\"md-primary\">\n          Cancel\n      </md-button>\n      <md-button ng-click=\"$ctrl.save()\" class=\"md-primary\">\n          Save\n      </md-button>\n  </md-dialog-actions>\n<!-- </md-dialog> -->\n";
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _newContact = __webpack_require__(33);
+	
+	var _newContact2 = _interopRequireDefault(_newContact);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _newContact2.default,
+	  bindings: {
+	    add: '<',
+	    addButton: '=',
+	    companies: '<'
+	  },
+	  controller: controller
+	};
+	
+	
+	controller.$inject = ['$scope', '$window'];
+	function controller($scope, $window) {
+	  var _this = this;
+	
+	  this.userId = $window.localStorage['id'];
+	
+	  var resetContact = function resetContact() {
+	    _this.contact = {};
+	  };
+	
+	  resetContact();
+	
+	  this.submit = function () {
+	    _this.add(_this.contact, _this.userId);
+	    resetContact();
+	    $scope.addContact.$setPristine();
+	    $scope.addContact.$setUntouched();
+	  };
+	};
+
+/***/ },
+/* 33 */
+/***/ function(module, exports) {
+
+	module.exports = "<form name=\"addContact\" ng-submit=\"addContact.$valid && $ctrl.submit()\"\n      novalidate>\n    <md-input-container>\n        <label>Name:</label>\n        <input\n            name=\"addName\"\n            required\n            ng-model=\"$ctrl.contact.name\"/>\n            <div ng-messages=\"addContact.addName.$error\" role=\"alert\">\n                <div ng-message=\"required\">A name is required</div>\n            </div>\n    </md-input-container>\n    <md-input-container>\n        <label>E-mail:</label>\n        <input\n            name=\"addEmail\"\n            required\n            ng-model=\"$ctrl.contact.email\"/>\n        <!-- <div ng-messages=\"addContact.addEmail.$error\" role=\"alert\">\n            <div ng-message=\"required\">An e-mail is required</div>\n        </div> -->\n    </md-input-container>\n    <md-input-container>\n        <label>Phone:</label>\n        <input\n            name=\"addPhone\"\n            required\n            ng-model=\"$ctrl.contact.phone\"/>\n        <!-- <div ng-messages=\"addContact.addEmail.$error\" role=\"alert\">\n            <div ng-message=\"required\">An e-mail is required</div>\n        </div> -->\n    </md-input-container>\n\n    <md-input-container>\n      <md-select ng-model=\"$ctrl.contact.company\" placeholder=\"Select a company\">\n        <md-option ng-value=\"company._id\" ng-repeat=\"company in $ctrl.companies\">{{company.name}}</md-option>\n      </md-select>\n    </md-input-container>\n\n    <!-- <md-input-container>\n        <label>Company:</label>\n        <input\n            name=\"addCompany\"\n            ng-model=\"$ctrl.contact.company\"/>\n        <div ng-messages=\"addContact.addEmail.$error\" role=\"alert\">\n            <div ng-message=\"required\">An e-mail is required</div>\n        </div>\n    </md-input-container> -->\n    <md-input-container>\n        <label>Role:</label>\n        <input\n            name=\"addRole\"\n            required\n            ng-model=\"$ctrl.contact.role\"/>\n        <!-- <div ng-messages=\"addContact.addEmail.$error\" role=\"alert\">\n            <div ng-message=\"required\">An e-mail is required</div>\n        </div> -->\n    </md-input-container>\n    <md-input-container>\n        <label>Relevant Information:</label>\n        <textarea\n            name=\"addInformation\"\n            required\n            ng-model=\"$ctrl.contact.info\">\n          <!-- <div ng-messages=\"addContact.addInformation.$error\" role=\"alert\">\n              <ng-message when=\"required\">This field is required</ng-message>\n          </div> -->\n        </textarea>\n    </md-input-container>\n    <md-dialog-actions>\n      <md-button type=\"submit\" class=\"md-primary\">Save Contact</md-button>\n    </md-dialog-actions>\n    <md-dialog-actions>\n      <md-button ng-click=\"$ctrl.addButton = 'add'\" class=\"md-primary\">Cancel</md-button>\n    </md-dialog-actions>\n</form>\n";
+
+/***/ },
+/* 34 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _dashboard = __webpack_require__(35);
+	
+	var _dashboard2 = _interopRequireDefault(_dashboard);
+	
+	var _dashboard3 = __webpack_require__(36);
+	
+	var _dashboard4 = _interopRequireDefault(_dashboard3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _dashboard2.default,
+	  controller: controller
+	};
+	
+	
+	controller.$inject = ['$window', 'companyService', 'contactService', 'positionService'];
+	function controller($window, companyService, contactService, positionService) {
+	  var _this = this;
+	
+	  this.styles = _dashboard4.default;
+	  this.userId = $window.localStorage['id'];
+	
+	  companyService.getByUser(this.userId).then(function (result) {
+	    _this.numCompanies = result.length;
+	  });
+	
+	  contactService.getByUser(this.userId).then(function (result) {
+	    _this.numContacts = result.length;
+	  });
+	
+	  positionService.getByUser(this.userId).then(function (result) {
+	    _this.numPositions = result.length;
+	  });
+	}
+
+/***/ },
+/* 35 */
+/***/ function(module, exports) {
+
+	module.exports = "<section ng-class=\"$ctrl.styles.dashboard\">\n\n  <h2>Position stats:</h2>\n  <div>\n    Positions applied: {{$ctrl.numPositions}}\n  </div>\n\n  <h2>Company stats:</h2>\n  <div>\n    Companies researched:  {{$ctrl.numCompanies}}\n  </div>\n\n  <h2>Contact stats:</h2>\n  <div>\n    Contacts added:  {{$ctrl.numContacts}}\n  </div>\n\n</section>\n";
+
+/***/ },
+/* 36 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 37 */,
+/* 38 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _footer = __webpack_require__(39);
+	
+	var _footer2 = _interopRequireDefault(_footer);
+	
+	var _footer3 = __webpack_require__(40);
+	
+	var _footer4 = _interopRequireDefault(_footer3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _footer2.default,
+	  controller: controller
+	};
+	
+	
+	function controller() {
+	  this.styles = _footer4.default;
+	};
+
+/***/ },
+/* 39 */
+/***/ function(module, exports) {
+
+	module.exports = "<div>&copy; Bomb Ass Job Search Footer</div>\n<div><a href=\"https://github.com/InsertCleverNameHere\">github linky</a></div>";
+
+/***/ },
+/* 40 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 41 */,
+/* 42 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _headerLogin = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./header-login.html\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	
 	var _headerLogin2 = _interopRequireDefault(_headerLogin);
 	
@@ -20393,53 +20924,13 @@
 	
 	
 	controller.$inject = ['$state'];
-	function controller($state) {};
-
-/***/ },
-/* 12 */
-/***/ function(module, exports) {
-
-	module.exports = "<!--<div>\n  <span>Job Hunter</span>\n  <span>Home</span>\n  <span>Positions</span>\n  <span>Companies</span>\n  <span>Contacts</span>\n  <span>Welcome, {{username}}</span>\n</div>-->\n\n<div ng-cloak>\n  <md-content class=\"md-padding\">\n    <md-nav-bar md-selected-nav-item=\"currentNavItem\" nav-bar-aria-label=\"navigation links\">\n      <md-nav-item md-nav-sref=\"welcome\" name=\"welcome\" id=\"logo\">Job Hunter</md-nav-item>\n      <md-nav-item md-nav-sref=\"dashboard\" name=\"dashboard\">Dashboard</md-nav-item>\n      <md-nav-item md-nav-sref=\"positions\" name=\"positions\">Positions</md-nav-item>\n      <md-nav-item md-nav-sref=\"companies\" name=\"companies\">Companies</md-nav-item>\n      <md-nav-item md-nav-sref=\"contacts\" name=\"contacts\">Contacts</md-nav-item>\n      <md-nav-item md-nav-sref=\"userDetail\" name=\"userDetail\">Welcome, {{username}}</md-nav-item>\n      <md-nav-item md-nav-sref=\"loggedOut\" name=\"loggedOut\">Logout</md-nav-item>\n\n      <!-- these require actual routing with ui-router or ng-route, so they won't work in the demo\n      <md-nav-item md-nav-sref=\"app.page4\" name=\"page4\">Page Four</md-nav-item>\n      <md-nav-item md-nav-href=\"#page5\" name=\"page5\">Page Five</md-nav-item>\n      -->\n    </md-nav-bar>\n  </md-content>\n";
-
-/***/ },
-/* 13 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _headerLogout = __webpack_require__(14);
-	
-	var _headerLogout2 = _interopRequireDefault(_headerLogout);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = {
-	  template: _headerLogout2.default,
-	  controller: controller
-	};
-	
-	
-	controller.$inject = ['$state'];
 	function controller($state) {
-	  function removeToken() {
-	    // TODO : it token, remove token and load header-logout + landing + [footer], else load header-logout + landing + [footer]
-	  }
-	
-	  removeToken();
+	  // TODO : logic to determine whether or not isAuthenticated is valid or not, determines which links show
+	  this.username = 'Name-Goes-Here';
 	};
 
 /***/ },
-/* 14 */
-/***/ function(module, exports) {
-
-	module.exports = "<div ng-cloak>\n  <md-content class=\"md-padding\">\n    <md-nav-bar md-selected-nav-item=\"currentNavItem\" nav-bar-aria-label=\"navigation links\">\n      <!-- TODO : layout is redundant, maybe provide option for logged in vs logged out in one single header component? sub comps? something like that if time -->\n      <md-nav-item md-nav-sref=\"home\" name=\"home\" id=\"logo\">Job Hunter</md-nav-item>\n      <md-nav-item md-nav-sref=\"signup\" name=\"signup\">Create Account</md-nav-item>\n      <md-nav-item md-nav-sref=\"signin\" name=\"signin\">Login</md-nav-item>\n\n    </md-nav-bar>\n  </md-content>\n<!-- TODO : don't we have to close the ng-cloak tag? or is it closed elsewhere? -->\n";
-
-/***/ },
-/* 15 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20448,7 +20939,7 @@
 	  value: true
 	});
 	
-	var _landing = __webpack_require__(16);
+	var _landing = __webpack_require__(44);
 	
 	var _landing2 = _interopRequireDefault(_landing);
 	
@@ -20469,13 +20960,13 @@
 	};
 
 /***/ },
-/* 16 */
+/* 44 */
 /***/ function(module, exports) {
 
 	module.exports = "<section class=\"landing\">\n  <!-- TODO : insert **real** app name here once we've decided on it -->\n  <h1>Welcome to Clever Job Hunter </h1>\n\n  <!-- TODO : maybe we'll have some description here of the app and what it is, similar to the front page of any service? -->\n  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed diam eget risus varius blandit sit amet non magna. Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla.</p>\n\n  <!-- TODO : once we have auth components, feed those in here -->\n  <h3>Choose one of the following options to get started:</h3>\n  <button>Create Account</button>\n  <button>Login</button>\n</section>\n";
 
 /***/ },
-/* 17 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20484,57 +20975,71 @@
 	  value: true
 	});
 	
-	var _companyDetail = __webpack_require__(18);
+	var _companyDetail = __webpack_require__(46);
 	
 	var _companyDetail2 = _interopRequireDefault(_companyDetail);
 	
-	var _companyDetail3 = __webpack_require__(19);
+	var _companyDetail3 = __webpack_require__(47);
 	
 	var _companyDetail4 = _interopRequireDefault(_companyDetail3);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	//component for detailed position view
 	exports.default = {
 	  template: _companyDetail2.default,
+	  bindings: {
+	    companies: '='
+	  },
 	  controller: controller
 	};
 	
 	
-	function controller() {
+	controller.$inject = ['companyService', '$window', '$state'];
+	function controller(companyService, $window, $state) {
+	  var _this = this;
+	
 	  this.styles = _companyDetail4.default;
-	  //dummy data for now, but will eventually be a company id in the bindings
-	  this.company = {
-	    name: 'Apple Inc.',
-	    service: 'Computer hardware/software',
-	    location: 'Cupertino, CA',
-	    info: 'This is a company that built the iPhone and Mac OSX. They are also involved in selling digitial media view the iTunes and Mac App stores.',
-	    tech: 'iOS, Mac OSX',
-	    pros: ['pro1', 'pro2', 'pro3'],
-	    cons: ['con1', 'con2'],
-	    questions: ['question1', 'question2'],
-	    contacts: [{ _id: '123' }, { _id: '456' }],
-	    links: [{ url: 'http://apple.com', desc: 'Apple homepage' }],
-	    actionItems: [{ date: 'Aug. 10, 2016', plan: 'Applied for job' }, { date: 'Sept. 1, 2016', plan: 'First round interview' }]
-	  };
+	  this.userId = $window.localStorage['id'];
+	
+	  //gets the detailed info of selected company
+	  companyService.get($state.params.companyId).then(function (company) {
+	    _this.company = company;
+	    console.log(_this.company);
+	  }).catch(function (err) {
+	    return console.log(err);
+	  });
 	}
+	
+	// this.company = {
+	//   name: 'Apple Inc.',
+	//   service: 'Computer hardware/software',
+	//   location: 'Cupertino, CA',
+	//   info: 'This is a company that built the iPhone and Mac OSX. They are also involved in selling digitial media view the iTunes and Mac App stores.',
+	//   tech: 'iOS, Mac OSX',
+	//   pros: ['pro1', 'pro2', 'pro3'],
+	//   cons: ['con1', 'con2'],
+	//   questions: ['question1', 'question2'],
+	//   contacts: [{_id: '123'}, {_id: '456'}],
+	//   links: [{url: 'http://apple.com', desc: 'Apple homepage'}],
+	//   actionItems: [{date: 'Aug. 10, 2016', plan: 'Applied for job'}, {date: 'Sept. 1, 2016', plan: 'First round interview'}]
+	// };
 
 /***/ },
-/* 18 */
+/* 46 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.companyDetail\">\n    <h1>{{$ctrl.company.name}}</h1>\n    <h2>Service: {{$ctrl.company.service}}</h2> \n        <h3>Location: {{$ctrl.company.location}}</h3>\n        <h3>Info: {{$ctrl.company.info}}</h3>\n        <h3>Technology Stack: {{$ctrl.company.tech}}</h3>\n        <div ng-if=\"$ctrl.company.actionItems.length\">Action Items: \n            <ul>\n                <li ng-repeat=\"item in $ctrl.company.actionItems\">{{item.date}} {{item.plan}}</li>\n            </ul>\n        </div>\n        <div ng-if=\"$ctrl.company.pros.length\">Pros: \n            <ul>\n                <li ng-repeat=\"item in $ctrl.company.pros\">{{item}}</li>\n            </ul>\n        </div>\n        <div ng-if=\"$ctrl.company.cons.length\">Cons: \n            <ul>\n                <li ng-repeat=\"item in $ctrl.company.cons\">{{item}}</li>\n            </ul>\n        </div>\n        <div ng-if=\"$ctrl.company.question.length\">Questions: \n            <ul>\n                <li ng-repeat=\"item in $ctrl.company.questions\">{{item}}</li>\n            </ul>\n        </div>\n        <div ng-if=\"$ctrl.company.contacts.length\">Contacts: \n            <ul>\n            <!--ui-sref to the contact???-->\n                <li>Populate with the peron's name linking to their contact data</li>\n                <li ng-repeat=\"item in $ctrl.company.contacts\">{{item._id}}</li>\n            </ul>\n        </div>\n        <div ng-if=\"$ctrl.company.links.length\">Links: \n            <ul>\n                <li ng-repeat=\"item in $ctrl.company.links\"><a ng-href=\"{{item.url}}\">{{item.desc}}</a></li>\n            </ul>\n        </div>\n</section>";
+	module.exports = "<!--template for detailed company view-->\n\n<section ng-class=\"$ctrl.styles.companyDetail\">\n    <md-card>\n        <md-card-header>\n            <md-card-header-text>\n            <span class=\"md-title\">{{$ctrl.company.name}}</span>\n            <span class=\"md-subhead\">{{$ctrl.company.info}}</span>\n            </md-card-header-text>\n        </md-card-header>\n        <md-card-content>\n            <p>{{$ctrl.company.service}}</p>\n            <p>{{$ctrl.company.location}}</p>\n            <p>{{$ctrl.company.tech}}</p>\n            <p>{{$ctrl.company.method}}</p>\n        </md-card-content>\n        <md-card-actions layout=\"row\" layout-align=\"end center\">\n            <md-button>Follow Ups</md-button>\n            <md-button>Action Items</md-button>\n            <md-button>Questions</md-button>\n        </md-card-actions>\n    </md-card>\n</section>\n\n<!--<section ng-class=\"$ctrl.styles.companyDetail\">\n    <h1>{{$ctrl.company.name}}</h1>\n    <h2>Service: {{$ctrl.company.service}}</h2> \n        <h3>Location: {{$ctrl.company.location}}</h3>\n        <h3>Info: {{$ctrl.company.info}}</h3>\n        <h3>Technology Stack: {{$ctrl.company.tech}}</h3>\n        \n</section>-->\n<!--<div ng-if=\"$ctrl.company.actionItems.length\">Action Items: \n            <ul>\n                <li ng-repeat=\"item in $ctrl.company.actionItems\">{{item.date}} {{item.plan}}</li>\n            </ul>\n        </div>\n        <div ng-if=\"$ctrl.company.pros.length\">Pros: \n            <ul>\n                <li ng-repeat=\"item in $ctrl.company.pros\">{{item}}</li>\n            </ul>\n        </div>\n        <div ng-if=\"$ctrl.company.cons.length\">Cons: \n            <ul>\n                <li ng-repeat=\"item in $ctrl.company.cons\">{{item}}</li>\n            </ul>\n        </div>\n        <div ng-if=\"$ctrl.company.question.length\">Questions: \n            <ul>\n                <li ng-repeat=\"item in $ctrl.company.questions\">{{item}}</li>\n            </ul>\n        </div>\n        <div ng-if=\"$ctrl.company.contacts.length\">Contacts: \n            <ul>\n            <!--ui-sref to the contact???-->\n                <!--<li>Populate with the peron's name linking to their contact data</li>\n                <li ng-repeat=\"item in $ctrl.company.contacts\">{{item._id}}</li>\n            </ul>\n        </div>\n        <div ng-if=\"$ctrl.company.links.length\">Links: \n            <ul>\n                <li ng-repeat=\"item in $ctrl.company.links\"><a ng-href=\"{{item.url}}\">{{item.desc}}</a></li>\n            </ul>\n        </div>-->";
 
 /***/ },
-/* 19 */
+/* 47 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */
+/* 48 */,
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20543,79 +21048,144 @@
 	  value: true
 	});
 	
-	var _listCompanies = __webpack_require__(24);
+	var _listCompanies = __webpack_require__(50);
 	
 	var _listCompanies2 = _interopRequireDefault(_listCompanies);
 	
-	var _listCompanies3 = __webpack_require__(25);
+	var _listCompanies3 = __webpack_require__(51);
 	
 	var _listCompanies4 = _interopRequireDefault(_listCompanies3);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	//component for the user's companies page
 	exports.default = {
 	  template: _listCompanies2.default,
 	  controller: controller
 	};
 	
 	
-	function controller() {
+	controller.$inject = ['companyService', '$window', '$mdDialog'];
+	function controller(companyService, $window, $mdDialog) {
+	  var _this = this;
+	
 	  this.styles = _listCompanies4.default;
-	  // dummy data to remove later once services are added
-	  this.companies = [{
-	    name: 'Apple Inc.',
-	    service: 'Computer hardware/software',
-	    location: 'Cupertino, CA',
-	    info: 'This is a company that built the iPhone and Mac OSX. They are also involved in selling digitial media view the iTunes and Mac App stores.',
-	    tech: 'iOS, Mac OSX',
-	    pros: ['pro1', 'pro2', 'pro3'],
-	    cons: ['con1', 'con2'],
-	    questions: ['question1', 'question2'],
-	    contacts: [{ _id: '123' }, { _id: '456' }],
-	    links: [{ url: 'http://apple.com', desc: 'Apple homepage' }],
-	    actionItems: [{ date: 'Aug. 10, 2016', plan: 'Applied for job' }, { date: 'Sept. 1, 2016', plan: 'First round interview' }]
-	  }, {
-	    name: 'Google',
-	    service: 'Search engine',
-	    location: 'Mountain View, CA',
-	    info: 'Google started out as a search engine but has since moved onto other online software as a service products.',
-	    tech: 'AngularJS, Android',
-	    pros: ['pro1', 'pro2', 'pro3'],
-	    cons: ['con1', 'con2'],
-	    questions: ['question1', 'question2'],
-	    contacts: [{ _id: '123' }, { _id: '456' }],
-	    links: [{ url: 'http://google.com', desc: 'Google homepage' }],
-	    actionItems: [{ date: 'Sept. 10, 2016', plan: 'Applied for job' }, { date: 'Oct. 10, 2016', plan: 'Check application status' }]
-	  }, {
-	    name: 'Facebook',
-	    service: 'Social media',
-	    location: 'Menlo Park, CA',
-	    info: 'Facebook is a social media network designed to help you stay in touch with those that matter most to you.',
-	    tech: 'React',
-	    pros: ['pro1', 'pro2', 'pro3'],
-	    cons: ['con1', 'con2'],
-	    questions: ['question1', 'question2'],
-	    contacts: [{ _id: '123' }, { _id: '456' }],
-	    links: [{ url: 'http://facebook.com', desc: 'Facebook homepage' }],
-	    actionItems: []
-	  }];
+	  this.userId = $window.localStorage['id'];
+	  this.addButton = 'add';
+	
+	  //gets all of user's companies
+	  companyService.getByUser(this.userId).then(function (companies) {
+	    _this.companies = companies;
+	  }).catch(function (err) {
+	    return console.log(err);
+	  });
+	
+	  //adds a new company
+	  this.add = function (companyToAdd, userId) {
+	    companyService.add(companyToAdd, userId).then(function (addedcompany) {
+	      _this.companies.unshift(addedcompany);
+	      _this.addButton = 'add';
+	    }).catch(function (err) {
+	      return console.log(err);
+	    });
+	  };
+	
+	  //removes a selected company
+	  this.remove = function (companyId) {
+	    console.log(companyId);
+	    companyService.remove(companyId).then(function () {
+	      companyService.getByUser(_this.userId).then(function (companies) {
+	        _this.companies = companies;
+	      }).catch(function (err) {
+	        return console.log(err);
+	      });
+	    }).catch(function (err) {
+	      return console.log(err);
+	    });
+	  };
+	
+	  //opens new Dialog/form to add a new company
+	  this.newCompany = function ($event) {
+	    var parentEl = angular.element(document.body);
+	    $mdDialog.show({
+	      parent: parentEl,
+	      targetEvent: $event,
+	      controllerAs: '$ctrl',
+	      bindToController: true,
+	      template: '<new-company add="$ctrl.add" company="$ctrl.company"></new-company>',
+	      controller: function controller() {},
+	
+	      locals: {
+	        company: _this.company,
+	        add: _this.add
+	      },
+	      clickOutsideToClose: true,
+	      escapeToClose: true
+	    }).then(function (newCompany) {
+	      if (!newCompany) return;
+	      console.log(newCompany);
+	      angular.copy(newCompany, _this.company);
+	    });
+	  };
+	
+	  // this.companies = [
+	  //   {
+	  //     name: 'Apple Inc.',
+	  //     service: 'Computer hardware/software',
+	  //     location: 'Cupertino, CA',
+	  //     info: 'This is a company that built the iPhone and Mac OSX. They are also involved in selling digitial media view the iTunes and Mac App stores.',
+	  //     tech: 'iOS, Mac OSX',
+	  //     pros: ['pro1', 'pro2', 'pro3'],
+	  //     cons: ['con1', 'con2'],
+	  //     questions: ['question1', 'question2'],
+	  //     companys: [{_id: '123'}, {_id: '456'}],
+	  //     links: [{url: 'http://apple.com', desc: 'Apple homepage'}],
+	  //     actionItems: [{date: 'Aug. 10, 2016', plan: 'Applied for job'}, {date: 'Sept. 1, 2016', plan: 'First round interview'}]
+	  //   },
+	  //   {
+	  //     name: 'Google',
+	  //     service: 'Search engine',
+	  //     location: 'Mountain View, CA',
+	  //     info: 'Google started out as a search engine but has since moved onto other online software as a service products.',
+	  //     tech: 'AngularJS, Android',
+	  //     pros: ['pro1', 'pro2', 'pro3'],
+	  //     cons: ['con1', 'con2'],
+	  //     questions: ['question1', 'question2'],
+	  //     contacts: [{_id: '123'}, {_id: '456'}],
+	  //     links: [{url: 'http://google.com', desc: 'Google homepage'}],
+	  //     actionItems: [{date: 'Sept. 10, 2016', plan: 'Applied for job'}, {date: 'Oct. 10, 2016', plan: 'Check application status'}]
+	  //   },
+	  //   {
+	  //     name: 'Facebook',
+	  //     service: 'Social media',
+	  //     location: 'Menlo Park, CA',
+	  //     info: 'Facebook is a social media network designed to help you stay in touch with those that matter most to you.',
+	  //     tech: 'React',
+	  //     pros: ['pro1', 'pro2', 'pro3'],
+	  //     cons: ['con1', 'con2'],
+	  //     questions: ['question1', 'question2'],
+	  //     contacts: [{_id: '123'}, {_id: '456'}],
+	  //     links: [{url: 'http://facebook.com', desc: 'Facebook homepage'}],
+	  //     actionItems: []
+	  //   }
+	  // ];
 	}
 
 /***/ },
-/* 24 */
+/* 50 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.listCompanies\">\n    <div ng-repeat=\"company in $ctrl.companies\">\n        <h1>{{company.name}}</h1>\n        <h3>{{company.info}}</h3>\n            <div ng-if=\"company.actionItems.length\">\n                <p>Action Items: </p>\n                <ul>\n                    <li ng-repeat=\"item in company.actionItems\">{{item.date}} {{item.plan}}</li>\n                </ul>\n            </div>\n            <!--TODO: feed company id into the ui-sref value as a param-->\n            <p> VVVV Leading to profile with dummy data for Apple</p>\n            <a ui-sref=\"company\">More Details</a>\n    </div>\n</section>\n\n\n";
+	module.exports = "<!--template for the list of user companies-->\n<section ng-class=\"$ctrl.styles.listCompanies\">\n\n<md-button class=\"md-secondary md-icon-button\"\n    ng-click=\"$ctrl.newCompany($event)\"\n    ng-show=\"$ctrl.addButton === 'add'\">Add Position\n</md-button>\n\n<new-company add=\"$ctrl.add\" add-button=\"$ctrl.addButton\" ng-if=\"$ctrl.addButton === 'save'\"></new-company>\n\n<section ng-class=\"$ctrl.styles.companies\" ng-repeat=\"company in $ctrl.companies\">\n    <md-card>\n        <md-card-header>\n            <md-card-header-text>\n            <span class=\"md-title\">{{company.name}}</span>\n            <span class=\"md-subhead\">{{company.info}}</span>\n            </md-card-header-text>\n        </md-card-header>\n        <md-card-content>\n            <div ng-if=\"company.actionItems.length\">\n                <p>Action Items: </p>\n                <ul>\n                    <li ng-repeat=\"item in company.actionItems\">{{item.date}} {{item.plan}}</li>\n                </ul>\n            </div>\n        </md-card-content>\n        <md-card-actions layout=\"row\" layout-align=\"end center\">\n            <md-button ui-sref=\"company({companyId: company._id})\">More Details</md-button>\n            <md-button ng-click=\"$ctrl.remove(company._id)\">Remove Position</md-button>\n        </md-card-actions>\n    </md-card>\n</section>\n\n\n\n";
 
 /***/ },
-/* 25 */
+/* 51 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 26 */,
-/* 27 */
+/* 52 */,
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20624,11 +21194,70 @@
 	  value: true
 	});
 	
-	var _userDetail = __webpack_require__(28);
+	var _newCompany = __webpack_require__(54);
+	
+	var _newCompany2 = _interopRequireDefault(_newCompany);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _newCompany2.default,
+	  bindings: {
+	    add: '<',
+	    addButton: '='
+	  },
+	  controller: controller
+	}; // component for handling form submit info of a new company
+	
+	controller.$inject = ['$scope', '$window', '$mdDialog'];
+	function controller($scope, $window, $mdDialog) {
+	  var _this = this;
+	
+	  this.userId = $window.localStorage['id'];
+	  console.log(this.userId);
+	
+	  var resetCompany = function resetCompany() {
+	    _this.company = {};
+	  };
+	
+	  resetCompany();
+	
+	  this.cancel = function () {
+	    $mdDialog.hide();
+	  };
+	
+	  //gives the form info to add a new company
+	  this.submit = function () {
+	    console.log('got here to new-company form submit');
+	    $mdDialog.hide();
+	    _this.add(_this.company, _this.userId);
+	    resetCompany();
+	    $scope.newCompany.$setPristine();
+	    $scope.newCompany.$setUntouched();
+	  };
+	};
+
+/***/ },
+/* 54 */
+/***/ function(module, exports) {
+
+	module.exports = "<!--html template for new company dialog-->\n    <md-dialog-content>\n        <form name=\"newCompany\" ng-submit=\"newCompany.$valid && $ctrl.submit()\"\n            novalidate>\n            <md-input-container>\n                <label>Name:</label>\n                <input\n                    name=\"addName\"\n                    required\n                    ng-model=\"$ctrl.company.name\"/>\n                    <div ng-messages=\"addCompany.addName.$error\" role=\"alert\">\n                        <div ng-message=\"required\">A name is required</div>\n                    </div>\n            </md-input-container>\n            <md-input-container>\n                <label>Service:</label>\n                <input\n                    name=\"addService\"\n                    required\n                    ng-model=\"$ctrl.company.service\"/>\n                <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An Service is required</div>\n                </div> -->\n            </md-input-container>\n            <md-input-container>\n                <label>Location:</label>\n                <input\n                    name=\"addLocation\"\n                    required\n                    ng-model=\"$ctrl.company.location\"/>\n                <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> -->\n            </md-input-container>\n            <md-input-container>\n                <label>Info:</label>\n                <!-- <select>\n                For selecting company from companies that already exist?\n                </select>\n                <p>Would also need option to add company if it does not exist. -->\n                <input\n                    name=\"addInfo\"\n                    ng-model=\"$ctrl.company.info\"/>\n                <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> -->\n            </md-input-container>\n            <md-input-container>\n                <label>Tech:</label>\n                <input\n                    name=\"addTech\"\n                    required\n                    ng-model=\"$ctrl.company.tech\"/>\n                <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> -->\n            </md-input-container>\n            <!--<md-input-container>\n                <label>Pros:</label>\n                <textarea\n                    name=\"addPros\"\n                    required\n                    ng-model=\"$ctrl.company.info\">\n                <div ng-messages=\"addPosition.addInformation.$error\" role=\"alert\">\n                    <ng-message when=\"required\">This field is required</ng-message>\n                </div> \n                </textarea>\n            </md-input-container>-->\n            <!--<md-input-container>\n                <label>Questions:</label>\n                <select>\n                For selecting company from companies that already exist?\n                </select>\n                <input\n                    name=\"addQuestions\"\n                    \n                    ng-model=\"$ctrl.company.company\"/>\n                <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> \n            </md-input-container>-->\n            <!--<md-input-container>\n                <label>Contact:</label>\n                <select>\n                For selecting company from companies that already exist?\n                </select>\n                <input\n                    name=\"addContact\"\n                    \n                    ng-model=\"$ctrl.company.company\"/>\n                <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> \n            </md-input-container>-->\n            <!--<md-input-container>\n                <label>Links:</label>\n                <input\n                    name=\"addLinks\"\n                    \n                    ng-model=\"$ctrl.company.links\"/>\n                <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> \n            </md-input-container>-->\n            <!--<md-input-container>\n                <label>Action Items:</label>\n                <select>\n                For selecting company from companies that already exist?\n                </select>\n                <input\n                    name=\"addActionItems\"\n                    \n                    ng-model=\"$ctrl.company.actionItems\"/>\n                <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> \n            </md-input-container>-->\n        </form>\n    </md-dialog-content>\n    <md-dialog-actions>\n        <md-button ng-click=\"$ctrl.submit()\" class=\"md-primary\">Save Company</md-button>\n        <md-button ng-click=\"$ctrl.cancel()\" class=\"md-primary\">Cancel</md-button>\n    </md-dialog-actions>\n\n";
+
+/***/ },
+/* 55 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _userDetail = __webpack_require__(56);
 	
 	var _userDetail2 = _interopRequireDefault(_userDetail);
 	
-	var _userDetail3 = __webpack_require__(29);
+	var _userDetail3 = __webpack_require__(57);
 	
 	var _userDetail4 = _interopRequireDefault(_userDetail3);
 	
@@ -20679,20 +21308,20 @@
 	}
 
 /***/ },
-/* 28 */
+/* 56 */
 /***/ function(module, exports) {
 
 	module.exports = "<section ng-class=\"$ctrl.styles.userDetail\">\n  <h1>{{$ctrl.user.name}}</h1>\n  <div>Display: {{$ctrl.user.name}}</div>\n  <div>Login: {{$ctrl.user.username}}</div>\n  <div ng-if=\"$ctrl.user.positions.length\">My Submissions:\n    <ul>\n        <li ng-repeat=\"position in $ctrl.user.positions\">{{position.dateApplied}} | {{position.title}} | {{position.company}}</li>\n    </ul>\n  </div>\n  <div ng-if=\"$ctrl.user.companies.length\">Company Research:\n    <ul>\n        <li ng-repeat=\"company in $ctrl.user.companies\">{{company.name}}</li>\n    </ul>\n  </div>\n  <div ng-if=\"$ctrl.user.contacts.length\">My Contacts:\n    <ul>\n        <li ng-repeat=\"contact in $ctrl.user.contacts\">{{contact.name}} | {{contact.role}} | {{contact.company}}</li>\n    </ul>\n  </div>\n</section>\n";
 
 /***/ },
-/* 29 */
+/* 57 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 30 */,
-/* 31 */
+/* 58 */,
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20701,7 +21330,225 @@
 	  value: true
 	});
 	
-	var _visualizations = __webpack_require__(32);
+	var _newPosition = __webpack_require__(60);
+	
+	var _newPosition2 = _interopRequireDefault(_newPosition);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _newPosition2.default,
+	  bindings: {
+	    add: '<',
+	    addButton: '='
+	  },
+	  controller: controller
+	}; //component for handling submit/cancel of new position
+	
+	controller.$inject = ['$scope', '$window', '$mdDialog'];
+	function controller($scope, $window, $mdDialog) {
+	  var _this = this;
+	
+	  this.userId = $window.localStorage['id'];
+	
+	  var resetPosition = function resetPosition() {
+	    _this.position = {};
+	  };
+	
+	  resetPosition();
+	
+	  this.cancel = function () {
+	    $mdDialog.hide();
+	  };
+	
+	  //saves and adds information to user's positions
+	  this.submit = function () {
+	    $mdDialog.hide();
+	    _this.add(_this.position, _this.userId);
+	    resetPosition();
+	    $scope.newPosition.$setPristine();
+	    $scope.newPosition.$setUntouched();
+	  };
+	};
+
+/***/ },
+/* 60 */
+/***/ function(module, exports) {
+
+	module.exports = "<!--template for the dialog form to add a new position-->\n    <md-dialog-content>\n        <form name=\"newPosition\" ng-submit=\"newPosition.$valid && $ctrl.submit()\"\n      novalidate>\n            <md-input-container>\n                <label>Title:</label>\n                <input name=\"addTitle\" required ng-model=\"$ctrl.position.title\"/>\n                    <!--<div ng-messages=\"addCompany.addName.$error\" role=\"alert\">\n                        <div ng-message=\"required\">A name is required</div>\n                    </div>-->\n            </md-input-container>\n            <md-input-container>\n                <label>Date Posted:</label>\n                <input name=\"addDateAdvertised\" ng-model=\"$ctrl.position.dateAdvertised\"/>\n                <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> -->\n            </md-input-container>\n            <md-input-container>\n                <label>Date Applied:</label>\n                <input name=\"addDateApplied\" required ng-model=\"$ctrl.position.dateApplied\"/>\n                <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An Service is required</div>\n                </div> -->\n            </md-input-container>\n            <md-input-container>\n                <label>Method:</label>\n                <input name=\"addMethod\" required ng-model=\"$ctrl.position.method\"/>\n                <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> -->\n            </md-input-container>\n            <md-input-container>\n                <label>Info:</label>\n                <input name=\"addPostingInfo\" ng-model=\"$ctrl.position.postingInfo\"/>\n                <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> -->\n            </md-input-container>\n            <!--<md-input-container>\n                <label>Pros:</label>\n                <textarea name=\"addPros\" required ng-model=\"$ctrl.company.info\">\n                <div ng-messages=\"addPosition.addInformation.$error\" role=\"alert\">\n                    <ng-message when=\"required\">This field is required</ng-message>\n                </div> \n                </textarea>\n            </md-input-container>-->\n            <!--<md-input-container>\n                <label>Questions:</label>\n                <select>\n                For selecting company from companies that already exist?\n                </select>\n                <input name=\"addQuestions\" ng-model=\"$ctrl.company.company\"/>\n                <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> \n            </md-input-container>-->\n            <!--<md-input-container>\n                <label>Contact:</label>\n                <input name=\"addContact\" ng-model=\"$ctrl.company.company\"/>\n                <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> \n            </md-input-container>-->\n            <!--<md-input-container>\n                <label>Action Items:</label>\n                <input name=\"addActionItems\" ng-model=\"$ctrl.company.actionItems\"/>\n                <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> \n            </md-input-container>-->\n        </form>\n    </md-dialog-content>\n    <md-dialog-actions>\n        <md-button ng-click=\"$ctrl.submit()\" class=\"md-primary\">Save Position</md-button>\n        <md-button ng-click=\"$ctrl.cancel()\" class=\"md-primary\">Cancel</md-button>\n    </md-dialog-actions>\n\n\n";
+
+/***/ },
+/* 61 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _position = __webpack_require__(62);
+	
+	var _position2 = _interopRequireDefault(_position);
+	
+	var _position3 = __webpack_require__(63);
+	
+	var _position4 = _interopRequireDefault(_position3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//component for detailed position view
+	exports.default = {
+	  template: _position2.default,
+	  bindings: {
+	    positions: '='
+	  },
+	  controller: controller
+	};
+	
+	
+	controller.$inject = ['positionService', '$window', '$state'];
+	function controller(positionService, $window, $state) {
+	  var _this = this;
+	
+	  this.styles = _position4.default;
+	  this.userId = $window.localStorage['id'];
+	
+	  //gets the detailed info of selected position
+	  positionService.get($state.params.positionId).then(function (position) {
+	    _this.position = position;
+	    console.log(_this.position);
+	  }).catch(function (err) {
+	    return console.log(err);
+	  });
+	}
+
+/***/ },
+/* 62 */
+/***/ function(module, exports) {
+
+	module.exports = "<!--template for a detailed position view-->\n\n<section ng-class=\"$ctrl.styles.position\">\n    <md-card>\n        <md-card-header>\n            <md-card-header-text>\n            <span class=\"md-title\">{{$ctrl.position.title}}</span>\n            <span class=\"md-subhead\">{{$ctrl.position.company}}</span>\n            </md-card-header-text>\n        </md-card-header>\n        <md-card-content>\n            <p>{{$ctrl.position.postingInfo}}</p>\n            <p>{{$ctrl.position.dateAdvertised}}</p>\n            <p>{{$ctrl.position.dateApplied}}</p>\n            <p>{{$ctrl.position.method}}</p>\n        </md-card-content>\n        <md-card-actions layout=\"row\" layout-align=\"end center\">\n            <md-button>Follow Ups</md-button>\n            <md-button>Action Items</md-button>\n            <md-button>Questions</md-button>\n        </md-card-actions>\n    </md-card>\n</section>";
+
+/***/ },
+/* 63 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 64 */,
+/* 65 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _positions = __webpack_require__(66);
+	
+	var _positions2 = _interopRequireDefault(_positions);
+	
+	var _positions3 = __webpack_require__(67);
+	
+	var _positions4 = _interopRequireDefault(_positions3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//component for the main user page for positions
+	exports.default = {
+	  template: _positions2.default,
+	  controller: controller
+	};
+	
+	
+	controller.$inject = ['positionService', '$window', '$mdDialog'];
+	function controller(positionService, $window, $mdDialog) {
+	  var _this = this;
+	
+	  this.styles = _positions4.default;
+	  this.userId = $window.localStorage['id'];
+	  this.addButton = 'add';
+	
+	  //gets all positions
+	  positionService.getByUser(this.userId).then(function (positions) {
+	    _this.positions = positions;
+	  }).catch(function (err) {
+	    return console.log(err);
+	  });
+	
+	  //adds new position
+	  this.add = function (positionToAdd, userId) {
+	    positionService.add(positionToAdd, userId).then(function (addedPosition) {
+	      _this.positions.unshift(addedPosition);
+	      _this.addButton = 'add';
+	    }).catch(function (err) {
+	      return console.log(err);
+	    });
+	  };
+	
+	  //removes selected postion
+	  this.remove = function (positionId) {
+	    positionService.remove(positionId).then(function () {
+	      positionService.getByUser(_this.userId).then(function (positions) {
+	        _this.positions = positions;
+	      }).catch(function (err) {
+	        return console.log(err);
+	      });
+	    }).catch(function (err) {
+	      return console.log(err);
+	    });
+	  };
+	
+	  //opens dialog/form to add a new position
+	  this.newPosition = function ($event) {
+	    var parentEl = angular.element(document.body);
+	    $mdDialog.show({
+	      parent: parentEl,
+	      targetEvent: $event,
+	      controllerAs: '$ctrl',
+	      bindToController: true,
+	      template: '<new-position add="$ctrl.add" position="$ctrl.position"></new-position>',
+	      controller: function controller() {},
+	
+	      locals: {
+	        position: _this.position,
+	        add: _this.add
+	      },
+	      clickOutsideToClose: true,
+	      escapeToClose: true
+	    }).then(function (newPosition) {
+	      if (!newPosition) return;
+	      angular.copy(newPosition, _this.position);
+	    });
+	  };
+	};
+
+/***/ },
+/* 66 */
+/***/ function(module, exports) {
+
+	module.exports = "<!--template for the view of user positions-->\n<md-button class=\"md-secondary md-icon-button\"\n    ng-click=\"$ctrl.newPosition($event)\"\n    ng-show=\"$ctrl.addButton === 'add'\">Add Position\n</md-button>\n\n<new-position add=\"$ctrl.add\" add-button=\"$ctrl.addButton\" ng-if=\"$ctrl.addButton === 'save'\"></new-position>\n\n<section ng-class=\"$ctrl.styles.positions\" ng-repeat=\"position in $ctrl.positions\">\n    <md-card>\n        <md-card-header>\n            <md-card-header-text>\n            <span class=\"md-title\">{{position.title}}</span>\n            <span class=\"md-subhead\">{{position.company}}</span>\n            </md-card-header-text>\n        </md-card-header>\n        <md-card-actions layout=\"row\" layout-align=\"end center\">\n            <md-button ui-sref=\"position({positionId: position._id})\">More Details</md-button>\n            <md-button ng-click=\"$ctrl.remove(position._id)\">Remove Position</md-button>\n        </md-card-actions>\n    </md-card>\n</section>\n\n\n\n\n";
+
+/***/ },
+/* 67 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 68 */,
+/* 69 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _visualizations = __webpack_require__(70);
 	
 	var _visualizations2 = _interopRequireDefault(_visualizations);
 	
@@ -20721,13 +21568,13 @@
 	};
 
 /***/ },
-/* 32 */
+/* 70 */
 /***/ function(module, exports) {
 
 	module.exports = "<aside>\n  <!-- this section shows donut graph for applications sent vs weekly goal -->\n  <ui-view name=\"applicationActivity\"></ui-view>\n\n  <!-- this section shows donut graph for contacts made vs weekly goal -->\n  <ui-view name=\"contactActivity\"></ui-view>\n\n  <!-- this section shows donut graph for social network, brand upkeep posts vs weekly goal -->\n  <ui-view name=\"brandActivity\"></ui-view>\n\n  <!-- this section shows donut graph for events attended (includes interviews) vs weekly goal -->\n  <ui-view name=\"eventActivity\"></ui-view>\n</aside>\n";
 
 /***/ },
-/* 33 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20750,7 +21597,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var reqContext = __webpack_require__(34);
+	var reqContext = __webpack_require__(72);
 	
 	var services = _angular2.default.module('services', []);
 	
@@ -20762,20 +21609,268 @@
 	exports.default = services.name;
 
 /***/ },
-/* 34 */
-/***/ function(module, exports) {
+/* 72 */
+/***/ function(module, exports, __webpack_require__) {
 
+	var map = {
+		"./company-service.js": 73,
+		"./contact-service.js": 74,
+		"./position-service.js": 75,
+		"./token-service.js": 76,
+		"./user-service.js": 77
+	};
 	function webpackContext(req) {
-		throw new Error("Cannot find module '" + req + "'.");
-	}
-	webpackContext.keys = function() { return []; };
-	webpackContext.resolve = webpackContext;
+		return __webpack_require__(webpackContextResolve(req));
+	};
+	function webpackContextResolve(req) {
+		return map[req] || (function() { throw new Error("Cannot find module '" + req + "'.") }());
+	};
+	webpackContext.keys = function webpackContextKeys() {
+		return Object.keys(map);
+	};
+	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 34;
+	webpackContext.id = 72;
 
 
 /***/ },
-/* 35 */
+/* 73 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = companyService;
+	//service for company components
+	companyService.$inject = ['$http', 'apiUrl'];
+	
+	function companyService($http, apiUrl) {
+	  return {
+	    getByUser: function getByUser(userId) {
+	      return $http.get(apiUrl + '/companies/byUser/' + userId).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    get: function get(companyId) {
+	      return $http.get(apiUrl + '/companies/' + companyId).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    add: function add(company, userId) {
+	      return $http.post(apiUrl + '/companies/' + userId, company).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    remove: function remove(companyId) {
+	      return $http.delete(apiUrl + '/companies/' + companyId).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    update: function update(company) {
+	      return $http.put(apiUrl + '/companies/' + company._id, company).then(function (response) {
+	        return response.data;
+	      });
+	    }
+	  };
+	}
+
+/***/ },
+/* 74 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = contactService;
+	//service for contact components
+	contactService.$inject = ['$http', 'apiUrl'];
+	
+	function contactService($http, apiUrl) {
+	  return {
+	    getAll: function getAll() {
+	      return $http.get(apiUrl + '/contacts').then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    get: function get(contact) {
+	      return $http.get(apiUrl + '/contacts/' + contact._id).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    getByUser: function getByUser(userId) {
+	      return $http.get(apiUrl + '/contacts/byUser/' + userId).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    add: function add(contact, userId) {
+	      return $http.post(apiUrl + '/contacts/' + userId, contact).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    remove: function remove(contact) {
+	      return $http.delete(apiUrl + '/contacts/' + contact._id).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    update: function update(contact) {
+	      return $http.put(apiUrl + '/contacts/' + contact._id, contact).then(function (response) {
+	        return response.data;
+	      });
+	    }
+	  };
+	}
+
+/***/ },
+/* 75 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = positionService;
+	//service for position components
+	positionService.$inject = ['$http', 'apiUrl'];
+	
+	function positionService($http, apiUrl) {
+	  return {
+	    getAll: function getAll() {
+	      return $http.get(apiUrl + '/positions').then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    get: function get(positionId) {
+	      return $http.get(apiUrl + '/positions/' + positionId).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    getByUser: function getByUser(userId) {
+	      return $http.get(apiUrl + '/positions/byUser/' + userId).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    add: function add(position, userId) {
+	      return $http.post(apiUrl + '/positions/' + userId, position).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    remove: function remove(positionId) {
+	      return $http.delete(apiUrl + '/positions/' + positionId).then(function (response) {
+	        return response.data;
+	      });
+	    },
+	    update: function update(position) {
+	      return $http.put(apiUrl + '/positions/' + position._id, position).then(function (response) {
+	        return response.data;
+	      });
+	    }
+	  };
+	}
+
+/***/ },
+/* 76 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = tokenService;
+	//service for token components
+	tokenService.$inject = ['$window'];
+	
+	var TOKEN_NAME = 'token';
+	var ID = 'id';
+	
+	function tokenService($window) {
+	  return {
+	    get: function get() {
+	      return $window.localStorage.getItem(TOKEN_NAME);
+	    },
+	    remove: function remove() {
+	      $window.localStorage.removeItem(TOKEN_NAME);
+	      $window.localStorage.removeItem(ID);
+	    },
+	    set: function set(payload) {
+	      $window.localStorage.setItem(TOKEN_NAME, payload.token);
+	      $window.localStorage.setItem(ID, payload.id);
+	    }
+	  };
+	}
+
+/***/ },
+/* 77 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = userService;
+	//service for user components
+	userService.$inject = ['tokenService', '$http', 'apiUrl'];
+	
+	function userService(token, $http, apiUrl) {
+	
+	  var current = token.get();
+	  if (current) {
+	    $http.get(apiUrl + '/auth/verify').catch(function () {
+	      return token.remove();
+	    });
+	  }
+	
+	  function credential(endpoint) {
+	    return function (credentials) {
+	      return $http.post(apiUrl + '/auth/' + endpoint, credentials).then(function (result) {
+	        token.set(result.data.token);
+	      }).catch(function (err) {
+	        throw err.data;
+	      });
+	    };
+	  }
+	
+	  function getMe(id) {
+	    return $http.get(apiUrl + '/users/' + id).then(function (result) {
+	      return result.data;
+	    });
+	  };
+	
+	  function update(userToUpdate) {
+	    return $http.put(apiUrl + '/users/' + userToUpdate._id, userToUpdate).then(function (result) {
+	      return result.data;
+	    });
+	  };
+	
+	  return {
+	    //do we have token?
+	    isAuthenticated: function isAuthenticated() {
+	      return !!token.get();
+	    },
+	
+	    //remove token
+	    logout: function logout() {
+	      token.remove();
+	    },
+	
+	    //call API and set token
+	    signin: credential('signin'),
+	    signup: credential('signup'),
+	    //update user information
+	    update: update,
+	    //get current user information
+	    getMe: getMe
+	  };
+	}
+
+/***/ },
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20784,26 +21879,26 @@
 	__webpack_require__(1);
 	
 	// Load Angular and dependent libs
-	__webpack_require__(36);
-	__webpack_require__(38);
+	__webpack_require__(79);
+	__webpack_require__(81);
 	
 	// Now load Angular Material
-	__webpack_require__(40);
+	__webpack_require__(83);
 	
 	// Export namespace
 	module.exports = 'ngMaterial';
 
 /***/ },
-/* 36 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	__webpack_require__(37);
+	__webpack_require__(80);
 	module.exports = 'ngAnimate';
 
 /***/ },
-/* 37 */
+/* 80 */
 /***/ function(module, exports) {
 
 	'use strict';/**
@@ -22253,16 +23348,16 @@
 	noop=angular.noop;copy=angular.copy;extend=angular.extend;jqLite=angular.element;forEach=angular.forEach;isArray=angular.isArray;isString=angular.isString;isObject=angular.isObject;isUndefined=angular.isUndefined;isDefined=angular.isDefined;isFunction=angular.isFunction;isElement=angular.isElement;}).directive('ngAnimateSwap',ngAnimateSwapDirective).directive('ngAnimateChildren',$$AnimateChildrenDirective).factory('$$rAFScheduler',$$rAFSchedulerFactory).provider('$$animateQueue',$$AnimateQueueProvider).provider('$$animation',$$AnimationProvider).provider('$animateCss',$AnimateCssProvider).provider('$$animateCssDriver',$$AnimateCssDriverProvider).provider('$$animateJs',$$AnimateJsProvider).provider('$$animateJsDriver',$$AnimateJsDriverProvider);})(window,window.angular);
 
 /***/ },
-/* 38 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	__webpack_require__(39);
+	__webpack_require__(82);
 	module.exports = 'ngAria';
 
 /***/ },
-/* 39 */
+/* 82 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22656,7 +23751,7 @@
 	})(window, window.angular);
 
 /***/ },
-/* 40 */
+/* 83 */
 /***/ function(module, exports) {
 
 	"use strict";var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol?"symbol":typeof obj;};/*!
@@ -33185,14 +34280,1064 @@
 	scope.$on('$destroy',function(){disconnect();});}};}})();(function(){"use strict";MdTabsTemplate.$inject=["$compile","$mdUtil"];angular.module('material.components.tabs').directive('mdTabsTemplate',MdTabsTemplate);function MdTabsTemplate($compile,$mdUtil){return{restrict:'A',link:link,scope:{template:'=mdTabsTemplate',connected:'=?mdConnectedIf',compileScope:'=mdScope'},require:'^?mdTabs'};function link(scope,element,attr,ctrl){if(!ctrl)return;var compileScope=ctrl.enableDisconnect?scope.compileScope.$new():scope.compileScope;element.html(scope.template);$compile(element.contents())(compileScope);return $mdUtil.nextTick(handleScope);function handleScope(){scope.$watch('connected',function(value){value===false?disconnect():reconnect();});scope.$on('$destroy',reconnect);}function disconnect(){if(ctrl.enableDisconnect)$mdUtil.disconnectScope(compileScope);}function reconnect(){if(ctrl.enableDisconnect)$mdUtil.reconnectScope(compileScope);}}}})();(function(){angular.module("material.core").constant("$MD_THEME_CSS","md-autocomplete.md-THEME_NAME-theme {  background: '{{background-A100}}'; }  md-autocomplete.md-THEME_NAME-theme[disabled]:not([md-floating-label]) {    background: '{{background-100}}'; }  md-autocomplete.md-THEME_NAME-theme button md-icon path {    fill: '{{background-600}}'; }  md-autocomplete.md-THEME_NAME-theme button:after {    background: '{{background-600-0.3}}'; }.md-autocomplete-suggestions-container.md-THEME_NAME-theme {  background: '{{background-A100}}'; }  .md-autocomplete-suggestions-container.md-THEME_NAME-theme li {    color: '{{background-900}}'; }    .md-autocomplete-suggestions-container.md-THEME_NAME-theme li .highlight {      color: '{{background-600}}'; }    .md-autocomplete-suggestions-container.md-THEME_NAME-theme li:hover, .md-autocomplete-suggestions-container.md-THEME_NAME-theme li.selected {      background: '{{background-200}}'; }md-backdrop {  background-color: '{{background-900-0.0}}'; }  md-backdrop.md-opaque.md-THEME_NAME-theme {    background-color: '{{background-900-1.0}}'; }md-bottom-sheet.md-THEME_NAME-theme {  background-color: '{{background-50}}';  border-top-color: '{{background-300}}'; }  md-bottom-sheet.md-THEME_NAME-theme.md-list md-list-item {    color: '{{foreground-1}}'; }  md-bottom-sheet.md-THEME_NAME-theme .md-subheader {    background-color: '{{background-50}}'; }  md-bottom-sheet.md-THEME_NAME-theme .md-subheader {    color: '{{foreground-1}}'; }.md-button.md-THEME_NAME-theme:not([disabled]):hover {  background-color: '{{background-500-0.2}}'; }.md-button.md-THEME_NAME-theme:not([disabled]).md-focused {  background-color: '{{background-500-0.2}}'; }.md-button.md-THEME_NAME-theme:not([disabled]).md-icon-button:hover {  background-color: transparent; }.md-button.md-THEME_NAME-theme.md-fab {  background-color: '{{accent-color}}';  color: '{{accent-contrast}}'; }  .md-button.md-THEME_NAME-theme.md-fab md-icon {    color: '{{accent-contrast}}'; }  .md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover {    background-color: '{{accent-A700}}'; }  .md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused {    background-color: '{{accent-A700}}'; }.md-button.md-THEME_NAME-theme.md-primary {  color: '{{primary-color}}'; }  .md-button.md-THEME_NAME-theme.md-primary.md-raised, .md-button.md-THEME_NAME-theme.md-primary.md-fab {    color: '{{primary-contrast}}';    background-color: '{{primary-color}}'; }    .md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]) md-icon {      color: '{{primary-contrast}}'; }    .md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]):hover {      background-color: '{{primary-600}}'; }    .md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]).md-focused {      background-color: '{{primary-600}}'; }  .md-button.md-THEME_NAME-theme.md-primary:not([disabled]) md-icon {    color: '{{primary-color}}'; }.md-button.md-THEME_NAME-theme.md-fab {  background-color: '{{accent-color}}';  color: '{{accent-contrast}}'; }  .md-button.md-THEME_NAME-theme.md-fab:not([disabled]) .md-icon {    color: '{{accent-contrast}}'; }  .md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover {    background-color: '{{accent-A700}}'; }  .md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused {    background-color: '{{accent-A700}}'; }.md-button.md-THEME_NAME-theme.md-raised {  color: '{{background-900}}';  background-color: '{{background-50}}'; }  .md-button.md-THEME_NAME-theme.md-raised:not([disabled]) md-icon {    color: '{{background-900}}'; }  .md-button.md-THEME_NAME-theme.md-raised:not([disabled]):hover {    background-color: '{{background-50}}'; }  .md-button.md-THEME_NAME-theme.md-raised:not([disabled]).md-focused {    background-color: '{{background-200}}'; }.md-button.md-THEME_NAME-theme.md-warn {  color: '{{warn-color}}'; }  .md-button.md-THEME_NAME-theme.md-warn.md-raised, .md-button.md-THEME_NAME-theme.md-warn.md-fab {    color: '{{warn-contrast}}';    background-color: '{{warn-color}}'; }    .md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]) md-icon {      color: '{{warn-contrast}}'; }    .md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]):hover {      background-color: '{{warn-600}}'; }    .md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]).md-focused {      background-color: '{{warn-600}}'; }  .md-button.md-THEME_NAME-theme.md-warn:not([disabled]) md-icon {    color: '{{warn-color}}'; }.md-button.md-THEME_NAME-theme.md-accent {  color: '{{accent-color}}'; }  .md-button.md-THEME_NAME-theme.md-accent.md-raised, .md-button.md-THEME_NAME-theme.md-accent.md-fab {    color: '{{accent-contrast}}';    background-color: '{{accent-color}}'; }    .md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]) md-icon {      color: '{{accent-contrast}}'; }    .md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]):hover {      background-color: '{{accent-A700}}'; }    .md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]).md-focused {      background-color: '{{accent-A700}}'; }  .md-button.md-THEME_NAME-theme.md-accent:not([disabled]) md-icon {    color: '{{accent-color}}'; }.md-button.md-THEME_NAME-theme[disabled], .md-button.md-THEME_NAME-theme.md-raised[disabled], .md-button.md-THEME_NAME-theme.md-fab[disabled], .md-button.md-THEME_NAME-theme.md-accent[disabled], .md-button.md-THEME_NAME-theme.md-warn[disabled] {  color: '{{foreground-3}}';  cursor: default; }  .md-button.md-THEME_NAME-theme[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-raised[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-fab[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-accent[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-warn[disabled] md-icon {    color: '{{foreground-3}}'; }.md-button.md-THEME_NAME-theme.md-raised[disabled], .md-button.md-THEME_NAME-theme.md-fab[disabled] {  background-color: '{{foreground-4}}'; }.md-button.md-THEME_NAME-theme[disabled] {  background-color: transparent; }._md a.md-THEME_NAME-theme:not(.md-button).md-primary {  color: '{{primary-color}}'; }  ._md a.md-THEME_NAME-theme:not(.md-button).md-primary:hover {    color: '{{primary-700}}'; }._md a.md-THEME_NAME-theme:not(.md-button).md-accent {  color: '{{accent-color}}'; }  ._md a.md-THEME_NAME-theme:not(.md-button).md-accent:hover {    color: '{{accent-700}}'; }._md a.md-THEME_NAME-theme:not(.md-button).md-accent {  color: '{{accent-color}}'; }  ._md a.md-THEME_NAME-theme:not(.md-button).md-accent:hover {    color: '{{accent-A700}}'; }._md a.md-THEME_NAME-theme:not(.md-button).md-warn {  color: '{{warn-color}}'; }  ._md a.md-THEME_NAME-theme:not(.md-button).md-warn:hover {    color: '{{warn-700}}'; }md-card.md-THEME_NAME-theme {  color: '{{foreground-1}}';  background-color: '{{background-hue-1}}';  border-radius: 2px; }  md-card.md-THEME_NAME-theme .md-card-image {    border-radius: 2px 2px 0 0; }  md-card.md-THEME_NAME-theme md-card-header md-card-avatar md-icon {    color: '{{background-color}}';    background-color: '{{foreground-3}}'; }  md-card.md-THEME_NAME-theme md-card-header md-card-header-text .md-subhead {    color: '{{foreground-2}}'; }  md-card.md-THEME_NAME-theme md-card-title md-card-title-text:not(:only-child) .md-subhead {    color: '{{foreground-2}}'; }md-chips.md-THEME_NAME-theme .md-chips {  box-shadow: 0 1px '{{foreground-4}}'; }  md-chips.md-THEME_NAME-theme .md-chips.md-focused {    box-shadow: 0 2px '{{primary-color}}'; }  md-chips.md-THEME_NAME-theme .md-chips .md-chip-input-container input {    color: '{{foreground-1}}'; }    md-chips.md-THEME_NAME-theme .md-chips .md-chip-input-container input::-webkit-input-placeholder {      color: '{{foreground-3}}'; }    md-chips.md-THEME_NAME-theme .md-chips .md-chip-input-container input:-moz-placeholder {      color: '{{foreground-3}}'; }    md-chips.md-THEME_NAME-theme .md-chips .md-chip-input-container input::-moz-placeholder {      color: '{{foreground-3}}'; }    md-chips.md-THEME_NAME-theme .md-chips .md-chip-input-container input:-ms-input-placeholder {      color: '{{foreground-3}}'; }    md-chips.md-THEME_NAME-theme .md-chips .md-chip-input-container input::-webkit-input-placeholder {      color: '{{foreground-3}}'; }md-chips.md-THEME_NAME-theme md-chip {  background: '{{background-300}}';  color: '{{background-800}}'; }  md-chips.md-THEME_NAME-theme md-chip md-icon {    color: '{{background-700}}'; }  md-chips.md-THEME_NAME-theme md-chip.md-focused {    background: '{{primary-color}}';    color: '{{primary-contrast}}'; }    md-chips.md-THEME_NAME-theme md-chip.md-focused md-icon {      color: '{{primary-contrast}}'; }  md-chips.md-THEME_NAME-theme md-chip._md-chip-editing {    background: transparent;    color: '{{background-800}}'; }md-chips.md-THEME_NAME-theme md-chip-remove .md-button md-icon path {  fill: '{{background-500}}'; }.md-contact-suggestion span.md-contact-email {  color: '{{background-400}}'; }md-checkbox.md-THEME_NAME-theme .md-ripple {  color: '{{accent-A700}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-ripple {  color: '{{background-600}}'; }md-checkbox.md-THEME_NAME-theme.md-checked.md-focused .md-container:before {  background-color: '{{accent-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme .md-ink-ripple {  color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-ink-ripple {  color: '{{accent-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not(.md-checked) .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-icon {  background-color: '{{accent-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-icon:after {  border-color: '{{accent-contrast-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary .md-ripple {  color: '{{primary-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ripple {  color: '{{background-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary .md-ink-ripple {  color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ink-ripple {  color: '{{primary-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary:not(.md-checked) .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-icon {  background-color: '{{primary-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked.md-focused .md-container:before {  background-color: '{{primary-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-icon:after {  border-color: '{{primary-contrast-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary .md-indeterminate[disabled] .md-container {  color: '{{foreground-3}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn .md-ripple {  color: '{{warn-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn .md-ink-ripple {  color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-ink-ripple {  color: '{{warn-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn:not(.md-checked) .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-icon {  background-color: '{{warn-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked.md-focused:not([disabled]) .md-container:before {  background-color: '{{warn-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-icon:after {  border-color: '{{background-200}}'; }md-checkbox.md-THEME_NAME-theme[disabled]:not(.md-checked) .md-icon {  border-color: '{{foreground-3}}'; }md-checkbox.md-THEME_NAME-theme[disabled].md-checked .md-icon {  background-color: '{{foreground-3}}'; }md-checkbox.md-THEME_NAME-theme[disabled].md-checked .md-icon:after {  border-color: '{{background-200}}'; }md-checkbox.md-THEME_NAME-theme[disabled] .md-icon:after {  border-color: '{{foreground-3}}'; }md-checkbox.md-THEME_NAME-theme[disabled] .md-label {  color: '{{foreground-3}}'; }md-content.md-THEME_NAME-theme {  color: '{{foreground-1}}';  background-color: '{{background-default}}'; }/** Theme styles for mdCalendar. */.md-calendar.md-THEME_NAME-theme {  background: '{{background-A100}}';  color: '{{background-A200-0.87}}'; }  .md-calendar.md-THEME_NAME-theme tr:last-child td {    border-bottom-color: '{{background-200}}'; }.md-THEME_NAME-theme .md-calendar-day-header {  background: '{{background-300}}';  color: '{{background-A200-0.87}}'; }.md-THEME_NAME-theme .md-calendar-date.md-calendar-date-today .md-calendar-date-selection-indicator {  border: 1px solid '{{primary-500}}'; }.md-THEME_NAME-theme .md-calendar-date.md-calendar-date-today.md-calendar-date-disabled {  color: '{{primary-500-0.6}}'; }.md-calendar-date.md-focus .md-THEME_NAME-theme .md-calendar-date-selection-indicator, .md-THEME_NAME-theme .md-calendar-date-selection-indicator:hover {  background: '{{background-300}}'; }.md-THEME_NAME-theme .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator,.md-THEME_NAME-theme .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator {  background: '{{primary-500}}';  color: '{{primary-500-contrast}}';  border-color: transparent; }.md-THEME_NAME-theme .md-calendar-date-disabled,.md-THEME_NAME-theme .md-calendar-month-label-disabled {  color: '{{background-A200-0.435}}'; }/** Theme styles for mdDatepicker. */.md-THEME_NAME-theme .md-datepicker-input {  color: '{{foreground-1}}'; }  .md-THEME_NAME-theme .md-datepicker-input::-webkit-input-placeholder {    color: '{{foreground-3}}'; }  .md-THEME_NAME-theme .md-datepicker-input:-moz-placeholder {    color: '{{foreground-3}}'; }  .md-THEME_NAME-theme .md-datepicker-input::-moz-placeholder {    color: '{{foreground-3}}'; }  .md-THEME_NAME-theme .md-datepicker-input:-ms-input-placeholder {    color: '{{foreground-3}}'; }  .md-THEME_NAME-theme .md-datepicker-input::-webkit-input-placeholder {    color: '{{foreground-3}}'; }.md-THEME_NAME-theme .md-datepicker-input-container {  border-bottom-color: '{{foreground-4}}'; }  .md-THEME_NAME-theme .md-datepicker-input-container.md-datepicker-focused {    border-bottom-color: '{{primary-color}}'; }    .md-accent .md-THEME_NAME-theme .md-datepicker-input-container.md-datepicker-focused {      border-bottom-color: '{{accent-color}}'; }    .md-warn .md-THEME_NAME-theme .md-datepicker-input-container.md-datepicker-focused {      border-bottom-color: '{{warn-A700}}'; }  .md-THEME_NAME-theme .md-datepicker-input-container.md-datepicker-invalid {    border-bottom-color: '{{warn-A700}}'; }.md-THEME_NAME-theme .md-datepicker-calendar-pane {  border-color: '{{background-hue-1}}'; }.md-THEME_NAME-theme .md-datepicker-triangle-button .md-datepicker-expand-triangle {  border-top-color: '{{foreground-3}}'; }.md-THEME_NAME-theme .md-datepicker-triangle-button:hover .md-datepicker-expand-triangle {  border-top-color: '{{foreground-2}}'; }.md-THEME_NAME-theme .md-datepicker-open .md-datepicker-calendar-icon {  color: '{{primary-color}}'; }.md-THEME_NAME-theme .md-datepicker-open.md-accent .md-datepicker-calendar-icon, .md-accent .md-THEME_NAME-theme .md-datepicker-open .md-datepicker-calendar-icon {  color: '{{accent-color}}'; }.md-THEME_NAME-theme .md-datepicker-open.md-warn .md-datepicker-calendar-icon, .md-warn .md-THEME_NAME-theme .md-datepicker-open .md-datepicker-calendar-icon {  color: '{{warn-A700}}'; }.md-THEME_NAME-theme .md-datepicker-calendar {  background: '{{background-A100}}'; }.md-THEME_NAME-theme .md-datepicker-input-mask-opaque {  box-shadow: 0 0 0 9999px \"{{background-hue-1}}\"; }.md-THEME_NAME-theme .md-datepicker-open .md-datepicker-input-container {  background: \"{{background-hue-1}}\"; }md-dialog.md-THEME_NAME-theme {  border-radius: 4px;  background-color: '{{background-hue-1}}';  color: '{{foreground-1}}'; }  md-dialog.md-THEME_NAME-theme.md-content-overflow .md-actions, md-dialog.md-THEME_NAME-theme.md-content-overflow md-dialog-actions {    border-top-color: '{{foreground-4}}'; }md-divider.md-THEME_NAME-theme {  border-top-color: '{{foreground-4}}'; }.layout-row > md-divider.md-THEME_NAME-theme,.layout-xs-row > md-divider.md-THEME_NAME-theme, .layout-gt-xs-row > md-divider.md-THEME_NAME-theme,.layout-sm-row > md-divider.md-THEME_NAME-theme, .layout-gt-sm-row > md-divider.md-THEME_NAME-theme,.layout-md-row > md-divider.md-THEME_NAME-theme, .layout-gt-md-row > md-divider.md-THEME_NAME-theme,.layout-lg-row > md-divider.md-THEME_NAME-theme, .layout-gt-lg-row > md-divider.md-THEME_NAME-theme,.layout-xl-row > md-divider.md-THEME_NAME-theme {  border-right-color: '{{foreground-4}}'; }md-icon.md-THEME_NAME-theme {  color: '{{foreground-2}}'; }  md-icon.md-THEME_NAME-theme.md-primary {    color: '{{primary-color}}'; }  md-icon.md-THEME_NAME-theme.md-accent {    color: '{{accent-color}}'; }  md-icon.md-THEME_NAME-theme.md-warn {    color: '{{warn-color}}'; }md-input-container.md-THEME_NAME-theme .md-input {  color: '{{foreground-1}}';  border-color: '{{foreground-4}}'; }  md-input-container.md-THEME_NAME-theme .md-input::-webkit-input-placeholder {    color: '{{foreground-3}}'; }  md-input-container.md-THEME_NAME-theme .md-input:-moz-placeholder {    color: '{{foreground-3}}'; }  md-input-container.md-THEME_NAME-theme .md-input::-moz-placeholder {    color: '{{foreground-3}}'; }  md-input-container.md-THEME_NAME-theme .md-input:-ms-input-placeholder {    color: '{{foreground-3}}'; }  md-input-container.md-THEME_NAME-theme .md-input::-webkit-input-placeholder {    color: '{{foreground-3}}'; }md-input-container.md-THEME_NAME-theme > md-icon {  color: '{{foreground-1}}'; }md-input-container.md-THEME_NAME-theme label,md-input-container.md-THEME_NAME-theme .md-placeholder {  color: '{{foreground-3}}'; }md-input-container.md-THEME_NAME-theme label.md-required:after {  color: '{{warn-A700}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-focused):not(.md-input-invalid) label.md-required:after {  color: '{{foreground-2}}'; }md-input-container.md-THEME_NAME-theme .md-input-messages-animation, md-input-container.md-THEME_NAME-theme .md-input-message-animation {  color: '{{warn-A700}}'; }  md-input-container.md-THEME_NAME-theme .md-input-messages-animation .md-char-counter, md-input-container.md-THEME_NAME-theme .md-input-message-animation .md-char-counter {    color: '{{foreground-1}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-has-value label {  color: '{{foreground-2}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused .md-input, md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-resized .md-input {  border-color: '{{primary-color}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused label,md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused md-icon {  color: '{{primary-color}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-accent .md-input {  border-color: '{{accent-color}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-accent label,md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-accent md-icon {  color: '{{accent-color}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-warn .md-input {  border-color: '{{warn-A700}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-warn label,md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-warn md-icon {  color: '{{warn-A700}}'; }md-input-container.md-THEME_NAME-theme.md-input-invalid .md-input {  border-color: '{{warn-A700}}'; }md-input-container.md-THEME_NAME-theme.md-input-invalid label,md-input-container.md-THEME_NAME-theme.md-input-invalid .md-input-message-animation,md-input-container.md-THEME_NAME-theme.md-input-invalid .md-char-counter {  color: '{{warn-A700}}'; }md-input-container.md-THEME_NAME-theme .md-input[disabled],[disabled] md-input-container.md-THEME_NAME-theme .md-input {  border-bottom-color: transparent;  color: '{{foreground-3}}';  background-image: linear-gradient(to right, \"{{foreground-3}}\" 0%, \"{{foreground-3}}\" 33%, transparent 0%);  background-image: -ms-linear-gradient(left, transparent 0%, \"{{foreground-3}}\" 100%); }md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text h3, md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text h4,md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text h3,md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text h4 {  color: '{{foreground-1}}'; }md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text p,md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text p {  color: '{{foreground-2}}'; }md-list.md-THEME_NAME-theme .md-proxy-focus.md-focused div.md-no-style {  background-color: '{{background-100}}'; }md-list.md-THEME_NAME-theme md-list-item .md-avatar-icon {  background-color: '{{foreground-3}}';  color: '{{background-color}}'; }md-list.md-THEME_NAME-theme md-list-item > md-icon {  color: '{{foreground-2}}'; }  md-list.md-THEME_NAME-theme md-list-item > md-icon.md-highlight {    color: '{{primary-color}}'; }    md-list.md-THEME_NAME-theme md-list-item > md-icon.md-highlight.md-accent {      color: '{{accent-color}}'; }md-menu-content.md-THEME_NAME-theme {  background-color: '{{background-A100}}'; }  md-menu-content.md-THEME_NAME-theme md-menu-item {    color: '{{background-A200-0.87}}'; }    md-menu-content.md-THEME_NAME-theme md-menu-item md-icon {      color: '{{background-A200-0.54}}'; }    md-menu-content.md-THEME_NAME-theme md-menu-item .md-button[disabled] {      color: '{{background-A200-0.25}}'; }      md-menu-content.md-THEME_NAME-theme md-menu-item .md-button[disabled] md-icon {        color: '{{background-A200-0.25}}'; }  md-menu-content.md-THEME_NAME-theme md-menu-divider {    background-color: '{{background-A200-0.11}}'; }md-menu-bar.md-THEME_NAME-theme > button.md-button {  color: '{{foreground-2}}';  border-radius: 2px; }md-menu-bar.md-THEME_NAME-theme md-menu.md-open > button, md-menu-bar.md-THEME_NAME-theme md-menu > button:focus {  outline: none;  background: '{{background-200}}'; }md-menu-bar.md-THEME_NAME-theme.md-open:not(.md-keyboard-mode) md-menu:hover > button {  background-color: '{{ background-500-0.2}}'; }md-menu-bar.md-THEME_NAME-theme:not(.md-keyboard-mode):not(.md-open) md-menu button:hover,md-menu-bar.md-THEME_NAME-theme:not(.md-keyboard-mode):not(.md-open) md-menu button:focus {  background: transparent; }md-menu-content.md-THEME_NAME-theme .md-menu > .md-button:after {  color: '{{background-A200-0.54}}'; }md-menu-content.md-THEME_NAME-theme .md-menu.md-open > .md-button {  background-color: '{{ background-500-0.2}}'; }md-toolbar.md-THEME_NAME-theme.md-menu-toolbar {  background-color: '{{background-A100}}';  color: '{{background-A200}}'; }  md-toolbar.md-THEME_NAME-theme.md-menu-toolbar md-toolbar-filler {    background-color: '{{primary-color}}';    color: '{{background-A100-0.87}}'; }    md-toolbar.md-THEME_NAME-theme.md-menu-toolbar md-toolbar-filler md-icon {      color: '{{background-A100-0.87}}'; }md-nav-bar.md-THEME_NAME-theme .md-nav-bar {  background-color: transparent;  border-color: '{{foreground-4}}'; }md-nav-bar.md-THEME_NAME-theme .md-button._md-nav-button.md-unselected {  color: '{{foreground-2}}'; }md-nav-bar.md-THEME_NAME-theme md-nav-ink-bar {  color: '{{accent-color}}';  background: '{{accent-color}}'; }.md-panel {  background-color: '{{background-900-0.0}}'; }  .md-panel._md-panel-backdrop.md-THEME_NAME-theme {    background-color: '{{background-900-1.0}}'; }md-progress-circular.md-THEME_NAME-theme path {  stroke: '{{primary-color}}'; }md-progress-circular.md-THEME_NAME-theme.md-warn path {  stroke: '{{warn-color}}'; }md-progress-circular.md-THEME_NAME-theme.md-accent path {  stroke: '{{accent-color}}'; }md-progress-linear.md-THEME_NAME-theme .md-container {  background-color: '{{primary-100}}'; }md-progress-linear.md-THEME_NAME-theme .md-bar {  background-color: '{{primary-color}}'; }md-progress-linear.md-THEME_NAME-theme.md-warn .md-container {  background-color: '{{warn-100}}'; }md-progress-linear.md-THEME_NAME-theme.md-warn .md-bar {  background-color: '{{warn-color}}'; }md-progress-linear.md-THEME_NAME-theme.md-accent .md-container {  background-color: '{{accent-100}}'; }md-progress-linear.md-THEME_NAME-theme.md-accent .md-bar {  background-color: '{{accent-color}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-warn .md-bar1 {  background-color: '{{warn-100}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-warn .md-dashed:before {  background: radial-gradient(\"{{warn-100}}\" 0%, \"{{warn-100}}\" 16%, transparent 42%); }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-accent .md-bar1 {  background-color: '{{accent-100}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-accent .md-dashed:before {  background: radial-gradient(\"{{accent-100}}\" 0%, \"{{accent-100}}\" 16%, transparent 42%); }md-radio-button.md-THEME_NAME-theme .md-off {  border-color: '{{foreground-2}}'; }md-radio-button.md-THEME_NAME-theme .md-on {  background-color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme.md-checked .md-off {  border-color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme.md-checked .md-ink-ripple {  color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme .md-container .md-ripple {  color: '{{accent-A700}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-on, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-on,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-on,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-on {  background-color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-off {  border-color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ink-ripple {  color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-container .md-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-container .md-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-container .md-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-container .md-ripple {  color: '{{primary-600}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-on, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-on,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-on,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-on {  background-color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-off {  border-color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-ink-ripple {  color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-container .md-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-container .md-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-container .md-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-container .md-ripple {  color: '{{warn-600}}'; }md-radio-group.md-THEME_NAME-theme[disabled],md-radio-button.md-THEME_NAME-theme[disabled] {  color: '{{foreground-3}}'; }  md-radio-group.md-THEME_NAME-theme[disabled] .md-container .md-off,  md-radio-button.md-THEME_NAME-theme[disabled] .md-container .md-off {    border-color: '{{foreground-3}}'; }  md-radio-group.md-THEME_NAME-theme[disabled] .md-container .md-on,  md-radio-button.md-THEME_NAME-theme[disabled] .md-container .md-on {    border-color: '{{foreground-3}}'; }md-radio-group.md-THEME_NAME-theme .md-checked .md-ink-ripple {  color: '{{accent-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme.md-primary .md-checked:not([disabled]) .md-ink-ripple, md-radio-group.md-THEME_NAME-theme .md-checked:not([disabled]).md-primary .md-ink-ripple {  color: '{{primary-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme .md-checked.md-primary .md-ink-ripple {  color: '{{warn-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked .md-container:before {  background-color: '{{accent-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty).md-primary .md-checked .md-container:before,md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked.md-primary .md-container:before {  background-color: '{{primary-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty).md-warn .md-checked .md-container:before,md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked.md-warn .md-container:before {  background-color: '{{warn-color-0.26}}'; }md-input-container md-select.md-THEME_NAME-theme .md-select-value span:first-child:after {  color: '{{warn-A700}}'; }md-input-container:not(.md-input-focused):not(.md-input-invalid) md-select.md-THEME_NAME-theme .md-select-value span:first-child:after {  color: '{{foreground-3}}'; }md-input-container.md-input-focused:not(.md-input-has-value) md-select.md-THEME_NAME-theme .md-select-value {  color: '{{primary-color}}'; }  md-input-container.md-input-focused:not(.md-input-has-value) md-select.md-THEME_NAME-theme .md-select-value.md-select-placeholder {    color: '{{primary-color}}'; }md-input-container.md-input-invalid md-select.md-THEME_NAME-theme .md-select-value {  color: '{{warn-A700}}' !important;  border-bottom-color: '{{warn-A700}}' !important; }md-input-container.md-input-invalid md-select.md-THEME_NAME-theme.md-no-underline .md-select-value {  border-bottom-color: transparent !important; }md-select.md-THEME_NAME-theme[disabled] .md-select-value {  border-bottom-color: transparent;  background-image: linear-gradient(to right, \"{{foreground-3}}\" 0%, \"{{foreground-3}}\" 33%, transparent 0%);  background-image: -ms-linear-gradient(left, transparent 0%, \"{{foreground-3}}\" 100%); }md-select.md-THEME_NAME-theme .md-select-value {  border-bottom-color: '{{foreground-4}}'; }  md-select.md-THEME_NAME-theme .md-select-value.md-select-placeholder {    color: '{{foreground-3}}'; }  md-select.md-THEME_NAME-theme .md-select-value span:first-child:after {    color: '{{warn-A700}}'; }md-select.md-THEME_NAME-theme.md-no-underline .md-select-value {  border-bottom-color: transparent !important; }md-select.md-THEME_NAME-theme.ng-invalid.ng-touched .md-select-value {  color: '{{warn-A700}}' !important;  border-bottom-color: '{{warn-A700}}' !important; }md-select.md-THEME_NAME-theme.ng-invalid.ng-touched.md-no-underline .md-select-value {  border-bottom-color: transparent !important; }md-select.md-THEME_NAME-theme:not([disabled]):focus .md-select-value {  border-bottom-color: '{{primary-color}}';  color: '{{ foreground-1 }}'; }  md-select.md-THEME_NAME-theme:not([disabled]):focus .md-select-value.md-select-placeholder {    color: '{{ foreground-1 }}'; }md-select.md-THEME_NAME-theme:not([disabled]):focus.md-no-underline .md-select-value {  border-bottom-color: transparent !important; }md-select.md-THEME_NAME-theme:not([disabled]):focus.md-accent .md-select-value {  border-bottom-color: '{{accent-color}}'; }md-select.md-THEME_NAME-theme:not([disabled]):focus.md-warn .md-select-value {  border-bottom-color: '{{warn-color}}'; }md-select.md-THEME_NAME-theme[disabled] .md-select-value {  color: '{{foreground-3}}'; }  md-select.md-THEME_NAME-theme[disabled] .md-select-value.md-select-placeholder {    color: '{{foreground-3}}'; }md-select-menu.md-THEME_NAME-theme md-content {  background: '{{background-A100}}'; }  md-select-menu.md-THEME_NAME-theme md-content md-optgroup {    color: '{{background-600-0.87}}'; }  md-select-menu.md-THEME_NAME-theme md-content md-option {    color: '{{background-900-0.87}}'; }    md-select-menu.md-THEME_NAME-theme md-content md-option[disabled] .md-text {      color: '{{background-400-0.87}}'; }    md-select-menu.md-THEME_NAME-theme md-content md-option:not([disabled]):focus, md-select-menu.md-THEME_NAME-theme md-content md-option:not([disabled]):hover {      background: '{{background-200}}'; }    md-select-menu.md-THEME_NAME-theme md-content md-option[selected] {      color: '{{primary-500}}'; }      md-select-menu.md-THEME_NAME-theme md-content md-option[selected]:focus {        color: '{{primary-600}}'; }      md-select-menu.md-THEME_NAME-theme md-content md-option[selected].md-accent {        color: '{{accent-color}}'; }        md-select-menu.md-THEME_NAME-theme md-content md-option[selected].md-accent:focus {          color: '{{accent-A700}}'; }.md-checkbox-enabled.md-THEME_NAME-theme .md-ripple {  color: '{{primary-600}}'; }.md-checkbox-enabled.md-THEME_NAME-theme[selected] .md-ripple {  color: '{{background-600}}'; }.md-checkbox-enabled.md-THEME_NAME-theme .md-ink-ripple {  color: '{{foreground-2}}'; }.md-checkbox-enabled.md-THEME_NAME-theme[selected] .md-ink-ripple {  color: '{{primary-color-0.87}}'; }.md-checkbox-enabled.md-THEME_NAME-theme:not(.md-checked) .md-icon {  border-color: '{{foreground-2}}'; }.md-checkbox-enabled.md-THEME_NAME-theme[selected] .md-icon {  background-color: '{{primary-color-0.87}}'; }.md-checkbox-enabled.md-THEME_NAME-theme[selected].md-focused .md-container:before {  background-color: '{{primary-color-0.26}}'; }.md-checkbox-enabled.md-THEME_NAME-theme[selected] .md-icon:after {  border-color: '{{primary-contrast-0.87}}'; }.md-checkbox-enabled.md-THEME_NAME-theme .md-indeterminate[disabled] .md-container {  color: '{{foreground-3}}'; }.md-checkbox-enabled.md-THEME_NAME-theme md-option .md-text {  color: '{{background-900-0.87}}'; }md-sidenav.md-THEME_NAME-theme, md-sidenav.md-THEME_NAME-theme md-content {  background-color: '{{background-hue-1}}'; }md-slider.md-THEME_NAME-theme .md-track {  background-color: '{{foreground-3}}'; }md-slider.md-THEME_NAME-theme .md-track-ticks {  color: '{{background-contrast}}'; }md-slider.md-THEME_NAME-theme .md-focus-ring {  background-color: '{{accent-A200-0.2}}'; }md-slider.md-THEME_NAME-theme .md-disabled-thumb {  border-color: '{{background-color}}';  background-color: '{{background-color}}'; }md-slider.md-THEME_NAME-theme.md-min .md-thumb:after {  background-color: '{{background-color}}';  border-color: '{{foreground-3}}'; }md-slider.md-THEME_NAME-theme.md-min .md-focus-ring {  background-color: '{{foreground-3-0.38}}'; }md-slider.md-THEME_NAME-theme.md-min[md-discrete] .md-thumb:after {  background-color: '{{background-contrast}}';  border-color: transparent; }md-slider.md-THEME_NAME-theme.md-min[md-discrete] .md-sign {  background-color: '{{background-400}}'; }  md-slider.md-THEME_NAME-theme.md-min[md-discrete] .md-sign:after {    border-top-color: '{{background-400}}'; }md-slider.md-THEME_NAME-theme.md-min[md-discrete][md-vertical] .md-sign:after {  border-top-color: transparent;  border-left-color: '{{background-400}}'; }md-slider.md-THEME_NAME-theme .md-track.md-track-fill {  background-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-thumb:after {  border-color: '{{accent-color}}';  background-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-sign {  background-color: '{{accent-color}}'; }  md-slider.md-THEME_NAME-theme .md-sign:after {    border-top-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme[md-vertical] .md-sign:after {  border-top-color: transparent;  border-left-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-thumb-text {  color: '{{accent-contrast}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-focus-ring {  background-color: '{{warn-200-0.38}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-track.md-track-fill {  background-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-thumb:after {  border-color: '{{warn-color}}';  background-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-sign {  background-color: '{{warn-color}}'; }  md-slider.md-THEME_NAME-theme.md-warn .md-sign:after {    border-top-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn[md-vertical] .md-sign:after {  border-top-color: transparent;  border-left-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-thumb-text {  color: '{{warn-contrast}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-focus-ring {  background-color: '{{primary-200-0.38}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-track.md-track-fill {  background-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-thumb:after {  border-color: '{{primary-color}}';  background-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-sign {  background-color: '{{primary-color}}'; }  md-slider.md-THEME_NAME-theme.md-primary .md-sign:after {    border-top-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary[md-vertical] .md-sign:after {  border-top-color: transparent;  border-left-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-thumb-text {  color: '{{primary-contrast}}'; }md-slider.md-THEME_NAME-theme[disabled] .md-thumb:after {  border-color: transparent; }md-slider.md-THEME_NAME-theme[disabled]:not(.md-min) .md-thumb:after, md-slider.md-THEME_NAME-theme[disabled][md-discrete] .md-thumb:after {  background-color: '{{foreground-3}}';  border-color: transparent; }md-slider.md-THEME_NAME-theme[disabled][readonly] .md-sign {  background-color: '{{background-400}}'; }  md-slider.md-THEME_NAME-theme[disabled][readonly] .md-sign:after {    border-top-color: '{{background-400}}'; }md-slider.md-THEME_NAME-theme[disabled][readonly][md-vertical] .md-sign:after {  border-top-color: transparent;  border-left-color: '{{background-400}}'; }md-slider.md-THEME_NAME-theme[disabled][readonly] .md-disabled-thumb {  border-color: transparent;  background-color: transparent; }md-slider-container[disabled] > *:first-child:not(md-slider),md-slider-container[disabled] > *:last-child:not(md-slider) {  color: '{{foreground-3}}'; }.md-subheader.md-THEME_NAME-theme {  color: '{{ foreground-2-0.23 }}';  background-color: '{{background-default}}'; }  .md-subheader.md-THEME_NAME-theme.md-primary {    color: '{{primary-color}}'; }  .md-subheader.md-THEME_NAME-theme.md-accent {    color: '{{accent-color}}'; }  .md-subheader.md-THEME_NAME-theme.md-warn {    color: '{{warn-color}}'; }md-switch.md-THEME_NAME-theme .md-ink-ripple {  color: '{{background-500}}'; }md-switch.md-THEME_NAME-theme .md-thumb {  background-color: '{{background-50}}'; }md-switch.md-THEME_NAME-theme .md-bar {  background-color: '{{background-500}}'; }md-switch.md-THEME_NAME-theme.md-checked .md-ink-ripple {  color: '{{accent-color}}'; }md-switch.md-THEME_NAME-theme.md-checked .md-thumb {  background-color: '{{accent-color}}'; }md-switch.md-THEME_NAME-theme.md-checked .md-bar {  background-color: '{{accent-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-focused .md-thumb:before {  background-color: '{{accent-color-0.26}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary .md-ink-ripple {  color: '{{primary-color}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary .md-thumb {  background-color: '{{primary-color}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary .md-bar {  background-color: '{{primary-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary.md-focused .md-thumb:before {  background-color: '{{primary-color-0.26}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn .md-ink-ripple {  color: '{{warn-color}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn .md-thumb {  background-color: '{{warn-color}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn .md-bar {  background-color: '{{warn-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn.md-focused .md-thumb:before {  background-color: '{{warn-color-0.26}}'; }md-switch.md-THEME_NAME-theme[disabled] .md-thumb {  background-color: '{{background-400}}'; }md-switch.md-THEME_NAME-theme[disabled] .md-bar {  background-color: '{{foreground-4}}'; }md-tabs.md-THEME_NAME-theme md-tabs-wrapper {  background-color: transparent;  border-color: '{{foreground-4}}'; }md-tabs.md-THEME_NAME-theme .md-paginator md-icon {  color: '{{primary-color}}'; }md-tabs.md-THEME_NAME-theme md-ink-bar {  color: '{{accent-color}}';  background: '{{accent-color}}'; }md-tabs.md-THEME_NAME-theme .md-tab {  color: '{{foreground-2}}'; }  md-tabs.md-THEME_NAME-theme .md-tab[disabled], md-tabs.md-THEME_NAME-theme .md-tab[disabled] md-icon {    color: '{{foreground-3}}'; }  md-tabs.md-THEME_NAME-theme .md-tab.md-active, md-tabs.md-THEME_NAME-theme .md-tab.md-active md-icon, md-tabs.md-THEME_NAME-theme .md-tab.md-focused, md-tabs.md-THEME_NAME-theme .md-tab.md-focused md-icon {    color: '{{primary-color}}'; }  md-tabs.md-THEME_NAME-theme .md-tab.md-focused {    background: '{{primary-color-0.1}}'; }  md-tabs.md-THEME_NAME-theme .md-tab .md-ripple-container {    color: '{{accent-A100}}'; }md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper {  background-color: '{{accent-color}}'; }  md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {    color: '{{accent-A100}}'; }    md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {      color: '{{accent-contrast}}'; }    md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {      background: '{{accent-contrast-0.1}}'; }  md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-ink-bar {    color: '{{primary-600-1}}';    background: '{{primary-600-1}}'; }md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper {  background-color: '{{primary-color}}'; }  md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {    color: '{{primary-100}}'; }    md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {      color: '{{primary-contrast}}'; }    md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {      background: '{{primary-contrast-0.1}}'; }md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper {  background-color: '{{warn-color}}'; }  md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {    color: '{{warn-100}}'; }    md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {      color: '{{warn-contrast}}'; }    md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {      background: '{{warn-contrast-0.1}}'; }md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper {  background-color: '{{primary-color}}'; }  md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {    color: '{{primary-100}}'; }    md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {      color: '{{primary-contrast}}'; }    md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {      background: '{{primary-contrast-0.1}}'; }md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper {  background-color: '{{accent-color}}'; }  md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {    color: '{{accent-A100}}'; }    md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {      color: '{{accent-contrast}}'; }    md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {      background: '{{accent-contrast-0.1}}'; }  md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-ink-bar {    color: '{{primary-600-1}}';    background: '{{primary-600-1}}'; }md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper {  background-color: '{{warn-color}}'; }  md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {    color: '{{warn-100}}'; }    md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {      color: '{{warn-contrast}}'; }    md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {      background: '{{warn-contrast-0.1}}'; }md-toast.md-THEME_NAME-theme .md-toast-content {  background-color: #323232;  color: '{{background-50}}'; }  md-toast.md-THEME_NAME-theme .md-toast-content .md-button {    color: '{{background-50}}'; }    md-toast.md-THEME_NAME-theme .md-toast-content .md-button.md-highlight {      color: '{{accent-color}}'; }      md-toast.md-THEME_NAME-theme .md-toast-content .md-button.md-highlight.md-primary {        color: '{{primary-color}}'; }      md-toast.md-THEME_NAME-theme .md-toast-content .md-button.md-highlight.md-warn {        color: '{{warn-color}}'; }md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar) {  background-color: '{{primary-color}}';  color: '{{primary-contrast}}'; }  md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar) md-icon {    color: '{{primary-contrast}}';    fill: '{{primary-contrast}}'; }  md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar) .md-button[disabled] md-icon {    color: '{{primary-contrast-0.26}}';    fill: '{{primary-contrast-0.26}}'; }  md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar).md-accent {    background-color: '{{accent-color}}';    color: '{{accent-contrast}}'; }    md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar).md-accent .md-ink-ripple {      color: '{{accent-contrast}}'; }    md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar).md-accent md-icon {      color: '{{accent-contrast}}';      fill: '{{accent-contrast}}'; }    md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar).md-accent .md-button[disabled] md-icon {      color: '{{accent-contrast-0.26}}';      fill: '{{accent-contrast-0.26}}'; }  md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar).md-warn {    background-color: '{{warn-color}}';    color: '{{warn-contrast}}'; }md-tooltip.md-THEME_NAME-theme {  color: '{{background-700-contrast}}'; }  md-tooltip.md-THEME_NAME-theme .md-content {    background-color: '{{background-700}}'; }/*  Only used with Theme processes */html.md-THEME_NAME-theme, body.md-THEME_NAME-theme {  color: '{{foreground-1}}';  background-color: '{{background-color}}'; }");})();})(window,window.angular);;window.ngMaterial={version:{full:"1.1.1"}};
 
 /***/ },
-/* 41 */
+/* 84 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	__webpack_require__(85);
+	module.exports = 'ngMessages';
+
+/***/ },
+/* 85 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	/**
+	 * @license AngularJS v1.5.8
+	 * (c) 2010-2016 Google, Inc. http://angularjs.org
+	 * License: MIT
+	 */
+	(function (window, angular) {
+	  'use strict';
+	
+	  var forEach;
+	  var isArray;
+	  var isString;
+	  var jqLite;
+	
+	  /**
+	   * @ngdoc module
+	   * @name ngMessages
+	   * @description
+	   *
+	   * The `ngMessages` module provides enhanced support for displaying messages within templates
+	   * (typically within forms or when rendering message objects that return key/value data).
+	   * Instead of relying on JavaScript code and/or complex ng-if statements within your form template to
+	   * show and hide error messages specific to the state of an input field, the `ngMessages` and
+	   * `ngMessage` directives are designed to handle the complexity, inheritance and priority
+	   * sequencing based on the order of how the messages are defined in the template.
+	   *
+	   * Currently, the ngMessages module only contains the code for the `ngMessages`, `ngMessagesInclude`
+	   * `ngMessage` and `ngMessageExp` directives.
+	   *
+	   * # Usage
+	   * The `ngMessages` directive allows keys in a key/value collection to be associated with a child element
+	   * (or 'message') that will show or hide based on the truthiness of that key's value in the collection. A common use
+	   * case for `ngMessages` is to display error messages for inputs using the `$error` object exposed by the
+	   * {@link ngModel ngModel} directive.
+	   *
+	   * The child elements of the `ngMessages` directive are matched to the collection keys by a `ngMessage` or
+	   * `ngMessageExp` directive. The value of these attributes must match a key in the collection that is provided by
+	   * the `ngMessages` directive.
+	   *
+	   * Consider the following example, which illustrates a typical use case of `ngMessages`. Within the form `myForm` we
+	   * have a text input named `myField` which is bound to the scope variable `field` using the {@link ngModel ngModel}
+	   * directive.
+	   *
+	   * The `myField` field is a required input of type `email` with a maximum length of 15 characters.
+	   *
+	   * ```html
+	   * <form name="myForm">
+	   *   <label>
+	   *     Enter text:
+	   *     <input type="email" ng-model="field" name="myField" required maxlength="15" />
+	   *   </label>
+	   *   <div ng-messages="myForm.myField.$error" role="alert">
+	   *     <div ng-message="required">Please enter a value for this field.</div>
+	   *     <div ng-message="email">This field must be a valid email address.</div>
+	   *     <div ng-message="maxlength">This field can be at most 15 characters long.</div>
+	   *   </div>
+	   * </form>
+	   * ```
+	   *
+	   * In order to show error messages corresponding to `myField` we first create an element with an `ngMessages` attribute
+	   * set to the `$error` object owned by the `myField` input in our `myForm` form.
+	   *
+	   * Within this element we then create separate elements for each of the possible errors that `myField` could have.
+	   * The `ngMessage` attribute is used to declare which element(s) will appear for which error - for example,
+	   * setting `ng-message="required"` specifies that this particular element should be displayed when there
+	   * is no value present for the required field `myField` (because the key `required` will be `true` in the object
+	   * `myForm.myField.$error`).
+	   *
+	   * ### Message order
+	   *
+	   * By default, `ngMessages` will only display one message for a particular key/value collection at any time. If more
+	   * than one message (or error) key is currently true, then which message is shown is determined by the order of messages
+	   * in the HTML template code (messages declared first are prioritised). This mechanism means the developer does not have
+	   * to prioritise messages using custom JavaScript code.
+	   *
+	   * Given the following error object for our example (which informs us that the field `myField` currently has both the
+	   * `required` and `email` errors):
+	   *
+	   * ```javascript
+	   * <!-- keep in mind that ngModel automatically sets these error flags -->
+	   * myField.$error = { required : true, email: true, maxlength: false };
+	   * ```
+	   * The `required` message will be displayed to the user since it appears before the `email` message in the DOM.
+	   * Once the user types a single character, the `required` message will disappear (since the field now has a value)
+	   * but the `email` message will be visible because it is still applicable.
+	   *
+	   * ### Displaying multiple messages at the same time
+	   *
+	   * While `ngMessages` will by default only display one error element at a time, the `ng-messages-multiple` attribute can
+	   * be applied to the `ngMessages` container element to cause it to display all applicable error messages at once:
+	   *
+	   * ```html
+	   * <!-- attribute-style usage -->
+	   * <div ng-messages="myForm.myField.$error" ng-messages-multiple>...</div>
+	   *
+	   * <!-- element-style usage -->
+	   * <ng-messages for="myForm.myField.$error" multiple>...</ng-messages>
+	   * ```
+	   *
+	   * ## Reusing and Overriding Messages
+	   * In addition to prioritization, ngMessages also allows for including messages from a remote or an inline
+	   * template. This allows for generic collection of messages to be reused across multiple parts of an
+	   * application.
+	   *
+	   * ```html
+	   * <script type="text/ng-template" id="error-messages">
+	   *   <div ng-message="required">This field is required</div>
+	   *   <div ng-message="minlength">This field is too short</div>
+	   * </script>
+	   *
+	   * <div ng-messages="myForm.myField.$error" role="alert">
+	   *   <div ng-messages-include="error-messages"></div>
+	   * </div>
+	   * ```
+	   *
+	   * However, including generic messages may not be useful enough to match all input fields, therefore,
+	   * `ngMessages` provides the ability to override messages defined in the remote template by redefining
+	   * them within the directive container.
+	   *
+	   * ```html
+	   * <!-- a generic template of error messages known as "my-custom-messages" -->
+	   * <script type="text/ng-template" id="my-custom-messages">
+	   *   <div ng-message="required">This field is required</div>
+	   *   <div ng-message="minlength">This field is too short</div>
+	   * </script>
+	   *
+	   * <form name="myForm">
+	   *   <label>
+	   *     Email address
+	   *     <input type="email"
+	   *            id="email"
+	   *            name="myEmail"
+	   *            ng-model="email"
+	   *            minlength="5"
+	   *            required />
+	   *   </label>
+	   *   <!-- any ng-message elements that appear BEFORE the ng-messages-include will
+	   *        override the messages present in the ng-messages-include template -->
+	   *   <div ng-messages="myForm.myEmail.$error" role="alert">
+	   *     <!-- this required message has overridden the template message -->
+	   *     <div ng-message="required">You did not enter your email address</div>
+	   *
+	   *     <!-- this is a brand new message and will appear last in the prioritization -->
+	   *     <div ng-message="email">Your email address is invalid</div>
+	   *
+	   *     <!-- and here are the generic error messages -->
+	   *     <div ng-messages-include="my-custom-messages"></div>
+	   *   </div>
+	   * </form>
+	   * ```
+	   *
+	   * In the example HTML code above the message that is set on required will override the corresponding
+	   * required message defined within the remote template. Therefore, with particular input fields (such
+	   * email addresses, date fields, autocomplete inputs, etc...), specialized error messages can be applied
+	   * while more generic messages can be used to handle other, more general input errors.
+	   *
+	   * ## Dynamic Messaging
+	   * ngMessages also supports using expressions to dynamically change key values. Using arrays and
+	   * repeaters to list messages is also supported. This means that the code below will be able to
+	   * fully adapt itself and display the appropriate message when any of the expression data changes:
+	   *
+	   * ```html
+	   * <form name="myForm">
+	   *   <label>
+	   *     Email address
+	   *     <input type="email"
+	   *            name="myEmail"
+	   *            ng-model="email"
+	   *            minlength="5"
+	   *            required />
+	   *   </label>
+	   *   <div ng-messages="myForm.myEmail.$error" role="alert">
+	   *     <div ng-message="required">You did not enter your email address</div>
+	   *     <div ng-repeat="errorMessage in errorMessages">
+	   *       <!-- use ng-message-exp for a message whose key is given by an expression -->
+	   *       <div ng-message-exp="errorMessage.type">{{ errorMessage.text }}</div>
+	   *     </div>
+	   *   </div>
+	   * </form>
+	   * ```
+	   *
+	   * The `errorMessage.type` expression can be a string value or it can be an array so
+	   * that multiple errors can be associated with a single error message:
+	   *
+	   * ```html
+	   *   <label>
+	   *     Email address
+	   *     <input type="email"
+	   *            ng-model="data.email"
+	   *            name="myEmail"
+	   *            ng-minlength="5"
+	   *            ng-maxlength="100"
+	   *            required />
+	   *   </label>
+	   *   <div ng-messages="myForm.myEmail.$error" role="alert">
+	   *     <div ng-message-exp="'required'">You did not enter your email address</div>
+	   *     <div ng-message-exp="['minlength', 'maxlength']">
+	   *       Your email must be between 5 and 100 characters long
+	   *     </div>
+	   *   </div>
+	   * ```
+	   *
+	   * Feel free to use other structural directives such as ng-if and ng-switch to further control
+	   * what messages are active and when. Be careful, if you place ng-message on the same element
+	   * as these structural directives, Angular may not be able to determine if a message is active
+	   * or not. Therefore it is best to place the ng-message on a child element of the structural
+	   * directive.
+	   *
+	   * ```html
+	   * <div ng-messages="myForm.myEmail.$error" role="alert">
+	   *   <div ng-if="showRequiredError">
+	   *     <div ng-message="required">Please enter something</div>
+	   *   </div>
+	   * </div>
+	   * ```
+	   *
+	   * ## Animations
+	   * If the `ngAnimate` module is active within the application then the `ngMessages`, `ngMessage` and
+	   * `ngMessageExp` directives will trigger animations whenever any messages are added and removed from
+	   * the DOM by the `ngMessages` directive.
+	   *
+	   * Whenever the `ngMessages` directive contains one or more visible messages then the `.ng-active` CSS
+	   * class will be added to the element. The `.ng-inactive` CSS class will be applied when there are no
+	   * messages present. Therefore, CSS transitions and keyframes as well as JavaScript animations can
+	   * hook into the animations whenever these classes are added/removed.
+	   *
+	   * Let's say that our HTML code for our messages container looks like so:
+	   *
+	   * ```html
+	   * <div ng-messages="myMessages" class="my-messages" role="alert">
+	   *   <div ng-message="alert" class="some-message">...</div>
+	   *   <div ng-message="fail" class="some-message">...</div>
+	   * </div>
+	   * ```
+	   *
+	   * Then the CSS animation code for the message container looks like so:
+	   *
+	   * ```css
+	   * .my-messages {
+	   *   transition:1s linear all;
+	   * }
+	   * .my-messages.ng-active {
+	   *   // messages are visible
+	   * }
+	   * .my-messages.ng-inactive {
+	   *   // messages are hidden
+	   * }
+	   * ```
+	   *
+	   * Whenever an inner message is attached (becomes visible) or removed (becomes hidden) then the enter
+	   * and leave animation is triggered for each particular element bound to the `ngMessage` directive.
+	   *
+	   * Therefore, the CSS code for the inner messages looks like so:
+	   *
+	   * ```css
+	   * .some-message {
+	   *   transition:1s linear all;
+	   * }
+	   *
+	   * .some-message.ng-enter {}
+	   * .some-message.ng-enter.ng-enter-active {}
+	   *
+	   * .some-message.ng-leave {}
+	   * .some-message.ng-leave.ng-leave-active {}
+	   * ```
+	   *
+	   * {@link ngAnimate Click here} to learn how to use JavaScript animations or to learn more about ngAnimate.
+	   */
+	  angular.module('ngMessages', [], function initAngularHelpers() {
+	    // Access helpers from angular core.
+	    // Do it inside a `config` block to ensure `window.angular` is available.
+	    forEach = angular.forEach;
+	    isArray = angular.isArray;
+	    isString = angular.isString;
+	    jqLite = angular.element;
+	  })
+	
+	  /**
+	   * @ngdoc directive
+	   * @module ngMessages
+	   * @name ngMessages
+	   * @restrict AE
+	   *
+	   * @description
+	   * `ngMessages` is a directive that is designed to show and hide messages based on the state
+	   * of a key/value object that it listens on. The directive itself complements error message
+	   * reporting with the `ngModel` $error object (which stores a key/value state of validation errors).
+	   *
+	   * `ngMessages` manages the state of internal messages within its container element. The internal
+	   * messages use the `ngMessage` directive and will be inserted/removed from the page depending
+	   * on if they're present within the key/value object. By default, only one message will be displayed
+	   * at a time and this depends on the prioritization of the messages within the template. (This can
+	   * be changed by using the `ng-messages-multiple` or `multiple` attribute on the directive container.)
+	   *
+	   * A remote template can also be used to promote message reusability and messages can also be
+	   * overridden.
+	   *
+	   * {@link module:ngMessages Click here} to learn more about `ngMessages` and `ngMessage`.
+	   *
+	   * @usage
+	   * ```html
+	   * <!-- using attribute directives -->
+	   * <ANY ng-messages="expression" role="alert">
+	   *   <ANY ng-message="stringValue">...</ANY>
+	   *   <ANY ng-message="stringValue1, stringValue2, ...">...</ANY>
+	   *   <ANY ng-message-exp="expressionValue">...</ANY>
+	   * </ANY>
+	   *
+	   * <!-- or by using element directives -->
+	   * <ng-messages for="expression" role="alert">
+	   *   <ng-message when="stringValue">...</ng-message>
+	   *   <ng-message when="stringValue1, stringValue2, ...">...</ng-message>
+	   *   <ng-message when-exp="expressionValue">...</ng-message>
+	   * </ng-messages>
+	   * ```
+	   *
+	   * @param {string} ngMessages an angular expression evaluating to a key/value object
+	   *                 (this is typically the $error object on an ngModel instance).
+	   * @param {string=} ngMessagesMultiple|multiple when set, all messages will be displayed with true
+	   *
+	   * @example
+	   * <example name="ngMessages-directive" module="ngMessagesExample"
+	   *          deps="angular-messages.js"
+	   *          animations="true" fixBase="true">
+	   *   <file name="index.html">
+	   *     <form name="myForm">
+	   *       <label>
+	   *         Enter your name:
+	   *         <input type="text"
+	   *                name="myName"
+	   *                ng-model="name"
+	   *                ng-minlength="5"
+	   *                ng-maxlength="20"
+	   *                required />
+	   *       </label>
+	   *       <pre>myForm.myName.$error = {{ myForm.myName.$error | json }}</pre>
+	   *
+	   *       <div ng-messages="myForm.myName.$error" style="color:maroon" role="alert">
+	   *         <div ng-message="required">You did not enter a field</div>
+	   *         <div ng-message="minlength">Your field is too short</div>
+	   *         <div ng-message="maxlength">Your field is too long</div>
+	   *       </div>
+	   *     </form>
+	   *   </file>
+	   *   <file name="script.js">
+	   *     angular.module('ngMessagesExample', ['ngMessages']);
+	   *   </file>
+	   * </example>
+	   */
+	  .directive('ngMessages', ['$animate', function ($animate) {
+	    var ACTIVE_CLASS = 'ng-active';
+	    var INACTIVE_CLASS = 'ng-inactive';
+	
+	    return {
+	      require: 'ngMessages',
+	      restrict: 'AE',
+	      controller: ['$element', '$scope', '$attrs', function ($element, $scope, $attrs) {
+	        var ctrl = this;
+	        var latestKey = 0;
+	        var nextAttachId = 0;
+	
+	        this.getAttachId = function getAttachId() {
+	          return nextAttachId++;
+	        };
+	
+	        var messages = this.messages = {};
+	        var renderLater, cachedCollection;
+	
+	        this.render = function (collection) {
+	          collection = collection || {};
+	
+	          renderLater = false;
+	          cachedCollection = collection;
+	
+	          // this is true if the attribute is empty or if the attribute value is truthy
+	          var multiple = isAttrTruthy($scope, $attrs.ngMessagesMultiple) || isAttrTruthy($scope, $attrs.multiple);
+	
+	          var unmatchedMessages = [];
+	          var matchedKeys = {};
+	          var messageItem = ctrl.head;
+	          var messageFound = false;
+	          var totalMessages = 0;
+	
+	          // we use != instead of !== to allow for both undefined and null values
+	          while (messageItem != null) {
+	            totalMessages++;
+	            var messageCtrl = messageItem.message;
+	
+	            var messageUsed = false;
+	            if (!messageFound) {
+	              forEach(collection, function (value, key) {
+	                if (!messageUsed && truthy(value) && messageCtrl.test(key)) {
+	                  // this is to prevent the same error name from showing up twice
+	                  if (matchedKeys[key]) return;
+	                  matchedKeys[key] = true;
+	
+	                  messageUsed = true;
+	                  messageCtrl.attach();
+	                }
+	              });
+	            }
+	
+	            if (messageUsed) {
+	              // unless we want to display multiple messages then we should
+	              // set a flag here to avoid displaying the next message in the list
+	              messageFound = !multiple;
+	            } else {
+	              unmatchedMessages.push(messageCtrl);
+	            }
+	
+	            messageItem = messageItem.next;
+	          }
+	
+	          forEach(unmatchedMessages, function (messageCtrl) {
+	            messageCtrl.detach();
+	          });
+	
+	          unmatchedMessages.length !== totalMessages ? $animate.setClass($element, ACTIVE_CLASS, INACTIVE_CLASS) : $animate.setClass($element, INACTIVE_CLASS, ACTIVE_CLASS);
+	        };
+	
+	        $scope.$watchCollection($attrs.ngMessages || $attrs['for'], ctrl.render);
+	
+	        // If the element is destroyed, proactively destroy all the currently visible messages
+	        $element.on('$destroy', function () {
+	          forEach(messages, function (item) {
+	            item.message.detach();
+	          });
+	        });
+	
+	        this.reRender = function () {
+	          if (!renderLater) {
+	            renderLater = true;
+	            $scope.$evalAsync(function () {
+	              if (renderLater) {
+	                cachedCollection && ctrl.render(cachedCollection);
+	              }
+	            });
+	          }
+	        };
+	
+	        this.register = function (comment, messageCtrl) {
+	          var nextKey = latestKey.toString();
+	          messages[nextKey] = {
+	            message: messageCtrl
+	          };
+	          insertMessageNode($element[0], comment, nextKey);
+	          comment.$$ngMessageNode = nextKey;
+	          latestKey++;
+	
+	          ctrl.reRender();
+	        };
+	
+	        this.deregister = function (comment) {
+	          var key = comment.$$ngMessageNode;
+	          delete comment.$$ngMessageNode;
+	          removeMessageNode($element[0], comment, key);
+	          delete messages[key];
+	          ctrl.reRender();
+	        };
+	
+	        function findPreviousMessage(parent, comment) {
+	          var prevNode = comment;
+	          var parentLookup = [];
+	
+	          while (prevNode && prevNode !== parent) {
+	            var prevKey = prevNode.$$ngMessageNode;
+	            if (prevKey && prevKey.length) {
+	              return messages[prevKey];
+	            }
+	
+	            // dive deeper into the DOM and examine its children for any ngMessage
+	            // comments that may be in an element that appears deeper in the list
+	            if (prevNode.childNodes.length && parentLookup.indexOf(prevNode) === -1) {
+	              parentLookup.push(prevNode);
+	              prevNode = prevNode.childNodes[prevNode.childNodes.length - 1];
+	            } else if (prevNode.previousSibling) {
+	              prevNode = prevNode.previousSibling;
+	            } else {
+	              prevNode = prevNode.parentNode;
+	              parentLookup.push(prevNode);
+	            }
+	          }
+	        }
+	
+	        function insertMessageNode(parent, comment, key) {
+	          var messageNode = messages[key];
+	          if (!ctrl.head) {
+	            ctrl.head = messageNode;
+	          } else {
+	            var match = findPreviousMessage(parent, comment);
+	            if (match) {
+	              messageNode.next = match.next;
+	              match.next = messageNode;
+	            } else {
+	              messageNode.next = ctrl.head;
+	              ctrl.head = messageNode;
+	            }
+	          }
+	        }
+	
+	        function removeMessageNode(parent, comment, key) {
+	          var messageNode = messages[key];
+	
+	          var match = findPreviousMessage(parent, comment);
+	          if (match) {
+	            match.next = messageNode.next;
+	          } else {
+	            ctrl.head = messageNode.next;
+	          }
+	        }
+	      }]
+	    };
+	
+	    function isAttrTruthy(scope, attr) {
+	      return isString(attr) && attr.length === 0 || //empty attribute
+	      truthy(scope.$eval(attr));
+	    }
+	
+	    function truthy(val) {
+	      return isString(val) ? val.length : !!val;
+	    }
+	  }])
+	
+	  /**
+	   * @ngdoc directive
+	   * @name ngMessagesInclude
+	   * @restrict AE
+	   * @scope
+	   *
+	   * @description
+	   * `ngMessagesInclude` is a directive with the purpose to import existing ngMessage template
+	   * code from a remote template and place the downloaded template code into the exact spot
+	   * that the ngMessagesInclude directive is placed within the ngMessages container. This allows
+	   * for a series of pre-defined messages to be reused and also allows for the developer to
+	   * determine what messages are overridden due to the placement of the ngMessagesInclude directive.
+	   *
+	   * @usage
+	   * ```html
+	   * <!-- using attribute directives -->
+	   * <ANY ng-messages="expression" role="alert">
+	   *   <ANY ng-messages-include="remoteTplString">...</ANY>
+	   * </ANY>
+	   *
+	   * <!-- or by using element directives -->
+	   * <ng-messages for="expression" role="alert">
+	   *   <ng-messages-include src="expressionValue1">...</ng-messages-include>
+	   * </ng-messages>
+	   * ```
+	   *
+	   * {@link module:ngMessages Click here} to learn more about `ngMessages` and `ngMessage`.
+	   *
+	   * @param {string} ngMessagesInclude|src a string value corresponding to the remote template.
+	   */
+	  .directive('ngMessagesInclude', ['$templateRequest', '$document', '$compile', function ($templateRequest, $document, $compile) {
+	
+	    return {
+	      restrict: 'AE',
+	      require: '^^ngMessages', // we only require this for validation sake
+	      link: function link($scope, element, attrs) {
+	        var src = attrs.ngMessagesInclude || attrs.src;
+	        $templateRequest(src).then(function (html) {
+	          if ($scope.$$destroyed) return;
+	
+	          if (isString(html) && !html.trim()) {
+	            // Empty template - nothing to compile
+	            replaceElementWithMarker(element, src);
+	          } else {
+	            // Non-empty template - compile and link
+	            $compile(html)($scope, function (contents) {
+	              element.after(contents);
+	              replaceElementWithMarker(element, src);
+	            });
+	          }
+	        });
+	      }
+	    };
+	
+	    // Helpers
+	    function replaceElementWithMarker(element, src) {
+	      // A comment marker is placed for debugging purposes
+	      var comment = $compile.$$createComment ? $compile.$$createComment('ngMessagesInclude', src) : $document[0].createComment(' ngMessagesInclude: ' + src + ' ');
+	      var marker = jqLite(comment);
+	      element.after(marker);
+	
+	      // Don't pollute the DOM anymore by keeping an empty directive element
+	      element.remove();
+	    }
+	  }])
+	
+	  /**
+	   * @ngdoc directive
+	   * @name ngMessage
+	   * @restrict AE
+	   * @scope
+	   *
+	   * @description
+	   * `ngMessage` is a directive with the purpose to show and hide a particular message.
+	   * For `ngMessage` to operate, a parent `ngMessages` directive on a parent DOM element
+	   * must be situated since it determines which messages are visible based on the state
+	   * of the provided key/value map that `ngMessages` listens on.
+	   *
+	   * More information about using `ngMessage` can be found in the
+	   * {@link module:ngMessages `ngMessages` module documentation}.
+	   *
+	   * @usage
+	   * ```html
+	   * <!-- using attribute directives -->
+	   * <ANY ng-messages="expression" role="alert">
+	   *   <ANY ng-message="stringValue">...</ANY>
+	   *   <ANY ng-message="stringValue1, stringValue2, ...">...</ANY>
+	   * </ANY>
+	   *
+	   * <!-- or by using element directives -->
+	   * <ng-messages for="expression" role="alert">
+	   *   <ng-message when="stringValue">...</ng-message>
+	   *   <ng-message when="stringValue1, stringValue2, ...">...</ng-message>
+	   * </ng-messages>
+	   * ```
+	   *
+	   * @param {expression} ngMessage|when a string value corresponding to the message key.
+	   */
+	  .directive('ngMessage', ngMessageDirectiveFactory())
+	
+	  /**
+	   * @ngdoc directive
+	   * @name ngMessageExp
+	   * @restrict AE
+	   * @priority 1
+	   * @scope
+	   *
+	   * @description
+	   * `ngMessageExp` is a directive with the purpose to show and hide a particular message.
+	   * For `ngMessageExp` to operate, a parent `ngMessages` directive on a parent DOM element
+	   * must be situated since it determines which messages are visible based on the state
+	   * of the provided key/value map that `ngMessages` listens on.
+	   *
+	   * @usage
+	   * ```html
+	   * <!-- using attribute directives -->
+	   * <ANY ng-messages="expression">
+	   *   <ANY ng-message-exp="expressionValue">...</ANY>
+	   * </ANY>
+	   *
+	   * <!-- or by using element directives -->
+	   * <ng-messages for="expression">
+	   *   <ng-message when-exp="expressionValue">...</ng-message>
+	   * </ng-messages>
+	   * ```
+	   *
+	   * {@link module:ngMessages Click here} to learn more about `ngMessages` and `ngMessage`.
+	   *
+	   * @param {expression} ngMessageExp|whenExp an expression value corresponding to the message key.
+	   */
+	  .directive('ngMessageExp', ngMessageDirectiveFactory());
+	
+	  function ngMessageDirectiveFactory() {
+	    return ['$animate', function ($animate) {
+	      return {
+	        restrict: 'AE',
+	        transclude: 'element',
+	        priority: 1, // must run before ngBind, otherwise the text is set on the comment
+	        terminal: true,
+	        require: '^^ngMessages',
+	        link: function link(scope, element, attrs, ngMessagesCtrl, $transclude) {
+	          var commentNode = element[0];
+	
+	          var records;
+	          var staticExp = attrs.ngMessage || attrs.when;
+	          var dynamicExp = attrs.ngMessageExp || attrs.whenExp;
+	          var assignRecords = function assignRecords(items) {
+	            records = items ? isArray(items) ? items : items.split(/[\s,]+/) : null;
+	            ngMessagesCtrl.reRender();
+	          };
+	
+	          if (dynamicExp) {
+	            assignRecords(scope.$eval(dynamicExp));
+	            scope.$watchCollection(dynamicExp, assignRecords);
+	          } else {
+	            assignRecords(staticExp);
+	          }
+	
+	          var currentElement, messageCtrl;
+	          ngMessagesCtrl.register(commentNode, messageCtrl = {
+	            test: function test(name) {
+	              return contains(records, name);
+	            },
+	            attach: function attach() {
+	              if (!currentElement) {
+	                $transclude(function (elm, newScope) {
+	                  $animate.enter(elm, null, element);
+	                  currentElement = elm;
+	
+	                  // Each time we attach this node to a message we get a new id that we can match
+	                  // when we are destroying the node later.
+	                  var $$attachId = currentElement.$$attachId = ngMessagesCtrl.getAttachId();
+	
+	                  // in the event that the element or a parent element is destroyed
+	                  // by another structural directive then it's time
+	                  // to deregister the message from the controller
+	                  currentElement.on('$destroy', function () {
+	                    if (currentElement && currentElement.$$attachId === $$attachId) {
+	                      ngMessagesCtrl.deregister(commentNode);
+	                      messageCtrl.detach();
+	                    }
+	                    newScope.$destroy();
+	                  });
+	                });
+	              }
+	            },
+	            detach: function detach() {
+	              if (currentElement) {
+	                var elm = currentElement;
+	                currentElement = null;
+	                $animate.leave(elm);
+	              }
+	            }
+	          });
+	        }
+	      };
+	    }];
+	
+	    function contains(collection, key) {
+	      if (collection) {
+	        return isArray(collection) ? collection.indexOf(key) >= 0 : collection.hasOwnProperty(key);
+	      }
+	    }
+	  }
+	})(window, window.angular);
+
+/***/ },
+/* 86 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 42 */,
-/* 43 */
+/* 87 */,
+/* 88 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module) {'use strict';
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	
+	/*!
+	 * State-based routing for AngularJS
+	 * @version v1.0.0-beta.1
+	 * @link https://ui-router.github.io
+	 * @license MIT License, http://www.opensource.org/licenses/MIT
+	 */
+	(function webpackUniversalModuleDefinition(root, factory) {
+		if (( false ? 'undefined' : _typeof(exports)) === 'object' && ( false ? 'undefined' : _typeof(module)) === 'object') module.exports = factory();else if (true) !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object') exports["angular-ui-router"] = factory();else root["angular-ui-router"] = factory();
+	})(undefined, function () {
+		return (/******/function (modules) {
+				// webpackBootstrap
+				/******/ // The module cache
+				/******/var installedModules = {};
+				/******/
+				/******/ // The require function
+				/******/function __webpack_require__(moduleId) {
+					/******/
+					/******/ // Check if module is in cache
+					/******/if (installedModules[moduleId])
+						/******/return installedModules[moduleId].exports;
+					/******/
+					/******/ // Create a new module (and put it into the cache)
+					/******/var module = installedModules[moduleId] = {
+						/******/exports: {},
+						/******/id: moduleId,
+						/******/loaded: false
+						/******/ };
+					/******/
+					/******/ // Execute the module function
+					/******/modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+					/******/
+					/******/ // Flag the module as loaded
+					/******/module.loaded = true;
+					/******/
+					/******/ // Return the exports of the module
+					/******/return module.exports;
+					/******/
+				}
+				/******/
+				/******/
+				/******/ // expose the modules object (__webpack_modules__)
+				/******/__webpack_require__.m = modules;
+				/******/
+				/******/ // expose the module cache
+				/******/__webpack_require__.c = installedModules;
+				/******/
+				/******/ // __webpack_public_path__
+				/******/__webpack_require__.p = "";
+				/******/
+				/******/ // Load entry module and return exports
+				/******/return __webpack_require__(0);
+				/******/
+			}(
+			/************************************************************************/
+			/******/[
+			/* 0 */
+			/***/function (module, exports) {
+	
+				"use strict";
+				/**
+	    * An event broadcast on `$rootScope` when the state transition **begins**.
+	    *
+	    * You can use `event.preventDefault()`
+	    * to prevent the transition from happening and then the transition promise will be
+	    * rejected with a `'transition prevented'` value.
+	    *
+	    * Additional arguments to the event handler are provided:
+	    * - `toState`: the Transition Target state
+	    * - `toParams`: the Transition Target Params
+	    * - `fromState`: the state the transition is coming from
+	    * - `fromParams`: the parameters from the state the transition is coming from
+	    * - `options`: any Transition Options
+	    * - `$transition$`: the [[Transition]]
+	    *
+	    * @example
+	    * ```
+	    *
+	    * $rootScope.$on('$stateChangeStart', function(event, transition) {
+	    *   event.preventDefault();
+	    *   // transitionTo() promise will be rejected with
+	    *   // a 'transition prevented' error
+	    * })
+	    * ```
+	    *
+	    * @deprecated use [[TransitionService.onStart]]
+	    * @event $stateChangeStart
+	    */
+	
+				var $stateChangeStart;
+				/**
+	    * An event broadcast on `$rootScope` if a transition is **cancelled**.
+	    *
+	    * Additional arguments to the event handler are provided:
+	    * - `toState`: the Transition Target state
+	    * - `toParams`: the Transition Target Params
+	    * - `fromState`: the state the transition is coming from
+	    * - `fromParams`: the parameters from the state the transition is coming from
+	    * - `options`: any Transition Options
+	    * - `$transition$`: the [[Transition]] that was cancelled
+	    *
+	    * @deprecated
+	    * @event $stateChangeCancel
+	    */
+				var $stateChangeCancel;
+				/**
+	    *
+	    * An event broadcast on `$rootScope` once the state transition is **complete**.
+	    *
+	    * Additional arguments to the event handler are provided:
+	    * - `toState`: the Transition Target state
+	    * - `toParams`: the Transition Target Params
+	    * - `fromState`: the state the transition is coming from
+	    * - `fromParams`: the parameters from the state the transition is coming from
+	    * - `options`: any Transition Options
+	    * - `$transition$`: the [[Transition]] that just succeeded
+	    *
+	    * @deprecated use [[TransitionService.onStart]] and [[Transition.promise]], or [[Transition.onSuccess]]
+	    * @event $stateChangeSuccess
+	    */
+				var $stateChangeSuccess;
+				/**
+	    * An event broadcast on `$rootScope` when an **error occurs** during transition.
+	    *
+	    * It's important to note that if you
+	    * have any errors in your resolve functions (javascript errors, non-existent services, etc)
+	    * they will not throw traditionally. You must listen for this $stateChangeError event to
+	    * catch **ALL** errors.
+	    *
+	    * Additional arguments to the event handler are provided:
+	    * - `toState`: the Transition Target state
+	    * - `toParams`: the Transition Target Params
+	    * - `fromState`: the state the transition is coming from
+	    * - `fromParams`: the parameters from the state the transition is coming from
+	    * - `error`: The reason the transition errored.
+	    * - `options`: any Transition Options
+	    * - `$transition$`: the [[Transition]] that errored
+	    *
+	    * @deprecated use [[TransitionService.onStart]] and [[Transition.promise]], or [[Transition.onError]]
+	    * @event $stateChangeError
+	    */
+				var $stateChangeError;
+				/**
+	    * An event broadcast on `$rootScope` when a requested state **cannot be found** using the provided state name.
+	    *
+	    * The event is broadcast allowing any handlers a single chance to deal with the error (usually by
+	    * lazy-loading the unfound state). A `TargetState` object is passed to the listener handler,
+	    * you can see its properties in the example. You can use `event.preventDefault()` to abort the
+	    * transition and the promise returned from `transitionTo()` will be rejected with a
+	    * `'transition aborted'` error.
+	    *
+	    * Additional arguments to the event handler are provided:
+	    * - `unfoundState` Unfound State information. Contains: `to, toParams, options` properties.
+	    * - `fromState`: the state the transition is coming from
+	    * - `fromParams`: the parameters from the state the transition is coming from
+	    * - `options`: any Transition Options
+	    * @example
+	    *
+	    * <pre>
+	    * // somewhere, assume lazy.state has not been defined
+	    * $state.go("lazy.state", { a: 1, b: 2 }, { inherit: false });
+	    *
+	    * // somewhere else
+	    * $scope.$on('$stateNotFound', function(event, transition) {
+	    * function(event, unfoundState, fromState, fromParams){
+	    *     console.log(unfoundState.to); // "lazy.state"
+	    *     console.log(unfoundState.toParams); // {a:1, b:2}
+	    *     console.log(unfoundState.options); // {inherit:false} + default options
+	    * });
+	    * </pre>
+	    *
+	    * @deprecated use [[StateProvider.onInvalid]] // TODO: Move to [[StateService.onInvalid]]
+	    * @event $stateNotFound
+	    */
+				var $stateNotFound;
+				(function () {
+					var isFunction = angular.isFunction,
+					    isString = angular.isString;
+					function applyPairs(memo, keyValTuple) {
+						var key, value;
+						if (Array.isArray(keyValTuple)) key = keyValTuple[0], value = keyValTuple[1];
+						if (!isString(key)) throw new Error("invalid parameters to applyPairs");
+						memo[key] = value;
+						return memo;
+					}
+					function stateChangeStartHandler($transition$) {
+						if (!$transition$.options().notify || !$transition$.valid() || $transition$.ignored()) return;
+						var $injector = $transition$.injector().native;
+						var $stateEvents = $injector.get('$stateEvents');
+						var $rootScope = $injector.get('$rootScope');
+						var $state = $injector.get('$state');
+						var $urlRouter = $injector.get('$urlRouter');
+						var enabledEvents = $stateEvents.provider.enabled();
+						var toParams = $transition$.params("to");
+						var fromParams = $transition$.params("from");
+						if (enabledEvents.$stateChangeSuccess) {
+							var startEvent = $rootScope.$broadcast('$stateChangeStart', $transition$.to(), toParams, $transition$.from(), fromParams, $transition$.options(), $transition$);
+							if (startEvent.defaultPrevented) {
+								if (enabledEvents.$stateChangeCancel) {
+									$rootScope.$broadcast('$stateChangeCancel', $transition$.to(), toParams, $transition$.from(), fromParams, $transition$.options(), $transition$);
+								}
+								//Don't update and resync url if there's been a new transition started. see issue #2238, #600
+								if ($state.transition == null) $urlRouter.update();
+								return false;
+							}
+							$transition$.promise.then(function () {
+								$rootScope.$broadcast('$stateChangeSuccess', $transition$.to(), toParams, $transition$.from(), fromParams, $transition$.options(), $transition$);
+							});
+						}
+						if (enabledEvents.$stateChangeError) {
+							$transition$.promise["catch"](function (error) {
+								if (error && (error.type === 2 /* RejectType.SUPERSEDED */ || error.type === 3 /* RejectType.ABORTED */)) return;
+								var evt = $rootScope.$broadcast('$stateChangeError', $transition$.to(), toParams, $transition$.from(), fromParams, error, $transition$.options(), $transition$);
+								if (!evt.defaultPrevented) {
+									$urlRouter.update();
+								}
+							});
+						}
+					}
+					stateNotFoundHandler.$inject = ['$to$', '$from$', '$state', '$rootScope', '$urlRouter'];
+					function stateNotFoundHandler($to$, $from$, $state, $rootScope, $urlRouter) {
+						var redirect = { to: $to$.identifier(), toParams: $to$.params(), options: $to$.options() };
+						var e = $rootScope.$broadcast('$stateNotFound', redirect, $from$.state(), $from$.params());
+						if (e.defaultPrevented || e.retry) $urlRouter.update();
+						function redirectFn() {
+							return $state.target(redirect.to, redirect.toParams, redirect.options);
+						}
+						if (e.defaultPrevented) {
+							return false;
+						} else if (e.retry || !!$state.get(redirect.to)) {
+							return e.retry && isFunction(e.retry.then) ? e.retry.then(redirectFn) : redirectFn();
+						}
+					}
+					$StateEventsProvider.$inject = ['$stateProvider'];
+					function $StateEventsProvider($stateProvider) {
+						$StateEventsProvider.prototype.instance = this;
+						var runtime = false;
+						var allEvents = ['$stateChangeStart', '$stateNotFound', '$stateChangeSuccess', '$stateChangeError'];
+						var enabledStateEvents = allEvents.map(function (e) {
+							return [e, true];
+						}).reduce(applyPairs, {});
+						function assertNotRuntime() {
+							if (runtime) throw new Error("Cannot enable events at runtime (use $stateEventsProvider");
+						}
+						/**
+	      * Enables the deprecated UI-Router 0.2.x State Events
+	      * [ '$stateChangeStart', '$stateNotFound', '$stateChangeSuccess', '$stateChangeError' ]
+	      */
+						this.enable = function () {
+							var events = [];
+							for (var _i = 0; _i < arguments.length; _i++) {
+								events[_i - 0] = arguments[_i];
+							}
+							assertNotRuntime();
+							if (!events || !events.length) events = allEvents;
+							events.forEach(function (event) {
+								return enabledStateEvents[event] = true;
+							});
+						};
+						/**
+	      * Disables the deprecated UI-Router 0.2.x State Events
+	      * [ '$stateChangeStart', '$stateNotFound', '$stateChangeSuccess', '$stateChangeError' ]
+	      */
+						this.disable = function () {
+							var events = [];
+							for (var _i = 0; _i < arguments.length; _i++) {
+								events[_i - 0] = arguments[_i];
+							}
+							assertNotRuntime();
+							if (!events || !events.length) events = allEvents;
+							events.forEach(function (event) {
+								return delete enabledStateEvents[event];
+							});
+						};
+						this.enabled = function () {
+							return enabledStateEvents;
+						};
+						this.$get = $get;
+						$get.$inject = ['$transitions'];
+						function $get($transitions) {
+							runtime = true;
+							if (enabledStateEvents["$stateNotFound"]) $stateProvider.onInvalid(stateNotFoundHandler);
+							if (enabledStateEvents.$stateChangeStart) $transitions.onBefore({}, stateChangeStartHandler, { priority: 1000 });
+							return {
+								provider: $StateEventsProvider.prototype.instance
+							};
+						}
+					}
+					angular.module('ui.router.state.events', ['ui.router.state']).provider("$stateEvents", $StateEventsProvider).run(['$stateEvents', function ($stateEvents) {}]);
+				})();
+	
+				/***/
+			}
+			/******/])
+		);
+	});
+	;
+	//# sourceMappingURL=stateEvents.js.map
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)(module)))
+
+/***/ },
+/* 89 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -33203,103 +35348,146 @@
 	exports.default = configRoutes;
 	configRoutes.$inject = ['$stateProvider', '$urlRouterProvider'];
 	
+	//routing for app
 	function configRoutes($stateProvider, $urlRouterProvider) {
-	  $stateProvider
-	  // this is "home" state displays by default, also when no token is found
-	  .state('home', {
+	  $stateProvider.state('home', {
 	    url: '/',
 	    views: {
 	      header: {
-	        component: 'headerLogout'
+	        component: 'header'
 	      },
 	      main: {
 	        component: 'landing'
 	      },
 	      footer: {
-	        template: '<div>Bomb Ass Job Search Footer</div>'
-	      }
-	    }
-	  })
-	  // this is "home" state when valid token is found -- CAN WE STILL USE URL: '/', THE DIFFERENCE BEING THAT AUTH IS REQUIRED HERE WHEREAS IT'S NOT ABOVE?
-	  .state('welcome', {
-	    url: '/welcome',
-	    views: {
-	      header: {
-	        component: 'headerLogin'
-	      },
-	      main: {
-	        component: 'landing'
-	      },
-	      footer: {
-	        template: '<div>Bomb Ass Job Search Footer</div>'
+	        component: 'footer'
 	      }
 	    }
 	  }).state('dashboard', {
 	    url: '/dashboard',
+	    data: {
+	      requiresAuth: true
+	    },
 	    views: {
 	      header: {
-	        component: 'headerLogin'
+	        component: 'header'
 	      },
-	      main: {},
-	      footer: {}
+	      main: {
+	        component: 'dashboard'
+	      },
+	      footer: {
+	        component: 'footer'
+	      }
 	    }
 	  }).state('companies', {
 	    url: '/companies',
+	    data: {
+	      requiresAuth: true
+	    },
 	    views: {
 	      header: {
-	        component: 'headerLogin'
+	        component: 'header'
 	      },
 	      main: {
 	        component: 'listCompanies'
 	      },
 	      footer: {
-	        template: '<div>Footer component will go here</div>'
+	        component: 'footer'
 	      }
 	    }
 	  })
 	  // Will be /company/:id or /company?id once the db is set up
 	  .state('company', {
-	    url: '/company',
+	    url: '/company/:companyId',
+	    resolve: {
+	      companyId: ['$stateParams', function (p) {
+	        return p.companyId;
+	      }]
+	    },
+	    data: {
+	      requiresAuth: true
+	    },
 	    views: {
 	      header: {
-	        component: 'headerLogin'
+	        component: 'header'
 	      },
 	      main: {
 	        component: 'companyDetail'
 	      },
 	      footer: {
-	        template: '<div>Footer component will go here</div>'
+	        component: 'footer'
+	      }
+	    }
+	  }).state('positions', {
+	    url: '/positions',
+	    data: {
+	      requiresAuth: true
+	    },
+	    views: {
+	      header: {
+	        component: 'header'
+	      },
+	      main: {
+	        component: 'positions'
+	      },
+	      footer: {
+	        component: 'footer'
 	      }
 	    }
 	  }).state('position', {
-	    url: '/position',
+	    url: '/position/:positionId',
+	    resolve: {
+	      positionId: ['$stateParams', function (p) {
+	        return p.positionId;
+	      }]
+	    },
+	    data: {
+	      requiresAuth: true
+	    },
 	    views: {
 	      header: {
-	        component: 'headerLogin'
+	        component: 'header'
 	      },
-	      main: {},
-	      footer: {}
+	      main: {
+	        component: 'position'
+	      },
+	      footer: {
+	        component: 'footer'
+	      }
+	      // params: {
+	      //   display: {dynamic: true}
+	      // }
 	    }
 	  }).state('contacts', {
 	    url: '/contacts',
+	    data: {
+	      requiresAuth: true
+	    },
 	    views: {
 	      header: {
-	        component: 'headerLogin'
+	        component: 'header'
 	      },
-	      main: {},
-	      footer: {}
+	      main: {
+	        component: 'contacts'
+	      },
+	      footer: {
+	        component: 'footer'
+	      }
 	    }
 	  }).state('user', {
 	    url: '/user',
+	    data: {
+	      requiresAuth: true
+	    },
 	    views: {
 	      header: {
-	        component: 'headerLogin'
+	        component: 'header'
 	      },
 	      main: {
 	        component: 'userDetail'
 	      },
 	      footer: {
-	        template: '<div>Bomb Ass Job Search Footer</div>'
+	        component: 'footer'
 	      }
 	    }
 	  });
@@ -33308,7 +35496,90 @@
 	};
 
 /***/ },
-/* 44 */
+/* 90 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = auth;
+	
+	var _angular = __webpack_require__(1);
+	
+	var _angular2 = _interopRequireDefault(_angular);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	auth.$inject = ['$rootScope', 'userService', '$mdDialog', '$state'];
+	
+	function auth($rootScope, userService, $mdDialog, $state) {
+	  $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+	    if (toState.data && toState.data.requiresAuth && !userService.isAuthenticated()) {
+	      event.preventDefault();
+	
+	      $mdDialog.show({
+	        parent: _angular2.default.element(document.body),
+	        template: '<user-auth success="success()" cancel="cancel()"></user-auth>',
+	        controller: ['$scope', function ($scope) {
+	          $scope.success = function () {
+	            $mdDialog.hide();
+	            return $state.go(toState.name, toParams);
+	          };
+	          $scope.cancel = function () {
+	            $mdDialog.hide();
+	          };
+	        }],
+	        clickOutsideToClose: true,
+	        escapeToClose: true
+	      });
+	    }
+	  });
+	};
+
+/***/ },
+/* 91 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = configHttp;
+	configHttp.$inject = ['$httpProvider'];
+	
+	function configHttp($httpProvider) {
+	  $httpProvider.interceptors.push(interceptor);
+	};
+	
+	interceptor.$inject = ['$window', 'tokenService', '$state'];
+	function interceptor($window, tokenService, $state) {
+	  return {
+	    request: function request(config) {
+	      config.headers = config.headers || {};
+	
+	      var token = tokenService.get();
+	
+	      if (token) {
+	        config.headers.Authorization = 'Bearer ' + token;
+	      }
+	
+	      return config;
+	    },
+	    responseError: function responseError(response) {
+	      if (response.status >= 400 && response.status < 500) {
+	        tokenService.remove();
+	        $state.go('home');
+	      }
+	      return Promise.reject(response);
+	    }
+	  };
+	};
+
+/***/ },
+/* 92 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
