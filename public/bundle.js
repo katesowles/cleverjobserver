@@ -35350,7 +35350,9 @@
 	
 	//routing for app
 	function configRoutes($stateProvider, $urlRouterProvider) {
-	  $stateProvider.state('home', {
+	  $stateProvider
+	  // this is "home" state displays by default, also when no token is found
+	  .state('home', {
 	    url: '/',
 	    views: {
 	      header: {
