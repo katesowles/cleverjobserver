@@ -1,3 +1,7 @@
+.error {
+  color: red; }
+.error {
+  color: red; }
 /*!
  * Angular Material Design
  * https://github.com/angular/material
@@ -23860,5 +23864,25 @@ md-tooltip {
 @media print {
   .hide-print:not(.show-print):not(.show) {
     display: none !important; } }
+.full-height {
+  height: 100%; }
+
+.lift-bottom {
+  /* Equal to height of footer */
+  margin-bottom: -75px;
+  /* But may need to account for margin-bottom of last child */ }
+
+.sticky-footer {
+  height: 75px;
+  padding: 1rem;
+  color: white;
+  text-align: center;
+  background-color: blue; }
+
+.sticky-footer a {
+  color: white; }
+
+md-dialog {
+  padding: 3%; }
 
 /*# sourceMappingURL=bundle.css.map*/
