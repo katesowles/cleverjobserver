@@ -23908,4 +23908,7 @@ md-tooltip {
 md-dialog {
   padding: 3%; }
 
+.md-button.md-icon-button {
+  width: 100%; }
+
 /*# sourceMappingURL=bundle.css.map*/
