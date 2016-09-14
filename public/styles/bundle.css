@@ -23891,6 +23891,10 @@ md-tooltip {
 * {
   font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; }
 
+canvas {
+  width: 200px;
+  height: 200px; }
+
 .full-height {
   height: 100%;
   margin-bottom: 50px; }
