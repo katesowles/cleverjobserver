@@ -20430,7 +20430,7 @@
 	  var _this = this;
 	
 	  this.credentials = {
-	    username: '',
+	    email: '',
 	    password: ''
 	  };
 	
@@ -20482,7 +20482,8 @@
 	  var _this = this;
 	
 	  this.credentials = {
-	    username: '',
+	    name: '',
+	    email: '',
 	    password: ''
 	  };
 	
@@ -31983,7 +31984,7 @@
 	function controller(userService, $state, $mdDialog, $window) {
 	  var _this = this;
 	
-	  // to grab the username for the 'welcome {{username}}'
+	  // to grab the user's display name for the 'welcome {{$ctrl.name}}'
 	  this.userId = $window.localStorage.getItem('id');
 	  // prevents a console error if the user isn't logged in
 	  if (this.userId) {
@@ -32025,7 +32026,7 @@
 /* 84 */
 /***/ function(module, exports) {
 
-	module.exports = "<div ng-cloak>\n  <md-content class=\"md-padding\">\n    <md-nav-bar md-selected-nav-item=\"currentNavItem\" nav-bar-aria-label=\"navigation links\">\n      <md-nav-item md-nav-sref=\"welcome\" name=\"welcome\" id=\"logo\">Job Hunter</md-nav-item>\n      <md-nav-item ng-if=\"!$ctrl.isAuthenticated()\" md-Nav-Click=\"$ctrl.prompt()\" name=\"enter\">Enter Site</md-nav-item>\n      <md-nav-item ng-if=\"$ctrl.isAuthenticated()\" md-nav-sref=\"user\" name=\"user\">Welcome, {{$ctrl.username}}</md-nav-item>\n      <md-nav-item ng-if=\"$ctrl.isAuthenticated()\" md-nav-sref=\"dashboard\" name=\"dashboard\">Dashboard</md-nav-item>\n      <md-nav-item ng-if=\"$ctrl.isAuthenticated()\" md-nav-sref=\"positions\" name=\"positions\">Positions</md-nav-item>\n      <md-nav-item ng-if=\"$ctrl.isAuthenticated()\" md-nav-sref=\"companies\" name=\"companies\">Companies</md-nav-item>\n      <md-nav-item ng-if=\"$ctrl.isAuthenticated()\" md-nav-sref=\"contacts\" name=\"contacts\">Contacts</md-nav-item>\n      <md-nav-item ng-if=\"$ctrl.isAuthenticated()\" md-Nav-Click=\"$ctrl.logout()\" name=\"loggedOut\">Logout</md-nav-item>\n    </md-nav-bar>\n  </md-content>\n</div>\n";
+	module.exports = "<div ng-cloak>\n  <md-content class=\"md-padding\">\n    <md-nav-bar md-selected-nav-item=\"currentNavItem\" nav-bar-aria-label=\"navigation links\">\n      <md-nav-item md-nav-sref=\"welcome\" name=\"welcome\" id=\"logo\">Job Hunter</md-nav-item>\n      <md-nav-item ng-if=\"!$ctrl.isAuthenticated()\" md-Nav-Click=\"$ctrl.prompt()\" name=\"enter\">Enter Site</md-nav-item>\n      <md-nav-item ng-if=\"$ctrl.isAuthenticated()\" md-nav-sref=\"user\" name=\"user\">Welcome, {{$ctrl.name}}</md-nav-item>\n      <md-nav-item ng-if=\"$ctrl.isAuthenticated()\" md-nav-sref=\"dashboard\" name=\"dashboard\">Dashboard</md-nav-item>\n      <md-nav-item ng-if=\"$ctrl.isAuthenticated()\" md-nav-sref=\"positions\" name=\"positions\">Positions</md-nav-item>\n      <md-nav-item ng-if=\"$ctrl.isAuthenticated()\" md-nav-sref=\"companies\" name=\"companies\">Companies</md-nav-item>\n      <md-nav-item ng-if=\"$ctrl.isAuthenticated()\" md-nav-sref=\"contacts\" name=\"contacts\">Contacts</md-nav-item>\n      <md-nav-item ng-if=\"$ctrl.isAuthenticated()\" md-Nav-Click=\"$ctrl.logout()\" name=\"loggedOut\">Logout</md-nav-item>\n    </md-nav-bar>\n  </md-content>\n</div>\n";
 
 /***/ },
 /* 85 */
@@ -32518,49 +32519,46 @@
 	};
 	
 	
-	function controller() {
-	  this.styles = _userDetail4.default;
+	controller.$inject = ['userService', '$window', 'positionService', 'companyService', 'contactService'];
+	function controller(userService, $window, positionService, companyService, contactService) {
+	  var _this = this;
 	
-	  this.user = {
-	    name: 'Joe User',
-	    username: 'joe@email.com',
-	    positions: [{
-	      dateApplied: '2016-09-19',
-	      title: 'Web Developer',
-	      company: 'ABC Corp'
-	    }, {
-	      dateApplied: '2016-09-19',
-	      title: 'Front-End Developer',
-	      company: 'XYZ Inc.'
-	    }, {
-	      dateApplied: '2016-09-20',
-	      title: 'Back-End Developer',
-	      company: 'Cool Company'
-	    }],
-	    companies: [{
-	      name: 'ABC Corp'
-	    }, {
-	      name: 'IJK Corp'
-	    }, {
-	      name: 'Sweet Company'
-	    }],
-	    contacts: [{
-	      name: 'Jane Recruiter',
-	      role: 'Lead Assistant',
-	      company: 'Jobby Jobs'
-	    }, {
-	      name: 'Jack',
-	      role: 'HR',
-	      company: 'Klassic Korp'
-	    }]
-	  };
+	  this.styles = _userDetail4.default;
+	  this.userId = $window.localStorage['id'];
+	
+	  userService.getMe(this.userId).then(function (result) {
+	    return _this.user = result;
+	  }).catch(function (err) {
+	    return console.log(err);
+	  });
+	
+	  positionService.getByUser(this.userId).then(function (result) {
+	    _this.positions = result;
+	    // this.positions.forEach( (position, index, arr) => {
+	    //   arr[index].dateApplied = $window.moment(position.dateApplied).format('MM-DD-YYYY'); 
+	    // });
+	  }).catch(function (err) {
+	    return console.log(err);
+	  });
+	
+	  companyService.getByUser(this.userId).then(function (result) {
+	    return _this.companies = result;
+	  }).catch(function (err) {
+	    return console.log(err);
+	  });
+	
+	  contactService.getByUser(this.userId).then(function (result) {
+	    return _this.user.contacts = result;
+	  }).catch(function (err) {
+	    return console.log(err);
+	  });
 	}
 
 /***/ },
 /* 106 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.userDetail\">\n  <h1>{{$ctrl.user.name}}</h1>\n  <div>Display: {{$ctrl.user.name}}</div>\n  <div>Login: {{$ctrl.user.username}}</div>\n  <div ng-if=\"$ctrl.user.positions.length\">My Submissions:\n    <ul>\n        <li ng-repeat=\"position in $ctrl.user.positions\">{{position.dateApplied}} | {{position.title}} | {{position.company}}</li>\n    </ul>\n  </div>\n  <div ng-if=\"$ctrl.user.companies.length\">Company Research:\n    <ul>\n        <li ng-repeat=\"company in $ctrl.user.companies\">{{company.name}}</li>\n    </ul>\n  </div>\n  <div ng-if=\"$ctrl.user.contacts.length\">My Contacts:\n    <ul>\n        <li ng-repeat=\"contact in $ctrl.user.contacts\">{{contact.name}} | {{contact.role}} | {{contact.company}}</li>\n    </ul>\n  </div>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.userDetail\">\n  <h1>{{$ctrl.user.name}}</h1>\n  \n  <div>Display Name: {{$ctrl.user.name}}</div>\n  <div>Login Email: {{$ctrl.user.email}}</div>\n  \n  <h2>My Submissions:</h2>\n  <md-list>\n    <md-list-item class=\"md-3-line blue-lite\" ng-repeat=\"position in $ctrl.positions\" ui-sref=\"position({positionId: position._id})\">\n      <div class=\"md-list-item-text\">\n        <h3>{{position.title}}</h3> \n        <h4>{{position.company.name}}</h4>\n        <p class=\"md-secondary\">{{position.updatedAt | date:'MM-dd-yyyy'}}</p>\n        <md-divider ng-if=\"!$last\"></md-divider>\n      </div>\n    </md-list-item>\n    <md-list-item ng-if=\"!$ctrl.positions.length\" class=\"md-3-line blue-lite\">\n      <h3>No Positions Saved Yet</h3>\n    </md-list-item>\n  </md-list>\n\n  <h2>Company Research:</h2>\n  <md-list>\n    <md-list-item class=\"md-3-line blue-lite\" ng-repeat=\"company in $ctrl.companies\" ui-sref=\"company({companyId: company._id})\">\n      <div class=\"md-list-item-text\">\n        <h3>{{company.name}}</h3> \n        <p class=\"md-secondary\">{{company.updatedAt | date:'MM-dd-yyyy'}}</p>\n        <md-divider ng-if=\"!$last\"></md-divider>\n      </div>\n    </md-list-item>\n    <md-list-item ng-if=\"!$ctrl.companies.length\" class=\"md-3-line blue-lite\">\n      <h3>No Companies Saved Yet</h3>\n    </md-list-item>\n  </md-list>\n\n  <h2>My Contacts:</h2>\n  <md-list>\n    <md-list-item class=\"md-3-line blue-lite\" ng-repeat=\"contact in $ctrl.contacts\" ui-sref=\"contact({contactId: contact._id})\">\n      <div class=\"md-list-item-text\">\n        <h3>{{contact.name}}</h3>\n        <h4>{{contact.role}}</h4> \n        <h4>{{contact.company}}</h4> \n        <p class=\"md-secondary\">{{contact.updatedAt | date:'MM-dd-yyyy'}}</p>\n        <md-divider ng-if=\"!$last\"></md-divider>\n      </div>\n    </md-list-item>\n    <md-list-item ng-if=\"!$ctrl.contacts.length\" class=\"md-1-line blue-lite\">\n      <h3>No Contacts Saved Yet</h3>\n    </md-list-item>\n  </md-list>\n<!--\n  <div ng-if=\"$ctrl.contacts.length\">\n    <ul>\n        <li ng-repeat=\"contact in $ctrl.contacts\">{{contact.name}} | {{contact.role}} | {{contact.company}}</li>\n    </ul>\n  </div>-->\n</section>\n";
 
 /***/ },
 /* 107 */
@@ -46900,7 +46898,7 @@
 	    },
 	    views: {
 	      header: {
-	        component: 'headerLogin'
+	        component: 'header'
 	      },
 	      main: {
 	        component: 'listUsers'
