@@ -23,6 +23,7 @@
     "bcrypt": "^0.8.7",
     "express": "^4.14.0",
     "jsonwebtoken": "^7.1.9",
+    "moment": "^2.15.0",
     "mongoose": "^4.5.9"
   },
   "devDependencies": {
@@ -31,7 +32,7 @@
     "eslint": "^3.1.1",
     "mocha": "^2.5.3"
   },
-  "engines" : {
-    "node" : "6.3.0"
+  "engines": {
+    "node": "6.3.0"
   }
 }
