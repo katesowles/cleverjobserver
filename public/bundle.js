@@ -74,7 +74,7 @@
 	_app2.default.config(_routes2.default);
 	_app2.default.run(_auth2.default);
 	
-	_app2.default.value('apiUrl', ("http://localhost:3000/api") || '/api');
+	_app2.default.value('apiUrl', ("https://jobhunter-app.herokuapp.com/api") || '/api');
 	
 	_angular2.default.bootstrap(document, [_app2.default.name]);
 
@@ -32176,7 +32176,7 @@
 	  if (this.userId) {
 	    userService.getMe($window.localStorage.getItem('id')).then(function (user) {
 	      if (!user) return;
-	      _this.name = user.name;
+	      _this.username = user.name;
 	    }).catch(function (err) {
 	      return console.log(err);
 	    });
