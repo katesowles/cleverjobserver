@@ -1,7 +1,27 @@
-.error {
-  color: red; }
-.error {
-  color: red; }
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i);.KuC7V8SwjGmypCqyb0Ipv {
+  width: 80%;
+  margin: 0 auto; }
+.lmrb2Djh1E5tuzbarZj-H {
+  width: 80%;
+  margin: 0 auto; }
+._9aBDHUckUL774aIVs0HvD {
+  width: 80%;
+  margin: 0 auto; }
+._8DD2UA1zrLWqVBneDx2sx {
+  width: 80%;
+  margin: 0 auto; }
+._3bLxQQjLA93jCtojdRVVMG {
+  width: 80%;
+  margin: 0 auto; }
+._26ZQWWY6W3yZLUZmEYyOQ5 {
+  width: 80%;
+  margin: 0 auto; }
+._37hRA4xi1uxUdviq9HdF5h {
+  width: 80%;
+  margin: 0 auto; }
+._2qbX8yx_lcChFj2LOSXNMn {
+  width: 80%;
+  margin: 0 auto; }
 /*!
  * Angular Material Design
  * https://github.com/angular/material
@@ -23864,25 +23884,92 @@ md-tooltip {
 @media print {
   .hide-print:not(.show-print):not(.show) {
     display: none !important; } }
-.full-height {
-  height: 100%; }
+* {
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; }
 
-.lift-bottom {
-  /* Equal to height of footer */
-  margin-bottom: -75px;
-  /* But may need to account for margin-bottom of last child */ }
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300; }
+
+h1 {
+  font-size: 3.889em; }
+
+h2 {
+  font-size: 2.827em;
+  margin: 0; }
+
+h3 {
+  font-size: 1.999em;
+  margin: 0; }
+
+h4 {
+  font-size: 1.414em;
+  margin: 0; }
+
+h5 {
+  font-size: 1em; }
+
+h6 {
+  font-size: .707em; }
+
+p {
+  font-size: 1.414em;
+  font-weight: 200; }
+
+.center {
+  text-align: center; }
+
+.full-height {
+  height: 100%;
+  margin-bottom: 150px; }
 
 .sticky-footer {
-  height: 75px;
-  padding: 1rem;
+  position: fixed;
+  bottom: 0;
+  height: auto;
+  width: 100%;
+  padding: 1em;
   color: white;
   text-align: center;
-  background-color: blue; }
+  background-color: slategray; }
 
 .sticky-footer a {
   color: white; }
 
+.error {
+  color: red; }
+
+.canvasContain {
+  width: 500px;
+  height: 400px;
+  padding: calc((100% - 1500px)/6.1);
+  display: inline-block; }
+
+.canvasContain canvas {
+  margin-top: 40px; }
+
+.statBlock {
+  width: 33%;
+  display: inline-block;
+  box-sizing: border-box;
+  text-align: center; }
+
+.canvasContain:last-child {
+  margin-right: 0; }
+
 md-dialog {
   padding: 3%; }
+
+md-card {
+  margin: 50px 0;
+  padding: 40px; }
+
+.md-button.md-icon-button {
+  width: 100%; }
+
+md-dialog-content form md-input-container {
+  width: 400px !important; }
+
+.blue-lite {
+  background-color: #8ca4b0; }
 
 /*# sourceMappingURL=bundle.css.map*/
