@@ -54,6 +54,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
+<<<<<<< HEAD
 	var _routes = __webpack_require__(150);
 	
 	var _routes2 = _interopRequireDefault(_routes);
@@ -67,6 +68,21 @@
 	var _http2 = _interopRequireDefault(_http);
 	
 	__webpack_require__(153);
+=======
+	var _routes = __webpack_require__(154);
+	
+	var _routes2 = _interopRequireDefault(_routes);
+	
+	var _auth = __webpack_require__(155);
+	
+	var _auth2 = _interopRequireDefault(_auth);
+	
+	var _http = __webpack_require__(156);
+	
+	var _http2 = _interopRequireDefault(_http);
+	
+	__webpack_require__(157);
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -16803,6 +16819,7 @@
 	
 	var _components2 = _interopRequireDefault(_components);
 	
+<<<<<<< HEAD
 	var _services = __webpack_require__(131);
 	
 	var _services2 = _interopRequireDefault(_services);
@@ -16818,6 +16835,23 @@
 	__webpack_require__(147);
 	
 	__webpack_require__(149);
+=======
+	var _services = __webpack_require__(135);
+	
+	var _services2 = _interopRequireDefault(_services);
+	
+	var _angularMaterial = __webpack_require__(143);
+	
+	var _angularMaterial2 = _interopRequireDefault(_angularMaterial);
+	
+	var _angularMessages = __webpack_require__(149);
+	
+	var _angularMessages2 = _interopRequireDefault(_angularMessages);
+	
+	__webpack_require__(151);
+	
+	__webpack_require__(153);
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -20372,6 +20406,7 @@
 		"./contacts/new-contact/new-contact.js": 39,
 		"./dashboard/dashboard.js": 41,
 		"./dashboard/visualizations/visualizations.js": 45,
+<<<<<<< HEAD
 		"./header/header.js": 91,
 		"./landing/landing.js": 95,
 		"./list-companies/company-detail/company-detail.js": 99,
@@ -20384,6 +20419,21 @@
 		"./positions/position-detail/edit-position/edit-position.js": 121,
 		"./positions/position-detail/position-detail.js": 123,
 		"./positions/positions.js": 127
+=======
+		"./footer/footer.js": 91,
+		"./header/header.js": 95,
+		"./landing/landing.js": 99,
+		"./list-companies/company-detail/company-detail.js": 103,
+		"./list-companies/company-detail/edit-company/edit-company.js": 107,
+		"./list-companies/list-companies.js": 109,
+		"./list-companies/new-company/new-company.js": 113,
+		"./list-users/list-users.js": 115,
+		"./list-users/user-detail/user-detail.js": 119,
+		"./positions/new-position/new-position.js": 123,
+		"./positions/position/edit-position/edit-position.js": 125,
+		"./positions/position/position.js": 127,
+		"./positions/positions.js": 131
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -20460,14 +20510,21 @@
 /* 12 */
 /***/ function(module, exports) {
 
+<<<<<<< HEAD
 	module.exports = "<section ng-class=\"$ctrl.styles.actionItemsDetail\">\n    <h3>Position Title: {{$ctrl.parentName}}</h3>\n    <h4 ng-if=\"!$ctrl.actionItems.length\">You have not created action items for this position.</h4>\n    <div ng-repeat=\"item in $ctrl.actionItems\">\n    <md-content>\n        <md-card>\n            <md-card-header>\n                <md-card-header-text>\n                <span class=\"md-title\">{{item.action}}</span>\n                <span>Re: {{item.position.title}} at {{item.company.name}}</span>\n                <span>{{item.dateDue | date: 'shortDate'}}</span>\n                </md-card-header-text>\n            </md-card-header>\n            <md-card-actions layout=\"row\" layout-align=\"end center\">\n                <!-- <md-button ng-click=\"$ctrl.edit()\">Edit Action Item</md-button> -->\n                <md-button ng-click=\"$ctrl.complete(item._id)\">Action Completed</md-button>\n            </md-card-actions>\n        </md-card>\n    </md-content>\n    </div>\n</section>";
+=======
+	module.exports = "\n<h3>Position Title: {{$ctrl.parentName}}</h3>\n<h4 ng-if=\"!$ctrl.actionItems.length\">You have not created action items for this position.</h4>\n<div ng-repeat=\"item in $ctrl.actionItems\">\n  <md-content>\n    <md-card>\n        <md-card-header>\n            <md-card-header-text>\n            <span class=\"md-title\">{{item.action}}</span>\n            <span>{{item.dateDue | date: 'shortDate'}}\n            </md-card-header-text>\n        </md-card-header>\n        <md-card-actions layout=\"row\" layout-align=\"end center\">\n            <!-- <md-button ng-click=\"$ctrl.edit()\">Edit Action Item</md-button> -->\n            <md-button ng-click=\"$ctrl.complete(item._id)\">Action Completed</md-button>\n        </md-card-actions>\n    </md-card>\n  </md-content>\n</div>\n";
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 
 /***/ },
 /* 13 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+<<<<<<< HEAD
 	module.exports = {"actionItemsDetail":"_2Jw_G61WTYfm4UY5VpBfdc"};
+=======
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 
 /***/ },
 /* 14 */,
@@ -20512,7 +20569,11 @@
 /* 18 */
 /***/ function(module, exports) {
 
+<<<<<<< HEAD
 	module.exports = "<section ng-class=\"$ctrl.styles.actionItemsDetail\">\n  <div ng-cloak layout-gt-sm=\"row\" layout=\"column\">\n\n    <div flex-gt-sm=\"100\" flex>\n\n      <md-toolbar layout=\"row\" class=\"md-hue-3\">\n        <div class=\"md-toolbar-tools\">\n          <span>Action Items</span>\n        </div>\n      </md-toolbar>\n      <md-button class=\"md-secondary md-icon-button\"\n        ng-click=\"$ctrl.addContact()\"\n        ng-show=\"$ctrl.addButton === 'add'\">Add Action Item\n      </md-button>\n      <new-action-item companies=\"$ctrl.companies\" add=\"$ctrl.add\" add-button=\"$ctrl.addButton\" ng-if=\"$ctrl.addButton === 'save'\"></new-contact>\n      <div ng-if=\"$ctrl.addButton === 'save'\"\" ng-repeat=\"item in $ctrl.actionItems\">\n        <action-item-list item=\"item\"></contact-list>\n      </div>\n    </div>\n  </div>\n</section>";
+=======
+	module.exports = "<div ng-cloak layout-gt-sm=\"row\" layout=\"column\">\n\n  <div flex-gt-sm=\"100\" flex>\n\n    <md-toolbar layout=\"row\" class=\"md-hue-3\">\n      <div class=\"md-toolbar-tools\">\n        <span>Action Items</span>\n      </div>\n    </md-toolbar>\n    <md-button class=\"md-secondary md-icon-button\"\n      ng-click=\"$ctrl.addContact()\"\n      ng-show=\"$ctrl.addButton === 'add'\">Add Action Item\n    </md-button>\n    <new-action-item companies=\"$ctrl.companies\" add=\"$ctrl.add\" add-button=\"$ctrl.addButton\" ng-if=\"$ctrl.addButton === 'save'\"></new-contact>\n    <div ng-if=\"$ctrl.addButton === 'save'\"\" ng-repeat=\"item in $ctrl.actionItems\">\n      <action-item-list item=\"item\"></contact-list>\n    </div>\n  </div>\n</div>\n";
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 
 /***/ },
 /* 19 */
@@ -20562,9 +20623,15 @@
 	  var resetItem = function resetItem() {
 	    if (_this.which === 'position') {
 	      _this.actionItem = {
+<<<<<<< HEAD
 	        position: _this.position._id
 	      };
 	      _this.position.company ? _this.actionItem.company = _this.position.company._id : _this.actionItem.company = '';
+=======
+	        position: _this.position._id,
+	        company: _this.position.company._id || ''
+	      };
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	    } else if (_this.which === 'company') {
 	      _this.actionItem = {
 	        company: _this.company._id
@@ -20581,15 +20648,24 @@
 	  };
 	
 	  this.add = function (actionItem, userId) {
+<<<<<<< HEAD
 	    actionItemService.addForPosOrComp(actionItem, userId).then(function (addedItem) {
 	      console.log('addedItem', addedItem);
 	      $mdDialog.hide(addedItem);
+=======
+	    actionItemService.addForPosOrComp(actionItem, userId).then(function (addedService) {
+	      console.log(addedService);
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	    }).catch(function (err) {
 	      return console.log(err);
 	    });
 	  };
 	
 	  this.submit = function () {
+<<<<<<< HEAD
+=======
+	    $mdDialog.hide();
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	    _this.add(_this.actionItem, _this.userId);
 	    resetItem();
 	    $scope.addActionItem.$setPristine();
@@ -21277,7 +21353,11 @@
 /* 42 */
 /***/ function(module, exports) {
 
+<<<<<<< HEAD
 	module.exports = "<section ng-class=\"$ctrl.styles.dashboard\" ng-cloak>\n  <h1>Dashboard</h1>\n\n  <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.newPosition($event)\">Add Position</md-button>\n  <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.newCompany($event)\">Add Company</md-button>\n  <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.newContact($event)\">Add Contact</md-button>\n\n  <md-card>\n    <md-card-header>\n      <md-card-header-text>\n        <h2>Overdue Action Items</h2>\n      </md-card-header-text>\n    </md-card-header>\n    <md-card-content>\n      <div ng-repeat=\"overDue in $ctrl.overDue\">\n        <md-list flex>\n          <md-list-item class=\"md-3-line\">\n            <md-button class=\"md-secondary md-icon-button\"\n            ng-click=\"$ctrl.complete(overDue._id, 'overdue')\">Action Completed</md-button>\n            <div class=\"md-list-item-text\" layout=\"column\">\n              <h3>Position: {{overDue.position.title}} at {{overDue.company.name}}</h3>\n              <h4>Date Due: {{overDue.dateDue | date: 'shortDate'}}</h4>\n              <p>Action: {{overDue.action}}</p>\n            </div>\n          </md-list-item>\n          <md-divider></md-divider>\n        </md-list>\n      </div>\n    </md-card-content>\n  </md-card>\n\n  <md-card>\n    <md-card-header>\n      <md-card-header-text>\n        <h2>Upcoming Action Items</h2>\n      </md-card-header-text>\n    </md-card-header>\n    <md-card-content>\n      <div ng-repeat=\"almostDue in $ctrl.almostDue\">\n        <md-list flex>\n          <md-list-item class=\"md-3-line\">\n            <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.complete(almostDue._id, 'due')\">Action Completed</md-button>\n            <div class=\"md-list-item-text\" layout=\"column\">\n              <h3>Position: {{almostDue.position.title}} at {{almostDue.company.name}}</h3>\n              <h4>Date Due: {{almostDue.dateDue | date: 'shortDate'}}</h4>\n              <p>Action: {{almostDue.action}}</p>\n            </div>\n          </md-list-item>\n          <md-divider ></md-divider>\n        </md-list>\n      </div>\n    </md-card-content>\n  </md-card>\n\n  <md-card>\n    <md-card-header>\n      <md-card-header-text>\n        <h2>Stats</h2>\n      </md-card-header-text>\n    </md-card-header>\n    <md-card-content>\n      <div class=\"statBlock\">\n        <h3>Positions Applied For</h3>\n        <p>Total: {{$ctrl.numPositions}}</p>\n        <p>This Week: {{$ctrl.positionCount}}</p>\n      </div>\n\n      <div class=\"statBlock\">\n        <h3>Companies Researched</h3>\n        <p>Total: {{$ctrl.numCompanies}}</p>\n        <p>This Week: {{$ctrl.companyCount}}</p>\n      </div>\n\n      <div class=\"statBlock\">\n        <h3>Contacts Made</h3>\n        <p>Total: {{$ctrl.numContacts}}</p>\n        <p>This Week: {{$ctrl.contactCount}}</p>\n      </div>\n    </md-card-content>\n  </md-card>\n  \n  <md-card>\n    <md-card-header>\n      <md-card-header-text>\n        <h2>Goal Visualizations</h2>\n      </md-card-header-text>\n    </md-card-header>\n    <md-card-content>\n      <visualizations>Loading...</visualizations>\n    </md-card-content>\n  </md-card>\n</section>\n";
+=======
+	module.exports = "<section ng-class=\"$ctrl.styles.dashboard\" ng-cloak>\n  <h1>Dashboard</h1>\n\n  <md-card>\n    <md-card-header>\n      <md-card-header-text>\n        <h2>Stats</h2>\n      </md-card-header-text>\n    </md-card-header>\n    <md-card-content>\n      <div class=\"statBlock\">\n        <h3>Positions Applied For</h3>\n        <p>Total: {{$ctrl.numPositions}}</p>\n        <p>This Week: {{$ctrl.positionCount}}</p>\n      </div>\n\n      <div class=\"statBlock\">\n        <h3>Companies Researched</h3>\n        <p>Total: {{$ctrl.numCompanies}}</p>\n        <p>This Week: {{$ctrl.companyCount}}</p>\n      </div>\n\n      <div class=\"statBlock\">\n        <h3>Contacts Made</h3>\n        <p>Total: {{$ctrl.numContacts}}</p>\n        <p>This Week: {{$ctrl.contactCount}}</p>\n      </div>\n    </md-card-content>\n  </md-card>\n\n  <md-card>\n    <md-card-header>\n      <md-card-header-text>\n        <h2>Overdue Action Items</h2>\n      </md-card-header-text>\n    </md-card-header>\n    <md-card-content>\n      <div ng-repeat=\"overDue in $ctrl.overDue\">\n        <md-list flex>\n          <md-list-item class=\"md-3-line\">\n            <md-button class=\"md-secondary md-icon-button\"\n            ng-click=\"$ctrl.complete(overDue._id, 'overdue')\">Action Completed</md-button>\n            <div class=\"md-list-item-text\" layout=\"column\">\n              <h3>Position: {{overDue.position.title}} at {{overDue.company.name}}</h3>\n              <h4>Date Due: {{overDue.dateDue | date: 'shortDate'}}</h4>\n              <p>Action: {{overDue.action}}</p>\n            </div>\n          </md-list-item>\n          <md-divider></md-divider>\n        </md-list>\n      </div>\n    </md-card-content>\n  </md-card>\n\n  <md-card>\n    <md-card-header>\n      <md-card-header-text>\n        <h2>Due Action Items</h2>\n      </md-card-header-text>\n    </md-card-header>\n    <md-card-content>\n      <div ng-repeat=\"almostDue in $ctrl.almostDue\">\n        <md-list flex>\n          <md-list-item class=\"md-3-line\">\n            <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.complete(almostDue._id, 'due')\">Action Completed</md-button>\n            <div class=\"md-list-item-text\" layout=\"column\">\n              <h3>Position: {{almostDue.position.title}} at {{almostDue.company.name}}</h3>\n              <h4>Date Due: {{almostDue.dateDue | date: 'shortDate'}}</h4>\n              <p>Action: {{almostDue.action}}</p>\n            </div>\n          </md-list-item>\n          <md-divider ></md-divider>\n        </md-list>\n      </div>\n    </md-card-content>\n  </md-card>\n\n  <md-card>\n    <md-card-header>\n      <md-card-header-text>\n        <h2>Goal Visualizations</h2>\n      </md-card-header-text>\n    </md-card-header>\n    <md-card-content>\n      <visualizations>Loading...</visualizations>\n    </md-card-content>\n  </md-card>\n</section>\n";
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 
 /***/ },
 /* 43 */
@@ -32283,11 +32363,60 @@
 	  value: true
 	});
 	
+<<<<<<< HEAD
 	var _header = __webpack_require__(92);
+=======
+	var _footer = __webpack_require__(92);
+	
+	var _footer2 = _interopRequireDefault(_footer);
+	
+	var _footer3 = __webpack_require__(93);
+	
+	var _footer4 = _interopRequireDefault(_footer3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _footer2.default,
+	  controller: controller
+	};
+	
+	
+	function controller() {
+	  this.styles = _footer4.default;
+	};
+
+/***/ },
+/* 92 */
+/***/ function(module, exports) {
+
+	module.exports = "<h5>&copy; Bomb Ass Job Search Footer</h5>\n<a href=\"https://github.com/InsertCleverNameHere\"><h5>github linky</h5></a>\n";
+
+/***/ },
+/* 93 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 94 */,
+/* 95 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	
 	var _header2 = _interopRequireDefault(_header);
 	
+<<<<<<< HEAD
 	var _header3 = __webpack_require__(93);
+=======
+	var _header = __webpack_require__(96);
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
+	
+	var _header4 = _interopRequireDefault(_header3);
+	
+	var _header3 = __webpack_require__(97);
 	
 	var _header4 = _interopRequireDefault(_header3);
 	
@@ -32355,6 +32484,7 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
 /* 92 */
 /***/ function(module, exports) {
 
@@ -32362,13 +32492,27 @@
 
 /***/ },
 /* 93 */
+=======
+/* 96 */
+/***/ function(module, exports) {
+
+	module.exports = "<div ng-cloak>\n  <md-content class=\"md-padding\">\n    <md-nav-bar md-selected-nav-item=\"currentNavItem\" nav-bar-aria-label=\"navigation links\">\n      <md-nav-item ng-if=\"!$ctrl.isAuthenticated()\" md-nav-sref=\"welcome\" name=\"welcome\" id=\"logo\" flex=\"grow\">Job Hunter</md-nav-item>\n      <md-nav-item ng-if=\"$ctrl.isAuthenticated()\" md-nav-sref=\"dashboard\" name=\"welcome\" id=\"logo\" flex=\"grow\">Job Hunter</md-nav-item>\n      <md-nav-item ng-if=\"!$ctrl.isAuthenticated()\" md-Nav-Click=\"$ctrl.prompt()\" name=\"enter\">Enter Site</md-nav-item>\n      <!--<md-nav-item ng-if=\"$ctrl.isAuthenticated()\" md-nav-sref=\"dashboard\" name=\"dashboard\">Dashboard</md-nav-item>-->\n      <md-nav-item ng-if=\"$ctrl.isAuthenticated()\" md-nav-sref=\"positions\" name=\"positions\">Positions</md-nav-item>\n      <md-nav-item ng-if=\"$ctrl.isAuthenticated()\" md-nav-sref=\"companies\" name=\"companies\">Companies</md-nav-item>\n      <md-nav-item ng-if=\"$ctrl.isAuthenticated()\" md-nav-sref=\"contacts\" name=\"contacts\">Contacts</md-nav-item>\n      <!--<md-nav-item ng-if=\"$ctrl.isAuthenticated()\" md-Nav-Click=\"$ctrl.logout()\" name=\"loggedOut\">Logout</md-nav-item>-->\n      <md-menu ng-if=\"$ctrl.isAuthenticated()\" md-position-mode=\"target-right target\" md-offset=\"0 55\">\n        <md-nav-item aria-label=\"Open gear interactions menu\" ng-click=\"$ctrl.openMenu($mdOpenMenu, $event)\" md-menu-origin md-nav-sref=\"user\" name=\"user\">Welcome, {{$ctrl.username}}</md-nav-item>\n        <md-menu-content width=\"3\">\n          <md-menu-item>\n            <md-button ng-click=\"$ctrl.detailView()\">\n              <div layout=\"row\" flex=\"\">\n                <p flex=\"\">User details</p>\n                <i class=\"material-icons\">mood</i>\n              </div>\n            </md-button>\n          </md-menu-item>\n          <md-menu-divider></md-menu-divider>\n          <md-menu-item>\n            <md-button ng-click=\"$ctrl.logout()\">\n              <div layout=\"row\" flex=\"\">\n                <p flex=\"\">Log out</p>\n                <i class=\"material-icons\">mood_bad</i>\n              </div>\n            </md-button>\n          </md-menu-item>\n        </md-menu-content>\n      </md-menu>\n\n    </md-nav-bar>\n  </md-content>\n</div>\n";
+
+/***/ },
+/* 97 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
+<<<<<<< HEAD
 /* 94 */,
 /* 95 */
+=======
+/* 98 */,
+/* 99 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32377,11 +32521,19 @@
 	  value: true
 	});
 	
+<<<<<<< HEAD
 	var _landing = __webpack_require__(96);
 	
 	var _landing2 = _interopRequireDefault(_landing);
 	
 	var _landing3 = __webpack_require__(97);
+=======
+	var _landing = __webpack_require__(100);
+	
+	var _landing2 = _interopRequireDefault(_landing);
+	
+	var _landing3 = __webpack_require__(101);
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	
 	var _landing4 = _interopRequireDefault(_landing3);
 	
@@ -32398,21 +32550,34 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
 /* 96 */
+=======
+/* 100 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	module.exports = "<section ng-class=\"$ctrl.styles.landing\">\n  <!-- TODO : insert **real** app name here once we've decided on it -->\n  <h1>Welcome to Clever Job Hunter </h1>\n\n  <!-- TODO : maybe we'll have some description here of the app and what it is, similar to the front page of any service? -->\n  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed diam eget risus varius blandit sit amet non magna. Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla.</p>\n\n</section>\n";
 
 /***/ },
+<<<<<<< HEAD
 /* 97 */
+=======
+/* 101 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"landing":"_9aBDHUckUL774aIVs0HvD"};
 
 /***/ },
+<<<<<<< HEAD
 /* 98 */,
 /* 99 */
+=======
+/* 102 */,
+/* 103 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32421,11 +32586,19 @@
 	  value: true
 	});
 	
+<<<<<<< HEAD
 	var _companyDetail = __webpack_require__(100);
 	
 	var _companyDetail2 = _interopRequireDefault(_companyDetail);
 	
 	var _companyDetail3 = __webpack_require__(101);
+=======
+	var _companyDetail = __webpack_require__(104);
+	
+	var _companyDetail2 = _interopRequireDefault(_companyDetail);
+	
+	var _companyDetail3 = __webpack_require__(105);
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	
 	var _companyDetail4 = _interopRequireDefault(_companyDetail3);
 	
@@ -32443,8 +32616,13 @@
 	};
 	
 	
+<<<<<<< HEAD
 	controller.$inject = ['$mdDialog', 'companyService', '$window', '$state', 'contactService', 'actionItemService'];
 	function controller($mdDialog, companyService, $window, $state, contactService, actionItemService) {
+=======
+	controller.$inject = ['$mdDialog', 'companyService', '$window', '$state', 'contactService'];
+	function controller($mdDialog, companyService, $window, $state, contactService) {
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	  var _this = this;
 	
 	  this.styles = _companyDetail4.default;
@@ -32501,6 +32679,7 @@
 	      },
 	      clickOutsideToClose: true,
 	      escapeToClose: true
+<<<<<<< HEAD
 	    }).then(function (newActionItem) {
 	      if (!newActionItem) return;
 	      _this.actionItems.unshift(newActionItem);
@@ -32521,11 +32700,18 @@
 	        }
 	      });
 	      console.log(removed);
+=======
+	    }).then(function (updatedCompany) {
+	      if (!updatedCompany) return;
+	      //pass copied and updated version to original
+	      angular.copy(updatedCompany, _this.company);
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	    });
 	  };
 	}
 
 /***/ },
+<<<<<<< HEAD
 /* 100 */
 /***/ function(module, exports) {
 
@@ -32533,14 +32719,28 @@
 
 /***/ },
 /* 101 */
+=======
+/* 104 */
+/***/ function(module, exports) {
+
+	module.exports = "<!--template for detailed company view-->\n\n<section ng-class=\"$ctrl.styles.companyDetail\">\n    <md-card>\n        <md-card-header>\n            <md-card-header-text>\n            <span class=\"md-title\">{{$ctrl.company.name}}</span>\n            <span class=\"md-subhead\">{{$ctrl.company.location}}</span>\n            </md-card-header-text>\n        </md-card-header>\n        <md-card-content>\n            <p>Services Offered: {{$ctrl.company.service}}</p>\n            <p>Company Info: {{$ctrl.company.info}}</p>\n            <p>Tech Stack: {{$ctrl.company.tech}}</p>\n        </md-card-content>\n        <md-card-header>\n            <md-card-header-text>\n            <span class=\"md-title\">Company Contacts</span>\n            </md-card-header-text>\n        </md-card-header>\n        <md-card-content>\n            <p ng-repeat=\"contact in $ctrl.companyContacts\">{{contact.name || 'No company contacts'}}</p>\n        </md-card-content>\n\n        <md-card-actions layout=\"row\" layout-align=\"end center\">\n            <md-button class=\"md-secondary md-icon-button\"\n            ui-sref=\"actions({parentId: $ctrl.company._id, which: $ctrl.which, parentName: $ctrl.company.name})\"\n            >View Current Action Items\n            </md-button>\n            <md-button>Questions</md-button>\n            <md-button ng-click=\"$ctrl.newActionItem($event)\">Add Action Item</md-button>\n            <md-button ng-click=\"$ctrl.edit()\">Edit Company<md-button>\n        </md-card-actions>\n    </md-card>\n</section>\n";
+
+/***/ },
+/* 105 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"companyDetail":"_8DD2UA1zrLWqVBneDx2sx"};
 
 /***/ },
+<<<<<<< HEAD
 /* 102 */,
 /* 103 */
+=======
+/* 106 */,
+/* 107 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32549,7 +32749,11 @@
 	  value: true
 	});
 	
+<<<<<<< HEAD
 	var _editCompany = __webpack_require__(104);
+=======
+	var _editCompany = __webpack_require__(108);
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	
 	var _editCompany2 = _interopRequireDefault(_editCompany);
 	
@@ -32593,13 +32797,21 @@
 	}
 
 /***/ },
+<<<<<<< HEAD
 /* 104 */
+=======
+/* 108 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	module.exports = "<md-dialog-content layout-gt-sm=\"row\" layout-padding>\n    <form name=\"editCompany\" novalidate>\n        <md-input-container>\n            <label>Name:</label>\n            <input\n                placeholder=\"{{$ctrl.companyToEdit.name}}\"\n                name=\"editName\"\n                required\n                ng-model=\"$ctrl.company.name\"/>\n        </md-input-container>\n        <md-input-container>\n            <label>Service:</label>\n            <input\n                placeholder=\"{{$ctrl.companyToEdit.service}}\"\n                name=\"editService\"\n                required\n                ng-model=\"$ctrl.company.service\"/>\n        </md-input-container>\n        <md-input-container>\n            <label>Location:</label>\n            <input\n                placeholder=\"{{$ctrl.companyToEdit.location}}\"\n                name=\"editLocation\"\n                required\n                ng-model=\"$ctrl.company.location\"/>\n        </md-input-container>\n        <md-input-container>\n            <label>Info:</label>\n            <input\n                placeholder=\"{{$ctrl.companyToEdit.info}}\"\n                name=\"editInfo\"\n                required\n                ng-model=\"$ctrl.company.info\"/>\n        </md-input-container>\n        <md-input-container>\n            <label>Tech:</label>\n            <input\n                placeholder=\"{{$ctrl.companyToEdit.tech}}\"\n                name=\"editTech\"\n                required\n                ng-model=\"$ctrl.company.tech\"/>\n        </md-input-container>\n        <!--TODO: add contacts???-->\n    </form>\n</md-dialog-content>\n<md-dialog-actions>\n    <md-button ng-click=\"$ctrl.cancel()\" class=\"md-primary\">\n        Cancel\n    </md-button>\n    <md-button ng-click=\"$ctrl.save()\" class=\"md-primary\">\n        Save\n    </md-button>\n</md-dialog-actions>\n\n";
 
 /***/ },
+<<<<<<< HEAD
 /* 105 */
+=======
+/* 109 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32608,11 +32820,19 @@
 	  value: true
 	});
 	
+<<<<<<< HEAD
 	var _listCompanies = __webpack_require__(106);
 	
 	var _listCompanies2 = _interopRequireDefault(_listCompanies);
 	
 	var _listCompanies3 = __webpack_require__(107);
+=======
+	var _listCompanies = __webpack_require__(110);
+	
+	var _listCompanies2 = _interopRequireDefault(_listCompanies);
+	
+	var _listCompanies3 = __webpack_require__(111);
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	
 	var _listCompanies4 = _interopRequireDefault(_listCompanies3);
 	
@@ -32722,21 +32942,34 @@
 	}
 
 /***/ },
+<<<<<<< HEAD
 /* 106 */
+=======
+/* 110 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	module.exports = "<!--template for the list of user companies-->\n<section ng-class=\"$ctrl.styles.listCompanies\">\n  <h1>Companies</h1>\n\n  <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.newCompany($event)\">Add Company</md-button>\n  <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.exportToCSV()\">Export Companies to CSV File</md-button>\n\n<!--<new-company add=\"$ctrl.add\"></new-company>-->\n\n<section ng-class=\"$ctrl.styles.companies\" ng-repeat=\"company in $ctrl.companies\">\n    <md-card>\n        <md-card-header>\n            <md-card-header-text>\n            <span class=\"md-title\">{{company.name}}</span>\n            <span class=\"md-subhead\">{{company.location}}</span>\n            </md-card-header-text>\n        </md-card-header>\n        <md-card-content>\n            <div ng-if=\"company.actionItems.length\">\n                <p>Action Items: </p>\n                <ul>\n                    <li ng-repeat=\"item in company.actionItems\">{{item.date}} {{item.plan}}</li>\n                </ul>\n            </div>\n        </md-card-content>\n        <md-card-actions layout=\"row\" layout-align=\"end center\">\n            <md-button ui-sref=\"company({companyId: company._id})\">More Details</md-button>\n            <md-button ng-click=\"$ctrl.remove(company._id)\">Remove Company</md-button>\n        </md-card-actions>\n    </md-card>\n</section>\n";
 
 /***/ },
+<<<<<<< HEAD
 /* 107 */
+=======
+/* 111 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"listCompanies":"_3bLxQQjLA93jCtojdRVVMG"};
 
 /***/ },
+<<<<<<< HEAD
 /* 108 */,
 /* 109 */
+=======
+/* 112 */,
+/* 113 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32745,7 +32978,11 @@
 	  value: true
 	});
 	
+<<<<<<< HEAD
 	var _newCompany = __webpack_require__(110);
+=======
+	var _newCompany = __webpack_require__(114);
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	
 	var _newCompany2 = _interopRequireDefault(_newCompany);
 	
@@ -32789,13 +33026,21 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
 /* 110 */
+=======
+/* 114 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	module.exports = "<!--html template for new company dialog-->\n    <md-dialog-content>\n        <form name=\"newCompany\" ng-submit=\"newCompany.$valid && $ctrl.submit()\"\n            novalidate>\n            <md-input-container>\n                <label>Name:</label>\n                <input\n                    name=\"addName\"\n                    required\n                    ng-model=\"$ctrl.company.name\"/>\n                    <div ng-messages=\"addCompany.addName.$error\" role=\"alert\">\n                        <div ng-message=\"required\">A name is required</div>\n                    </div>\n            </md-input-container>\n            <md-input-container>\n                <label>Service:</label>\n                <input\n                    name=\"addService\"\n                    required\n                    ng-model=\"$ctrl.company.service\"/>\n                <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An Service is required</div>\n                </div> -->\n            </md-input-container>\n            <md-input-container>\n                <label>Location:</label>\n                <input\n                    name=\"addLocation\"\n                    required\n                    ng-model=\"$ctrl.company.location\"/>\n                <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> -->\n            </md-input-container>\n            <md-input-container>\n                <label>Info:</label>\n                <!-- <select>\n                For selecting company from companies that already exist?\n                </select>\n                <p>Would also need option to add company if it does not exist. -->\n                <input\n                    name=\"addInfo\"\n                    ng-model=\"$ctrl.company.info\"/>\n                <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> -->\n            </md-input-container>\n            <md-input-container>\n                <label>Tech:</label>\n                <input\n                    name=\"addTech\"\n                    required\n                    ng-model=\"$ctrl.company.tech\"/>\n                <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> -->\n            </md-input-container>\n            <!--<md-input-container>\n                <label>Pros:</label>\n                <textarea\n                    name=\"addPros\"\n                    required\n                    ng-model=\"$ctrl.company.info\">\n                <div ng-messages=\"addPosition.addInformation.$error\" role=\"alert\">\n                    <ng-message when=\"required\">This field is required</ng-message>\n                </div> \n                </textarea>\n            </md-input-container>-->\n            <!--<md-input-container>\n                <label>Questions:</label>\n                <select>\n                For selecting company from companies that already exist?\n                </select>\n                <input\n                    name=\"addQuestions\"\n                    \n                    ng-model=\"$ctrl.company.company\"/>\n                <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> \n            </md-input-container>-->\n            <!--<md-input-container>\n                <label>Contact:</label>\n                <select>\n                For selecting company from companies that already exist?\n                </select>\n                <input\n                    name=\"addContact\"\n                    \n                    ng-model=\"$ctrl.company.company\"/>\n                <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> \n            </md-input-container>-->\n            <!--<md-input-container>\n                <label>Links:</label>\n                <input\n                    name=\"addLinks\"\n                    \n                    ng-model=\"$ctrl.company.links\"/>\n                <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> \n            </md-input-container>-->\n            <!--<md-input-container>\n                <label>Action Items:</label>\n                <select>\n                For selecting company from companies that already exist?\n                </select>\n                <input\n                    name=\"addActionItems\"\n                    \n                    ng-model=\"$ctrl.company.actionItems\"/>\n                <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> \n            </md-input-container>-->\n        </form>\n    </md-dialog-content>\n    <md-dialog-actions>\n        <md-button ng-click=\"$ctrl.submit()\" class=\"md-primary\">Save Company</md-button>\n        <md-button ng-click=\"$ctrl.cancel()\" class=\"md-primary\">Cancel</md-button>\n    </md-dialog-actions>\n\n";
 
 /***/ },
+<<<<<<< HEAD
 /* 111 */
+=======
+/* 115 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32804,11 +33049,19 @@
 	  value: true
 	});
 	
+<<<<<<< HEAD
 	var _listUsers = __webpack_require__(112);
 	
 	var _listUsers2 = _interopRequireDefault(_listUsers);
 	
 	var _listUsers3 = __webpack_require__(113);
+=======
+	var _listUsers = __webpack_require__(116);
+	
+	var _listUsers2 = _interopRequireDefault(_listUsers);
+	
+	var _listUsers3 = __webpack_require__(117);
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	
 	var _listUsers4 = _interopRequireDefault(_listUsers3);
 	
@@ -32856,21 +33109,34 @@
 	}
 
 /***/ },
+<<<<<<< HEAD
 /* 112 */
+=======
+/* 116 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	module.exports = "<!--template for the list of users-->\n<section ng-class=\"$ctrl.styles.listUsers\">\n\n<h1>Admin - User List</h1>\n\n  <!--<md-button class=\"md-secondary md-icon-button\"\n      ng-click=\"$ctrl.newCompany($event)\"\n      ng-show=\"$ctrl.addButton === 'add'\">Add Position\n  </md-button>-->\n\n  <!--<new-company add=\"$ctrl.add\" add-button=\"$ctrl.addButton\" ng-if=\"$ctrl.addButton === 'save'\"></new-company>-->\n\n  <section ng-class=\"$ctrl.styles.users\" ng-repeat=\"user in $ctrl.users\">\n      <md-card>\n          <md-card-header>\n              <md-card-header-text>\n              <span class=\"md-title\">{{user.name}}</span>\n              <span class=\"md-subhead\">{{user.email}}</span>\n              </md-card-header-text>\n          </md-card-header>\n          <md-card-content>\n              <div ng-if=\"user.actionItems.length\">\n                  <p>Action Items: </p>\n                  <ul>\n                      <li ng-repeat=\"item in user.actionItems\">{{item.date}} {{item.plan}}</li>\n                  </ul>\n              </div>\n              <div ng-if=\"user.active\">\n                  <p>Active</p>\n              </div>\n              <div ng-if=\"!user.active\">\n                  <p>Inactive</p>\n              </div>\n          </md-card-content>\n          <md-card-actions layout=\"row\" layout-align=\"end center\">\n              <md-button ui-sref=\"user({userId: user._id})\">More Details</md-button>\n              <div ng-if=\"user.active\">\n                <md-button ng-click=\"$ctrl.deactivate(user._id)\">Deactivate User</md-button>\n              </div>\n              <div ng-if=\"!user.active\">\n                <md-button ng-click=\"$ctrl.reactivate(user._id)\">Reactivate User</md-button>\n              </div>\n          </md-card-actions>\n      </md-card>\n  </section>\n\n</section>\n\n";
 
 /***/ },
+<<<<<<< HEAD
 /* 113 */
+=======
+/* 117 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"listUsers":"_26ZQWWY6W3yZLUZmEYyOQ5"};
 
 /***/ },
+<<<<<<< HEAD
 /* 114 */,
 /* 115 */
+=======
+/* 118 */,
+/* 119 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32879,11 +33145,19 @@
 	  value: true
 	});
 	
+<<<<<<< HEAD
 	var _userDetail = __webpack_require__(116);
 	
 	var _userDetail2 = _interopRequireDefault(_userDetail);
 	
 	var _userDetail3 = __webpack_require__(117);
+=======
+	var _userDetail = __webpack_require__(120);
+	
+	var _userDetail2 = _interopRequireDefault(_userDetail);
+	
+	var _userDetail3 = __webpack_require__(121);
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	
 	var _userDetail4 = _interopRequireDefault(_userDetail3);
 	
@@ -32931,21 +33205,34 @@
 	}
 
 /***/ },
+<<<<<<< HEAD
 /* 116 */
+=======
+/* 120 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	module.exports = "<section ng-class=\"$ctrl.styles.userDetail\">\n  <h1>{{$ctrl.user.name}}</h1>\n  \n  <div>Display Name: {{$ctrl.user.name}}</div>\n  <div>Login Email: {{$ctrl.user.email}}</div>\n  \n  <h2>My Submissions:</h2>\n  <md-list>\n    <md-list-item class=\"md-3-line blue-lite\" ng-repeat=\"position in $ctrl.positions\" ui-sref=\"position({positionId: position._id})\">\n      <div class=\"md-list-item-text\">\n        <h3>{{position.title}}</h3> \n        <h4>{{position.company.name}}</h4>\n        <p class=\"md-secondary\">{{position.updatedAt | date:'MM-dd-yyyy'}}</p>\n        <md-divider ng-if=\"!$last\"></md-divider>\n      </div>\n    </md-list-item>\n    <md-list-item ng-if=\"!$ctrl.positions.length\" class=\"md-3-line blue-lite\">\n      <h3>No Positions Saved Yet</h3>\n    </md-list-item>\n  </md-list>\n\n  <h2>Company Research:</h2>\n  <md-list>\n    <md-list-item class=\"md-3-line blue-lite\" ng-repeat=\"company in $ctrl.companies\" ui-sref=\"company({companyId: company._id})\">\n      <div class=\"md-list-item-text\">\n        <h3>{{company.name}}</h3> \n        <p class=\"md-secondary\">{{company.updatedAt | date:'MM-dd-yyyy'}}</p>\n        <md-divider ng-if=\"!$last\"></md-divider>\n      </div>\n    </md-list-item>\n    <md-list-item ng-if=\"!$ctrl.companies.length\" class=\"md-3-line blue-lite\">\n      <h3>No Companies Saved Yet</h3>\n    </md-list-item>\n  </md-list>\n\n  <h2>My Contacts:</h2>\n  <md-list>\n    <md-list-item class=\"md-3-line blue-lite\" ng-repeat=\"contact in $ctrl.contacts\" ui-sref=\"contact({contactId: contact._id})\">\n      <div class=\"md-list-item-text\">\n        <h3>{{contact.name}}</h3>\n        <h4>{{contact.role}}</h4> \n        <h4>{{contact.company}}</h4> \n        <p class=\"md-secondary\">{{contact.updatedAt | date:'MM-dd-yyyy'}}</p>\n        <md-divider ng-if=\"!$last\"></md-divider>\n      </div>\n    </md-list-item>\n    <md-list-item ng-if=\"!$ctrl.contacts.length\" class=\"md-1-line blue-lite\">\n      <h3>No Contacts Saved Yet</h3>\n    </md-list-item>\n  </md-list>\n<!--\n  <div ng-if=\"$ctrl.contacts.length\">\n    <ul>\n        <li ng-repeat=\"contact in $ctrl.contacts\">{{contact.name}} | {{contact.role}} | {{contact.company}}</li>\n    </ul>\n  </div>-->\n</section>\n";
 
 /***/ },
+<<<<<<< HEAD
 /* 117 */
+=======
+/* 121 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"userDetail":"_37hRA4xi1uxUdviq9HdF5h"};
 
 /***/ },
+<<<<<<< HEAD
 /* 118 */,
 /* 119 */
+=======
+/* 122 */,
+/* 123 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32954,7 +33241,11 @@
 	  value: true
 	});
 	
+<<<<<<< HEAD
 	var _newPosition = __webpack_require__(120);
+=======
+	var _newPosition = __webpack_require__(124);
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	
 	var _newPosition2 = _interopRequireDefault(_newPosition);
 	
@@ -33000,6 +33291,7 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
 /* 120 */
 /***/ function(module, exports) {
 
@@ -33007,6 +33299,15 @@
 
 /***/ },
 /* 121 */
+=======
+/* 124 */
+/***/ function(module, exports) {
+
+	module.exports = "<!--template for the dialog form to add a new position-->\n    <md-dialog-content>\n        <form name=\"newPosition\" ng-submit=\"newPosition.$valid && $ctrl.submit()\"\n      novalidate>\n            <md-input-container>\n                <label>Title:</label>\n                <input name=\"addTitle\" required ng-model=\"$ctrl.position.title\"/>\n                    <!--<div ng-messages=\"addCompany.addName.$error\" role=\"alert\">\n                        <div ng-message=\"required\">A name is required</div>\n                    </div>-->\n            </md-input-container>\n            <md-input-container>\n                <label>Method:</label>\n                <input name=\"addMethod\" required ng-model=\"$ctrl.position.method\"/>\n                <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> -->\n            </md-input-container>\n            <md-input-container>\n              <md-select ng-model=\"$ctrl.position.company\" placeholder=\"Select a company\">\n                <md-option ng-value=\"company._id\" ng-repeat=\"company in $ctrl.companies\">{{company.name}}</md-option>\n              </md-select>\n            </md-input-container>\n            <md-input-container>\n                <label>Info:</label>\n                <textarea name=\"addPostingInfo\" ng-model=\"$ctrl.position.postingInfo\"/></textarea>\n                <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> -->\n            </md-input-container>\n            <md-input-container>\n              <label>Date Posted:</label>\n              <div flex-gt-xs>\n                 <md-datepicker ng-model=\"$ctrl.position.dateAdvertised\" md-placeholder=\"{{$ctrl.currentDate | date: 'shortDate'}}\"></md-datepicker>\n               </div>\n            </md-input-container>\n            <md-input-container>\n              <label>Date Applied:</label>\n              <div flex-gt-xs>\n                <md-datepicker ng-model=\"$ctrl.position.dateApplied\" md-placeholder=\"{{$ctrl.currentDate | date: 'shortDate'}}\"></md-datepicker>\n              </div>\n            </md-input-container>\n            <!--<md-input-container>\n                <label>Pros:</label>\n                <textarea name=\"addPros\" required ng-model=\"$ctrl.company.info\">\n                <div ng-messages=\"addPosition.addInformation.$error\" role=\"alert\">\n                    <ng-message when=\"required\">This field is required</ng-message>\n                </div>\n                </textarea>\n            </md-input-container>-->\n            <!--<md-input-container>\n                <label>Questions:</label>\n                <select>\n                For selecting company from companies that already exist?\n                </select>\n                <input name=\"addQuestions\" ng-model=\"$ctrl.company.company\"/>\n                <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div>\n            </md-input-container>-->\n            <!--<md-input-container>\n                <label>Contact:</label>\n                <input name=\"addContact\" ng-model=\"$ctrl.company.company\"/>\n                <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div>\n            </md-input-container>-->\n            <!--<md-input-container>\n                <label>Action Items:</label>\n                <input name=\"addActionItems\" ng-model=\"$ctrl.company.actionItems\"/>\n                <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div>\n            </md-input-container>-->\n        </form>\n    </md-dialog-content>\n    <md-dialog-actions>\n        <md-button ng-click=\"$ctrl.submit()\" class=\"md-primary\">Save Position</md-button>\n        <md-button ng-click=\"$ctrl.cancel()\" class=\"md-primary\">Cancel</md-button>\n    </md-dialog-actions>\n";
+
+/***/ },
+/* 125 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33015,7 +33316,11 @@
 	  value: true
 	});
 	
+<<<<<<< HEAD
 	var _editPosition = __webpack_require__(122);
+=======
+	var _editPosition = __webpack_require__(126);
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	
 	var _editPosition2 = _interopRequireDefault(_editPosition);
 	
@@ -33058,13 +33363,21 @@
 	}
 
 /***/ },
+<<<<<<< HEAD
 /* 122 */
+=======
+/* 126 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	module.exports = "<md-dialog-content layout-gt-sm=\"row\" layout-padding>\n    <form name=\"editPosition\" novalidate>\n        <md-input-container>\n            <label>Title:</label>\n            <input\n                placeholder=\"{{$ctrl.positionToEdit.title}}\"\n                name=\"editTitle\"\n                required\n                ng-model=\"$ctrl.position.title\"/>\n        </md-input-container>\n        <md-input-container>\n            <md-select ng-model=\"$ctrl.position.company\" placeholder=\"{{$ctrl.positionToEdit.company.name}}\"> \n                <md-option ng-value=\"company._id\" ng-repeat=\"company in $ctrl.companies\">{{company.name}}</md-option>\n            </md-select>\n        </md-input-container>\n        <!--TODO: dateAdvertised and dateApplied???-->\n        <md-input-container>\n            <label>Method:</label>\n            <input\n                placeholder=\"{{$ctrl.positionToEdit.method}}\"\n                name=\"editMethod\"\n                required\n                ng-model=\"$ctrl.position.method\"/>\n        </md-input-container>\n        <md-input-container>\n            <label>Position Info:</label>\n            <input\n                placeholder=\"{{$ctrl.positionToEdit.postingInfo}}\"\n                name=\"editPostingInfo\"\n                required\n                ng-model=\"$ctrl.position.postingInfo\"/>\n        </md-input-container>  \n    </form>\n</md-dialog-content>\n<md-dialog-actions>\n    <md-button ng-click=\"$ctrl.cancel()\" class=\"md-primary\">\n        Cancel\n    </md-button>\n    <md-button ng-click=\"$ctrl.save()\" class=\"md-primary\">\n        Save\n    </md-button>\n</md-dialog-actions>\n\n";
 
 /***/ },
+<<<<<<< HEAD
 /* 123 */
+=======
+/* 127 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33073,11 +33386,19 @@
 	  value: true
 	});
 	
+<<<<<<< HEAD
 	var _positionDetail = __webpack_require__(124);
+=======
+	var _position = __webpack_require__(128);
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	
 	var _positionDetail2 = _interopRequireDefault(_positionDetail);
 	
+<<<<<<< HEAD
 	var _positionDetail3 = __webpack_require__(125);
+=======
+	var _position3 = __webpack_require__(129);
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	
 	var _positionDetail4 = _interopRequireDefault(_positionDetail3);
 	
@@ -33093,8 +33414,13 @@
 	};
 	
 	
+<<<<<<< HEAD
 	controller.$inject = ['$mdDialog', 'positionService', '$window', '$state', 'actionItemService'];
 	function controller($mdDialog, positionService, $window, $state, actionItemService) {
+=======
+	controller.$inject = ['$mdDialog', 'positionService', '$window', '$state'];
+	function controller($mdDialog, positionService, $window, $state) {
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	  var _this = this;
 	
 	  this.styles = _positionDetail4.default;
@@ -33126,9 +33452,16 @@
 	      },
 	      clickOutsideToClose: true,
 	      escapeToClose: true
+<<<<<<< HEAD
 	    }).then(function (newActionItem) {
 	      if (!newActionItem) return;
 	      _this.actionItems.unshift(newActionItem);
+=======
+	    }).then(function (updatedPosition) {
+	      if (!updatedPosition) return;
+	      //pass copied and updated version to original
+	      angular.copy(updatedPosition, _this.position);
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	    });
 	  };
 	
@@ -33172,6 +33505,7 @@
 	}
 
 /***/ },
+<<<<<<< HEAD
 /* 124 */
 /***/ function(module, exports) {
 
@@ -33179,14 +33513,28 @@
 
 /***/ },
 /* 125 */
+=======
+/* 128 */
+/***/ function(module, exports) {
+
+	module.exports = "<!--template for a detailed position view-->\n\n<section ng-class=\"$ctrl.styles.position\">\n    <md-card>\n        <md-card-header>\n            <md-card-header-text>\n            <span class=\"md-title\">{{$ctrl.position.title}}</span>\n            <span class=\"md-subhead\">{{$ctrl.position.company.name}}</span>\n            </md-card-header-text>\n        </md-card-header>\n        <md-card-content>\n            <p>Position Info: {{$ctrl.position.postingInfo}}</p>\n            <p>Date Advertised: {{$ctrl.position.dateAdvertised | date: 'shortDate'}}</p>\n            <p>Date Applied: {{$ctrl.position.dateApplied | date: 'shortDate'}}</p>\n            <p>Application Method: {{$ctrl.position.method}}</p>\n        </md-card-content>\n        <md-card-actions layout=\"row\" layout-align=\"end center\">\n\n          <md-button class=\"md-secondary md-icon-button\"\n            ui-sref=\"actions({parentId: $ctrl.position._id, which: $ctrl.which, parentName: $ctrl.position.title})\"\n            >View Current Action Items\n          </md-button>\n            <md-button>Questions</md-button>\n            <md-button ng-click=\"$ctrl.newActionItem($event)\">Add Action Item</md-button>\n            <md-button ng-click=\"$ctrl.edit()\">Edit Position<md-button>\n        </md-card-actions>\n    </md-card>\n\n</section>\n";
+
+/***/ },
+/* 129 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"positionDetail":"_3ScewXgWL-fliIcNNRzwNv"};
 
 /***/ },
+<<<<<<< HEAD
 /* 126 */,
 /* 127 */
+=======
+/* 130 */,
+/* 131 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33195,11 +33543,19 @@
 	  value: true
 	});
 	
+<<<<<<< HEAD
 	var _positions = __webpack_require__(128);
 	
 	var _positions2 = _interopRequireDefault(_positions);
 	
 	var _positions3 = __webpack_require__(129);
+=======
+	var _positions = __webpack_require__(132);
+	
+	var _positions2 = _interopRequireDefault(_positions);
+	
+	var _positions3 = __webpack_require__(133);
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	
 	var _positions4 = _interopRequireDefault(_positions3);
 	
@@ -33318,6 +33674,7 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
 /* 128 */
 /***/ function(module, exports) {
 
@@ -33325,14 +33682,28 @@
 
 /***/ },
 /* 129 */
+=======
+/* 132 */
+/***/ function(module, exports) {
+
+	module.exports = "<!--template for the view of user positions-->\n<section ng-class=\"$ctrl.styles.positions\">\n  <h1>Positions</h1>\n  <md-button class=\"md-secondary md-icon-button\"\n  ng-click=\"$ctrl.newPosition($event)\"\n  ng-show=\"$ctrl.addButton === 'add'\">Add Position</md-button>\n\n<new-position companies=\"$ctrl.companies\" add=\"$ctrl.add\" add-button=\"$ctrl.addButton\" ng-if=\"$ctrl.addButton === 'save'\"></new-position>\n\n  <div ng-repeat=\"position in $ctrl.positions\">\n    <md-card>\n        <md-card-header>\n            <md-card-header-text>\n            <span class=\"md-title\">{{position.title}}</span>\n            <span class=\"md-subhead\">{{position.company.name}}</span>\n            </md-card-header-text>\n        </md-card-header>\n        <md-card-actions layout=\"row\" layout-align=\"end center\">\n            <md-button ui-sref=\"position({positionId: position._id})\">More Details</md-button>\n            <md-button ng-click=\"$ctrl.remove(position._id)\">Remove Position</md-button>\n        </md-card-actions>\n    </md-card>\n  </div>\n</section>\n";
+
+/***/ },
+/* 133 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"positions":"_2qbX8yx_lcChFj2LOSXNMn"};
 
 /***/ },
+<<<<<<< HEAD
 /* 130 */,
 /* 131 */
+=======
+/* 134 */,
+/* 135 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33355,7 +33726,11 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+<<<<<<< HEAD
 	var reqContext = __webpack_require__(132);
+=======
+	var reqContext = __webpack_require__(136);
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	
 	var services = _angular2.default.module('services', []);
 	
@@ -33367,6 +33742,7 @@
 	exports.default = services.name;
 
 /***/ },
+<<<<<<< HEAD
 /* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -33377,6 +33753,18 @@
 		"./position-service.js": 136,
 		"./token-service.js": 137,
 		"./user-service.js": 138
+=======
+/* 136 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var map = {
+		"./actionItem-service.js": 137,
+		"./company-service.js": 138,
+		"./contact-service.js": 139,
+		"./position-service.js": 140,
+		"./token-service.js": 141,
+		"./user-service.js": 142
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -33389,11 +33777,19 @@
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
+<<<<<<< HEAD
 	webpackContext.id = 132;
 
 
 /***/ },
 /* 133 */
+=======
+	webpackContext.id = 136;
+
+
+/***/ },
+/* 137 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	'use strict';
@@ -33467,7 +33863,11 @@
 	}
 
 /***/ },
+<<<<<<< HEAD
 /* 134 */
+=======
+/* 138 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	'use strict';
@@ -33515,7 +33915,11 @@
 	}
 
 /***/ },
+<<<<<<< HEAD
 /* 135 */
+=======
+/* 139 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	'use strict';
@@ -33573,7 +33977,11 @@
 	}
 
 /***/ },
+<<<<<<< HEAD
 /* 136 */
+=======
+/* 140 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	'use strict';
@@ -33626,7 +34034,11 @@
 	}
 
 /***/ },
+<<<<<<< HEAD
 /* 137 */
+=======
+/* 141 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	'use strict';
@@ -33658,7 +34070,11 @@
 	}
 
 /***/ },
+<<<<<<< HEAD
 /* 138 */
+=======
+/* 142 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	'use strict';
@@ -33740,7 +34156,11 @@
 	}
 
 /***/ },
+<<<<<<< HEAD
 /* 139 */
+=======
+/* 143 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33749,26 +34169,46 @@
 	__webpack_require__(1);
 	
 	// Load Angular and dependent libs
+<<<<<<< HEAD
 	__webpack_require__(140);
 	__webpack_require__(142);
 	
 	// Now load Angular Material
 	__webpack_require__(144);
+=======
+	__webpack_require__(144);
+	__webpack_require__(146);
+	
+	// Now load Angular Material
+	__webpack_require__(148);
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	
 	// Export namespace
 	module.exports = 'ngMaterial';
 
 /***/ },
+<<<<<<< HEAD
 /* 140 */
+=======
+/* 144 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
+<<<<<<< HEAD
 	__webpack_require__(141);
 	module.exports = 'ngAnimate';
 
 /***/ },
 /* 141 */
+=======
+	__webpack_require__(145);
+	module.exports = 'ngAnimate';
+
+/***/ },
+/* 145 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	'use strict';/**
@@ -35218,16 +35658,28 @@
 	noop=angular.noop;copy=angular.copy;extend=angular.extend;jqLite=angular.element;forEach=angular.forEach;isArray=angular.isArray;isString=angular.isString;isObject=angular.isObject;isUndefined=angular.isUndefined;isDefined=angular.isDefined;isFunction=angular.isFunction;isElement=angular.isElement;}).directive('ngAnimateSwap',ngAnimateSwapDirective).directive('ngAnimateChildren',$$AnimateChildrenDirective).factory('$$rAFScheduler',$$rAFSchedulerFactory).provider('$$animateQueue',$$AnimateQueueProvider).provider('$$animation',$$AnimationProvider).provider('$animateCss',$AnimateCssProvider).provider('$$animateCssDriver',$$AnimateCssDriverProvider).provider('$$animateJs',$$AnimateJsProvider).provider('$$animateJsDriver',$$AnimateJsDriverProvider);})(window,window.angular);
 
 /***/ },
+<<<<<<< HEAD
 /* 142 */
+=======
+/* 146 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
+<<<<<<< HEAD
 	__webpack_require__(143);
 	module.exports = 'ngAria';
 
 /***/ },
 /* 143 */
+=======
+	__webpack_require__(147);
+	module.exports = 'ngAria';
+
+/***/ },
+/* 147 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	'use strict';
@@ -35621,7 +36073,11 @@
 	})(window, window.angular);
 
 /***/ },
+<<<<<<< HEAD
 /* 144 */
+=======
+/* 148 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	"use strict";var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol?"symbol":typeof obj;};/*!
@@ -46150,16 +46606,28 @@
 	scope.$on('$destroy',function(){disconnect();});}};}})();(function(){"use strict";MdTabsTemplate.$inject=["$compile","$mdUtil"];angular.module('material.components.tabs').directive('mdTabsTemplate',MdTabsTemplate);function MdTabsTemplate($compile,$mdUtil){return{restrict:'A',link:link,scope:{template:'=mdTabsTemplate',connected:'=?mdConnectedIf',compileScope:'=mdScope'},require:'^?mdTabs'};function link(scope,element,attr,ctrl){if(!ctrl)return;var compileScope=ctrl.enableDisconnect?scope.compileScope.$new():scope.compileScope;element.html(scope.template);$compile(element.contents())(compileScope);return $mdUtil.nextTick(handleScope);function handleScope(){scope.$watch('connected',function(value){value===false?disconnect():reconnect();});scope.$on('$destroy',reconnect);}function disconnect(){if(ctrl.enableDisconnect)$mdUtil.disconnectScope(compileScope);}function reconnect(){if(ctrl.enableDisconnect)$mdUtil.reconnectScope(compileScope);}}}})();(function(){angular.module("material.core").constant("$MD_THEME_CSS","md-autocomplete.md-THEME_NAME-theme {  background: '{{background-A100}}'; }  md-autocomplete.md-THEME_NAME-theme[disabled]:not([md-floating-label]) {    background: '{{background-100}}'; }  md-autocomplete.md-THEME_NAME-theme button md-icon path {    fill: '{{background-600}}'; }  md-autocomplete.md-THEME_NAME-theme button:after {    background: '{{background-600-0.3}}'; }.md-autocomplete-suggestions-container.md-THEME_NAME-theme {  background: '{{background-A100}}'; }  .md-autocomplete-suggestions-container.md-THEME_NAME-theme li {    color: '{{background-900}}'; }    .md-autocomplete-suggestions-container.md-THEME_NAME-theme li .highlight {      color: '{{background-600}}'; }    .md-autocomplete-suggestions-container.md-THEME_NAME-theme li:hover, .md-autocomplete-suggestions-container.md-THEME_NAME-theme li.selected {      background: '{{background-200}}'; }md-backdrop {  background-color: '{{background-900-0.0}}'; }  md-backdrop.md-opaque.md-THEME_NAME-theme {    background-color: '{{background-900-1.0}}'; }md-bottom-sheet.md-THEME_NAME-theme {  background-color: '{{background-50}}';  border-top-color: '{{background-300}}'; }  md-bottom-sheet.md-THEME_NAME-theme.md-list md-list-item {    color: '{{foreground-1}}'; }  md-bottom-sheet.md-THEME_NAME-theme .md-subheader {    background-color: '{{background-50}}'; }  md-bottom-sheet.md-THEME_NAME-theme .md-subheader {    color: '{{foreground-1}}'; }.md-button.md-THEME_NAME-theme:not([disabled]):hover {  background-color: '{{background-500-0.2}}'; }.md-button.md-THEME_NAME-theme:not([disabled]).md-focused {  background-color: '{{background-500-0.2}}'; }.md-button.md-THEME_NAME-theme:not([disabled]).md-icon-button:hover {  background-color: transparent; }.md-button.md-THEME_NAME-theme.md-fab {  background-color: '{{accent-color}}';  color: '{{accent-contrast}}'; }  .md-button.md-THEME_NAME-theme.md-fab md-icon {    color: '{{accent-contrast}}'; }  .md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover {    background-color: '{{accent-A700}}'; }  .md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused {    background-color: '{{accent-A700}}'; }.md-button.md-THEME_NAME-theme.md-primary {  color: '{{primary-color}}'; }  .md-button.md-THEME_NAME-theme.md-primary.md-raised, .md-button.md-THEME_NAME-theme.md-primary.md-fab {    color: '{{primary-contrast}}';    background-color: '{{primary-color}}'; }    .md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]) md-icon {      color: '{{primary-contrast}}'; }    .md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]):hover {      background-color: '{{primary-600}}'; }    .md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]).md-focused {      background-color: '{{primary-600}}'; }  .md-button.md-THEME_NAME-theme.md-primary:not([disabled]) md-icon {    color: '{{primary-color}}'; }.md-button.md-THEME_NAME-theme.md-fab {  background-color: '{{accent-color}}';  color: '{{accent-contrast}}'; }  .md-button.md-THEME_NAME-theme.md-fab:not([disabled]) .md-icon {    color: '{{accent-contrast}}'; }  .md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover {    background-color: '{{accent-A700}}'; }  .md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused {    background-color: '{{accent-A700}}'; }.md-button.md-THEME_NAME-theme.md-raised {  color: '{{background-900}}';  background-color: '{{background-50}}'; }  .md-button.md-THEME_NAME-theme.md-raised:not([disabled]) md-icon {    color: '{{background-900}}'; }  .md-button.md-THEME_NAME-theme.md-raised:not([disabled]):hover {    background-color: '{{background-50}}'; }  .md-button.md-THEME_NAME-theme.md-raised:not([disabled]).md-focused {    background-color: '{{background-200}}'; }.md-button.md-THEME_NAME-theme.md-warn {  color: '{{warn-color}}'; }  .md-button.md-THEME_NAME-theme.md-warn.md-raised, .md-button.md-THEME_NAME-theme.md-warn.md-fab {    color: '{{warn-contrast}}';    background-color: '{{warn-color}}'; }    .md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]) md-icon {      color: '{{warn-contrast}}'; }    .md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]):hover {      background-color: '{{warn-600}}'; }    .md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]).md-focused {      background-color: '{{warn-600}}'; }  .md-button.md-THEME_NAME-theme.md-warn:not([disabled]) md-icon {    color: '{{warn-color}}'; }.md-button.md-THEME_NAME-theme.md-accent {  color: '{{accent-color}}'; }  .md-button.md-THEME_NAME-theme.md-accent.md-raised, .md-button.md-THEME_NAME-theme.md-accent.md-fab {    color: '{{accent-contrast}}';    background-color: '{{accent-color}}'; }    .md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]) md-icon {      color: '{{accent-contrast}}'; }    .md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]):hover {      background-color: '{{accent-A700}}'; }    .md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]).md-focused {      background-color: '{{accent-A700}}'; }  .md-button.md-THEME_NAME-theme.md-accent:not([disabled]) md-icon {    color: '{{accent-color}}'; }.md-button.md-THEME_NAME-theme[disabled], .md-button.md-THEME_NAME-theme.md-raised[disabled], .md-button.md-THEME_NAME-theme.md-fab[disabled], .md-button.md-THEME_NAME-theme.md-accent[disabled], .md-button.md-THEME_NAME-theme.md-warn[disabled] {  color: '{{foreground-3}}';  cursor: default; }  .md-button.md-THEME_NAME-theme[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-raised[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-fab[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-accent[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-warn[disabled] md-icon {    color: '{{foreground-3}}'; }.md-button.md-THEME_NAME-theme.md-raised[disabled], .md-button.md-THEME_NAME-theme.md-fab[disabled] {  background-color: '{{foreground-4}}'; }.md-button.md-THEME_NAME-theme[disabled] {  background-color: transparent; }._md a.md-THEME_NAME-theme:not(.md-button).md-primary {  color: '{{primary-color}}'; }  ._md a.md-THEME_NAME-theme:not(.md-button).md-primary:hover {    color: '{{primary-700}}'; }._md a.md-THEME_NAME-theme:not(.md-button).md-accent {  color: '{{accent-color}}'; }  ._md a.md-THEME_NAME-theme:not(.md-button).md-accent:hover {    color: '{{accent-700}}'; }._md a.md-THEME_NAME-theme:not(.md-button).md-accent {  color: '{{accent-color}}'; }  ._md a.md-THEME_NAME-theme:not(.md-button).md-accent:hover {    color: '{{accent-A700}}'; }._md a.md-THEME_NAME-theme:not(.md-button).md-warn {  color: '{{warn-color}}'; }  ._md a.md-THEME_NAME-theme:not(.md-button).md-warn:hover {    color: '{{warn-700}}'; }md-card.md-THEME_NAME-theme {  color: '{{foreground-1}}';  background-color: '{{background-hue-1}}';  border-radius: 2px; }  md-card.md-THEME_NAME-theme .md-card-image {    border-radius: 2px 2px 0 0; }  md-card.md-THEME_NAME-theme md-card-header md-card-avatar md-icon {    color: '{{background-color}}';    background-color: '{{foreground-3}}'; }  md-card.md-THEME_NAME-theme md-card-header md-card-header-text .md-subhead {    color: '{{foreground-2}}'; }  md-card.md-THEME_NAME-theme md-card-title md-card-title-text:not(:only-child) .md-subhead {    color: '{{foreground-2}}'; }md-chips.md-THEME_NAME-theme .md-chips {  box-shadow: 0 1px '{{foreground-4}}'; }  md-chips.md-THEME_NAME-theme .md-chips.md-focused {    box-shadow: 0 2px '{{primary-color}}'; }  md-chips.md-THEME_NAME-theme .md-chips .md-chip-input-container input {    color: '{{foreground-1}}'; }    md-chips.md-THEME_NAME-theme .md-chips .md-chip-input-container input::-webkit-input-placeholder {      color: '{{foreground-3}}'; }    md-chips.md-THEME_NAME-theme .md-chips .md-chip-input-container input:-moz-placeholder {      color: '{{foreground-3}}'; }    md-chips.md-THEME_NAME-theme .md-chips .md-chip-input-container input::-moz-placeholder {      color: '{{foreground-3}}'; }    md-chips.md-THEME_NAME-theme .md-chips .md-chip-input-container input:-ms-input-placeholder {      color: '{{foreground-3}}'; }    md-chips.md-THEME_NAME-theme .md-chips .md-chip-input-container input::-webkit-input-placeholder {      color: '{{foreground-3}}'; }md-chips.md-THEME_NAME-theme md-chip {  background: '{{background-300}}';  color: '{{background-800}}'; }  md-chips.md-THEME_NAME-theme md-chip md-icon {    color: '{{background-700}}'; }  md-chips.md-THEME_NAME-theme md-chip.md-focused {    background: '{{primary-color}}';    color: '{{primary-contrast}}'; }    md-chips.md-THEME_NAME-theme md-chip.md-focused md-icon {      color: '{{primary-contrast}}'; }  md-chips.md-THEME_NAME-theme md-chip._md-chip-editing {    background: transparent;    color: '{{background-800}}'; }md-chips.md-THEME_NAME-theme md-chip-remove .md-button md-icon path {  fill: '{{background-500}}'; }.md-contact-suggestion span.md-contact-email {  color: '{{background-400}}'; }md-checkbox.md-THEME_NAME-theme .md-ripple {  color: '{{accent-A700}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-ripple {  color: '{{background-600}}'; }md-checkbox.md-THEME_NAME-theme.md-checked.md-focused .md-container:before {  background-color: '{{accent-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme .md-ink-ripple {  color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-ink-ripple {  color: '{{accent-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not(.md-checked) .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-icon {  background-color: '{{accent-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-icon:after {  border-color: '{{accent-contrast-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary .md-ripple {  color: '{{primary-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ripple {  color: '{{background-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary .md-ink-ripple {  color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ink-ripple {  color: '{{primary-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary:not(.md-checked) .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-icon {  background-color: '{{primary-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked.md-focused .md-container:before {  background-color: '{{primary-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-icon:after {  border-color: '{{primary-contrast-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary .md-indeterminate[disabled] .md-container {  color: '{{foreground-3}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn .md-ripple {  color: '{{warn-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn .md-ink-ripple {  color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-ink-ripple {  color: '{{warn-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn:not(.md-checked) .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-icon {  background-color: '{{warn-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked.md-focused:not([disabled]) .md-container:before {  background-color: '{{warn-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-icon:after {  border-color: '{{background-200}}'; }md-checkbox.md-THEME_NAME-theme[disabled]:not(.md-checked) .md-icon {  border-color: '{{foreground-3}}'; }md-checkbox.md-THEME_NAME-theme[disabled].md-checked .md-icon {  background-color: '{{foreground-3}}'; }md-checkbox.md-THEME_NAME-theme[disabled].md-checked .md-icon:after {  border-color: '{{background-200}}'; }md-checkbox.md-THEME_NAME-theme[disabled] .md-icon:after {  border-color: '{{foreground-3}}'; }md-checkbox.md-THEME_NAME-theme[disabled] .md-label {  color: '{{foreground-3}}'; }md-content.md-THEME_NAME-theme {  color: '{{foreground-1}}';  background-color: '{{background-default}}'; }/** Theme styles for mdCalendar. */.md-calendar.md-THEME_NAME-theme {  background: '{{background-A100}}';  color: '{{background-A200-0.87}}'; }  .md-calendar.md-THEME_NAME-theme tr:last-child td {    border-bottom-color: '{{background-200}}'; }.md-THEME_NAME-theme .md-calendar-day-header {  background: '{{background-300}}';  color: '{{background-A200-0.87}}'; }.md-THEME_NAME-theme .md-calendar-date.md-calendar-date-today .md-calendar-date-selection-indicator {  border: 1px solid '{{primary-500}}'; }.md-THEME_NAME-theme .md-calendar-date.md-calendar-date-today.md-calendar-date-disabled {  color: '{{primary-500-0.6}}'; }.md-calendar-date.md-focus .md-THEME_NAME-theme .md-calendar-date-selection-indicator, .md-THEME_NAME-theme .md-calendar-date-selection-indicator:hover {  background: '{{background-300}}'; }.md-THEME_NAME-theme .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator,.md-THEME_NAME-theme .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator {  background: '{{primary-500}}';  color: '{{primary-500-contrast}}';  border-color: transparent; }.md-THEME_NAME-theme .md-calendar-date-disabled,.md-THEME_NAME-theme .md-calendar-month-label-disabled {  color: '{{background-A200-0.435}}'; }/** Theme styles for mdDatepicker. */.md-THEME_NAME-theme .md-datepicker-input {  color: '{{foreground-1}}'; }  .md-THEME_NAME-theme .md-datepicker-input::-webkit-input-placeholder {    color: '{{foreground-3}}'; }  .md-THEME_NAME-theme .md-datepicker-input:-moz-placeholder {    color: '{{foreground-3}}'; }  .md-THEME_NAME-theme .md-datepicker-input::-moz-placeholder {    color: '{{foreground-3}}'; }  .md-THEME_NAME-theme .md-datepicker-input:-ms-input-placeholder {    color: '{{foreground-3}}'; }  .md-THEME_NAME-theme .md-datepicker-input::-webkit-input-placeholder {    color: '{{foreground-3}}'; }.md-THEME_NAME-theme .md-datepicker-input-container {  border-bottom-color: '{{foreground-4}}'; }  .md-THEME_NAME-theme .md-datepicker-input-container.md-datepicker-focused {    border-bottom-color: '{{primary-color}}'; }    .md-accent .md-THEME_NAME-theme .md-datepicker-input-container.md-datepicker-focused {      border-bottom-color: '{{accent-color}}'; }    .md-warn .md-THEME_NAME-theme .md-datepicker-input-container.md-datepicker-focused {      border-bottom-color: '{{warn-A700}}'; }  .md-THEME_NAME-theme .md-datepicker-input-container.md-datepicker-invalid {    border-bottom-color: '{{warn-A700}}'; }.md-THEME_NAME-theme .md-datepicker-calendar-pane {  border-color: '{{background-hue-1}}'; }.md-THEME_NAME-theme .md-datepicker-triangle-button .md-datepicker-expand-triangle {  border-top-color: '{{foreground-3}}'; }.md-THEME_NAME-theme .md-datepicker-triangle-button:hover .md-datepicker-expand-triangle {  border-top-color: '{{foreground-2}}'; }.md-THEME_NAME-theme .md-datepicker-open .md-datepicker-calendar-icon {  color: '{{primary-color}}'; }.md-THEME_NAME-theme .md-datepicker-open.md-accent .md-datepicker-calendar-icon, .md-accent .md-THEME_NAME-theme .md-datepicker-open .md-datepicker-calendar-icon {  color: '{{accent-color}}'; }.md-THEME_NAME-theme .md-datepicker-open.md-warn .md-datepicker-calendar-icon, .md-warn .md-THEME_NAME-theme .md-datepicker-open .md-datepicker-calendar-icon {  color: '{{warn-A700}}'; }.md-THEME_NAME-theme .md-datepicker-calendar {  background: '{{background-A100}}'; }.md-THEME_NAME-theme .md-datepicker-input-mask-opaque {  box-shadow: 0 0 0 9999px \"{{background-hue-1}}\"; }.md-THEME_NAME-theme .md-datepicker-open .md-datepicker-input-container {  background: \"{{background-hue-1}}\"; }md-dialog.md-THEME_NAME-theme {  border-radius: 4px;  background-color: '{{background-hue-1}}';  color: '{{foreground-1}}'; }  md-dialog.md-THEME_NAME-theme.md-content-overflow .md-actions, md-dialog.md-THEME_NAME-theme.md-content-overflow md-dialog-actions {    border-top-color: '{{foreground-4}}'; }md-divider.md-THEME_NAME-theme {  border-top-color: '{{foreground-4}}'; }.layout-row > md-divider.md-THEME_NAME-theme,.layout-xs-row > md-divider.md-THEME_NAME-theme, .layout-gt-xs-row > md-divider.md-THEME_NAME-theme,.layout-sm-row > md-divider.md-THEME_NAME-theme, .layout-gt-sm-row > md-divider.md-THEME_NAME-theme,.layout-md-row > md-divider.md-THEME_NAME-theme, .layout-gt-md-row > md-divider.md-THEME_NAME-theme,.layout-lg-row > md-divider.md-THEME_NAME-theme, .layout-gt-lg-row > md-divider.md-THEME_NAME-theme,.layout-xl-row > md-divider.md-THEME_NAME-theme {  border-right-color: '{{foreground-4}}'; }md-icon.md-THEME_NAME-theme {  color: '{{foreground-2}}'; }  md-icon.md-THEME_NAME-theme.md-primary {    color: '{{primary-color}}'; }  md-icon.md-THEME_NAME-theme.md-accent {    color: '{{accent-color}}'; }  md-icon.md-THEME_NAME-theme.md-warn {    color: '{{warn-color}}'; }md-input-container.md-THEME_NAME-theme .md-input {  color: '{{foreground-1}}';  border-color: '{{foreground-4}}'; }  md-input-container.md-THEME_NAME-theme .md-input::-webkit-input-placeholder {    color: '{{foreground-3}}'; }  md-input-container.md-THEME_NAME-theme .md-input:-moz-placeholder {    color: '{{foreground-3}}'; }  md-input-container.md-THEME_NAME-theme .md-input::-moz-placeholder {    color: '{{foreground-3}}'; }  md-input-container.md-THEME_NAME-theme .md-input:-ms-input-placeholder {    color: '{{foreground-3}}'; }  md-input-container.md-THEME_NAME-theme .md-input::-webkit-input-placeholder {    color: '{{foreground-3}}'; }md-input-container.md-THEME_NAME-theme > md-icon {  color: '{{foreground-1}}'; }md-input-container.md-THEME_NAME-theme label,md-input-container.md-THEME_NAME-theme .md-placeholder {  color: '{{foreground-3}}'; }md-input-container.md-THEME_NAME-theme label.md-required:after {  color: '{{warn-A700}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-focused):not(.md-input-invalid) label.md-required:after {  color: '{{foreground-2}}'; }md-input-container.md-THEME_NAME-theme .md-input-messages-animation, md-input-container.md-THEME_NAME-theme .md-input-message-animation {  color: '{{warn-A700}}'; }  md-input-container.md-THEME_NAME-theme .md-input-messages-animation .md-char-counter, md-input-container.md-THEME_NAME-theme .md-input-message-animation .md-char-counter {    color: '{{foreground-1}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-has-value label {  color: '{{foreground-2}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused .md-input, md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-resized .md-input {  border-color: '{{primary-color}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused label,md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused md-icon {  color: '{{primary-color}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-accent .md-input {  border-color: '{{accent-color}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-accent label,md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-accent md-icon {  color: '{{accent-color}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-warn .md-input {  border-color: '{{warn-A700}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-warn label,md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-warn md-icon {  color: '{{warn-A700}}'; }md-input-container.md-THEME_NAME-theme.md-input-invalid .md-input {  border-color: '{{warn-A700}}'; }md-input-container.md-THEME_NAME-theme.md-input-invalid label,md-input-container.md-THEME_NAME-theme.md-input-invalid .md-input-message-animation,md-input-container.md-THEME_NAME-theme.md-input-invalid .md-char-counter {  color: '{{warn-A700}}'; }md-input-container.md-THEME_NAME-theme .md-input[disabled],[disabled] md-input-container.md-THEME_NAME-theme .md-input {  border-bottom-color: transparent;  color: '{{foreground-3}}';  background-image: linear-gradient(to right, \"{{foreground-3}}\" 0%, \"{{foreground-3}}\" 33%, transparent 0%);  background-image: -ms-linear-gradient(left, transparent 0%, \"{{foreground-3}}\" 100%); }md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text h3, md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text h4,md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text h3,md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text h4 {  color: '{{foreground-1}}'; }md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text p,md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text p {  color: '{{foreground-2}}'; }md-list.md-THEME_NAME-theme .md-proxy-focus.md-focused div.md-no-style {  background-color: '{{background-100}}'; }md-list.md-THEME_NAME-theme md-list-item .md-avatar-icon {  background-color: '{{foreground-3}}';  color: '{{background-color}}'; }md-list.md-THEME_NAME-theme md-list-item > md-icon {  color: '{{foreground-2}}'; }  md-list.md-THEME_NAME-theme md-list-item > md-icon.md-highlight {    color: '{{primary-color}}'; }    md-list.md-THEME_NAME-theme md-list-item > md-icon.md-highlight.md-accent {      color: '{{accent-color}}'; }md-menu-content.md-THEME_NAME-theme {  background-color: '{{background-A100}}'; }  md-menu-content.md-THEME_NAME-theme md-menu-item {    color: '{{background-A200-0.87}}'; }    md-menu-content.md-THEME_NAME-theme md-menu-item md-icon {      color: '{{background-A200-0.54}}'; }    md-menu-content.md-THEME_NAME-theme md-menu-item .md-button[disabled] {      color: '{{background-A200-0.25}}'; }      md-menu-content.md-THEME_NAME-theme md-menu-item .md-button[disabled] md-icon {        color: '{{background-A200-0.25}}'; }  md-menu-content.md-THEME_NAME-theme md-menu-divider {    background-color: '{{background-A200-0.11}}'; }md-menu-bar.md-THEME_NAME-theme > button.md-button {  color: '{{foreground-2}}';  border-radius: 2px; }md-menu-bar.md-THEME_NAME-theme md-menu.md-open > button, md-menu-bar.md-THEME_NAME-theme md-menu > button:focus {  outline: none;  background: '{{background-200}}'; }md-menu-bar.md-THEME_NAME-theme.md-open:not(.md-keyboard-mode) md-menu:hover > button {  background-color: '{{ background-500-0.2}}'; }md-menu-bar.md-THEME_NAME-theme:not(.md-keyboard-mode):not(.md-open) md-menu button:hover,md-menu-bar.md-THEME_NAME-theme:not(.md-keyboard-mode):not(.md-open) md-menu button:focus {  background: transparent; }md-menu-content.md-THEME_NAME-theme .md-menu > .md-button:after {  color: '{{background-A200-0.54}}'; }md-menu-content.md-THEME_NAME-theme .md-menu.md-open > .md-button {  background-color: '{{ background-500-0.2}}'; }md-toolbar.md-THEME_NAME-theme.md-menu-toolbar {  background-color: '{{background-A100}}';  color: '{{background-A200}}'; }  md-toolbar.md-THEME_NAME-theme.md-menu-toolbar md-toolbar-filler {    background-color: '{{primary-color}}';    color: '{{background-A100-0.87}}'; }    md-toolbar.md-THEME_NAME-theme.md-menu-toolbar md-toolbar-filler md-icon {      color: '{{background-A100-0.87}}'; }md-nav-bar.md-THEME_NAME-theme .md-nav-bar {  background-color: transparent;  border-color: '{{foreground-4}}'; }md-nav-bar.md-THEME_NAME-theme .md-button._md-nav-button.md-unselected {  color: '{{foreground-2}}'; }md-nav-bar.md-THEME_NAME-theme md-nav-ink-bar {  color: '{{accent-color}}';  background: '{{accent-color}}'; }.md-panel {  background-color: '{{background-900-0.0}}'; }  .md-panel._md-panel-backdrop.md-THEME_NAME-theme {    background-color: '{{background-900-1.0}}'; }md-progress-circular.md-THEME_NAME-theme path {  stroke: '{{primary-color}}'; }md-progress-circular.md-THEME_NAME-theme.md-warn path {  stroke: '{{warn-color}}'; }md-progress-circular.md-THEME_NAME-theme.md-accent path {  stroke: '{{accent-color}}'; }md-progress-linear.md-THEME_NAME-theme .md-container {  background-color: '{{primary-100}}'; }md-progress-linear.md-THEME_NAME-theme .md-bar {  background-color: '{{primary-color}}'; }md-progress-linear.md-THEME_NAME-theme.md-warn .md-container {  background-color: '{{warn-100}}'; }md-progress-linear.md-THEME_NAME-theme.md-warn .md-bar {  background-color: '{{warn-color}}'; }md-progress-linear.md-THEME_NAME-theme.md-accent .md-container {  background-color: '{{accent-100}}'; }md-progress-linear.md-THEME_NAME-theme.md-accent .md-bar {  background-color: '{{accent-color}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-warn .md-bar1 {  background-color: '{{warn-100}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-warn .md-dashed:before {  background: radial-gradient(\"{{warn-100}}\" 0%, \"{{warn-100}}\" 16%, transparent 42%); }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-accent .md-bar1 {  background-color: '{{accent-100}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-accent .md-dashed:before {  background: radial-gradient(\"{{accent-100}}\" 0%, \"{{accent-100}}\" 16%, transparent 42%); }md-radio-button.md-THEME_NAME-theme .md-off {  border-color: '{{foreground-2}}'; }md-radio-button.md-THEME_NAME-theme .md-on {  background-color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme.md-checked .md-off {  border-color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme.md-checked .md-ink-ripple {  color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme .md-container .md-ripple {  color: '{{accent-A700}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-on, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-on,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-on,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-on {  background-color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-off {  border-color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ink-ripple {  color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-container .md-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-container .md-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-container .md-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-container .md-ripple {  color: '{{primary-600}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-on, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-on,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-on,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-on {  background-color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-off,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-off {  border-color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-ink-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-ink-ripple {  color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-container .md-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-container .md-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-container .md-ripple,md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-container .md-ripple {  color: '{{warn-600}}'; }md-radio-group.md-THEME_NAME-theme[disabled],md-radio-button.md-THEME_NAME-theme[disabled] {  color: '{{foreground-3}}'; }  md-radio-group.md-THEME_NAME-theme[disabled] .md-container .md-off,  md-radio-button.md-THEME_NAME-theme[disabled] .md-container .md-off {    border-color: '{{foreground-3}}'; }  md-radio-group.md-THEME_NAME-theme[disabled] .md-container .md-on,  md-radio-button.md-THEME_NAME-theme[disabled] .md-container .md-on {    border-color: '{{foreground-3}}'; }md-radio-group.md-THEME_NAME-theme .md-checked .md-ink-ripple {  color: '{{accent-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme.md-primary .md-checked:not([disabled]) .md-ink-ripple, md-radio-group.md-THEME_NAME-theme .md-checked:not([disabled]).md-primary .md-ink-ripple {  color: '{{primary-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme .md-checked.md-primary .md-ink-ripple {  color: '{{warn-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked .md-container:before {  background-color: '{{accent-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty).md-primary .md-checked .md-container:before,md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked.md-primary .md-container:before {  background-color: '{{primary-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty).md-warn .md-checked .md-container:before,md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked.md-warn .md-container:before {  background-color: '{{warn-color-0.26}}'; }md-input-container md-select.md-THEME_NAME-theme .md-select-value span:first-child:after {  color: '{{warn-A700}}'; }md-input-container:not(.md-input-focused):not(.md-input-invalid) md-select.md-THEME_NAME-theme .md-select-value span:first-child:after {  color: '{{foreground-3}}'; }md-input-container.md-input-focused:not(.md-input-has-value) md-select.md-THEME_NAME-theme .md-select-value {  color: '{{primary-color}}'; }  md-input-container.md-input-focused:not(.md-input-has-value) md-select.md-THEME_NAME-theme .md-select-value.md-select-placeholder {    color: '{{primary-color}}'; }md-input-container.md-input-invalid md-select.md-THEME_NAME-theme .md-select-value {  color: '{{warn-A700}}' !important;  border-bottom-color: '{{warn-A700}}' !important; }md-input-container.md-input-invalid md-select.md-THEME_NAME-theme.md-no-underline .md-select-value {  border-bottom-color: transparent !important; }md-select.md-THEME_NAME-theme[disabled] .md-select-value {  border-bottom-color: transparent;  background-image: linear-gradient(to right, \"{{foreground-3}}\" 0%, \"{{foreground-3}}\" 33%, transparent 0%);  background-image: -ms-linear-gradient(left, transparent 0%, \"{{foreground-3}}\" 100%); }md-select.md-THEME_NAME-theme .md-select-value {  border-bottom-color: '{{foreground-4}}'; }  md-select.md-THEME_NAME-theme .md-select-value.md-select-placeholder {    color: '{{foreground-3}}'; }  md-select.md-THEME_NAME-theme .md-select-value span:first-child:after {    color: '{{warn-A700}}'; }md-select.md-THEME_NAME-theme.md-no-underline .md-select-value {  border-bottom-color: transparent !important; }md-select.md-THEME_NAME-theme.ng-invalid.ng-touched .md-select-value {  color: '{{warn-A700}}' !important;  border-bottom-color: '{{warn-A700}}' !important; }md-select.md-THEME_NAME-theme.ng-invalid.ng-touched.md-no-underline .md-select-value {  border-bottom-color: transparent !important; }md-select.md-THEME_NAME-theme:not([disabled]):focus .md-select-value {  border-bottom-color: '{{primary-color}}';  color: '{{ foreground-1 }}'; }  md-select.md-THEME_NAME-theme:not([disabled]):focus .md-select-value.md-select-placeholder {    color: '{{ foreground-1 }}'; }md-select.md-THEME_NAME-theme:not([disabled]):focus.md-no-underline .md-select-value {  border-bottom-color: transparent !important; }md-select.md-THEME_NAME-theme:not([disabled]):focus.md-accent .md-select-value {  border-bottom-color: '{{accent-color}}'; }md-select.md-THEME_NAME-theme:not([disabled]):focus.md-warn .md-select-value {  border-bottom-color: '{{warn-color}}'; }md-select.md-THEME_NAME-theme[disabled] .md-select-value {  color: '{{foreground-3}}'; }  md-select.md-THEME_NAME-theme[disabled] .md-select-value.md-select-placeholder {    color: '{{foreground-3}}'; }md-select-menu.md-THEME_NAME-theme md-content {  background: '{{background-A100}}'; }  md-select-menu.md-THEME_NAME-theme md-content md-optgroup {    color: '{{background-600-0.87}}'; }  md-select-menu.md-THEME_NAME-theme md-content md-option {    color: '{{background-900-0.87}}'; }    md-select-menu.md-THEME_NAME-theme md-content md-option[disabled] .md-text {      color: '{{background-400-0.87}}'; }    md-select-menu.md-THEME_NAME-theme md-content md-option:not([disabled]):focus, md-select-menu.md-THEME_NAME-theme md-content md-option:not([disabled]):hover {      background: '{{background-200}}'; }    md-select-menu.md-THEME_NAME-theme md-content md-option[selected] {      color: '{{primary-500}}'; }      md-select-menu.md-THEME_NAME-theme md-content md-option[selected]:focus {        color: '{{primary-600}}'; }      md-select-menu.md-THEME_NAME-theme md-content md-option[selected].md-accent {        color: '{{accent-color}}'; }        md-select-menu.md-THEME_NAME-theme md-content md-option[selected].md-accent:focus {          color: '{{accent-A700}}'; }.md-checkbox-enabled.md-THEME_NAME-theme .md-ripple {  color: '{{primary-600}}'; }.md-checkbox-enabled.md-THEME_NAME-theme[selected] .md-ripple {  color: '{{background-600}}'; }.md-checkbox-enabled.md-THEME_NAME-theme .md-ink-ripple {  color: '{{foreground-2}}'; }.md-checkbox-enabled.md-THEME_NAME-theme[selected] .md-ink-ripple {  color: '{{primary-color-0.87}}'; }.md-checkbox-enabled.md-THEME_NAME-theme:not(.md-checked) .md-icon {  border-color: '{{foreground-2}}'; }.md-checkbox-enabled.md-THEME_NAME-theme[selected] .md-icon {  background-color: '{{primary-color-0.87}}'; }.md-checkbox-enabled.md-THEME_NAME-theme[selected].md-focused .md-container:before {  background-color: '{{primary-color-0.26}}'; }.md-checkbox-enabled.md-THEME_NAME-theme[selected] .md-icon:after {  border-color: '{{primary-contrast-0.87}}'; }.md-checkbox-enabled.md-THEME_NAME-theme .md-indeterminate[disabled] .md-container {  color: '{{foreground-3}}'; }.md-checkbox-enabled.md-THEME_NAME-theme md-option .md-text {  color: '{{background-900-0.87}}'; }md-sidenav.md-THEME_NAME-theme, md-sidenav.md-THEME_NAME-theme md-content {  background-color: '{{background-hue-1}}'; }md-slider.md-THEME_NAME-theme .md-track {  background-color: '{{foreground-3}}'; }md-slider.md-THEME_NAME-theme .md-track-ticks {  color: '{{background-contrast}}'; }md-slider.md-THEME_NAME-theme .md-focus-ring {  background-color: '{{accent-A200-0.2}}'; }md-slider.md-THEME_NAME-theme .md-disabled-thumb {  border-color: '{{background-color}}';  background-color: '{{background-color}}'; }md-slider.md-THEME_NAME-theme.md-min .md-thumb:after {  background-color: '{{background-color}}';  border-color: '{{foreground-3}}'; }md-slider.md-THEME_NAME-theme.md-min .md-focus-ring {  background-color: '{{foreground-3-0.38}}'; }md-slider.md-THEME_NAME-theme.md-min[md-discrete] .md-thumb:after {  background-color: '{{background-contrast}}';  border-color: transparent; }md-slider.md-THEME_NAME-theme.md-min[md-discrete] .md-sign {  background-color: '{{background-400}}'; }  md-slider.md-THEME_NAME-theme.md-min[md-discrete] .md-sign:after {    border-top-color: '{{background-400}}'; }md-slider.md-THEME_NAME-theme.md-min[md-discrete][md-vertical] .md-sign:after {  border-top-color: transparent;  border-left-color: '{{background-400}}'; }md-slider.md-THEME_NAME-theme .md-track.md-track-fill {  background-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-thumb:after {  border-color: '{{accent-color}}';  background-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-sign {  background-color: '{{accent-color}}'; }  md-slider.md-THEME_NAME-theme .md-sign:after {    border-top-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme[md-vertical] .md-sign:after {  border-top-color: transparent;  border-left-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-thumb-text {  color: '{{accent-contrast}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-focus-ring {  background-color: '{{warn-200-0.38}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-track.md-track-fill {  background-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-thumb:after {  border-color: '{{warn-color}}';  background-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-sign {  background-color: '{{warn-color}}'; }  md-slider.md-THEME_NAME-theme.md-warn .md-sign:after {    border-top-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn[md-vertical] .md-sign:after {  border-top-color: transparent;  border-left-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-thumb-text {  color: '{{warn-contrast}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-focus-ring {  background-color: '{{primary-200-0.38}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-track.md-track-fill {  background-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-thumb:after {  border-color: '{{primary-color}}';  background-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-sign {  background-color: '{{primary-color}}'; }  md-slider.md-THEME_NAME-theme.md-primary .md-sign:after {    border-top-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary[md-vertical] .md-sign:after {  border-top-color: transparent;  border-left-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-thumb-text {  color: '{{primary-contrast}}'; }md-slider.md-THEME_NAME-theme[disabled] .md-thumb:after {  border-color: transparent; }md-slider.md-THEME_NAME-theme[disabled]:not(.md-min) .md-thumb:after, md-slider.md-THEME_NAME-theme[disabled][md-discrete] .md-thumb:after {  background-color: '{{foreground-3}}';  border-color: transparent; }md-slider.md-THEME_NAME-theme[disabled][readonly] .md-sign {  background-color: '{{background-400}}'; }  md-slider.md-THEME_NAME-theme[disabled][readonly] .md-sign:after {    border-top-color: '{{background-400}}'; }md-slider.md-THEME_NAME-theme[disabled][readonly][md-vertical] .md-sign:after {  border-top-color: transparent;  border-left-color: '{{background-400}}'; }md-slider.md-THEME_NAME-theme[disabled][readonly] .md-disabled-thumb {  border-color: transparent;  background-color: transparent; }md-slider-container[disabled] > *:first-child:not(md-slider),md-slider-container[disabled] > *:last-child:not(md-slider) {  color: '{{foreground-3}}'; }.md-subheader.md-THEME_NAME-theme {  color: '{{ foreground-2-0.23 }}';  background-color: '{{background-default}}'; }  .md-subheader.md-THEME_NAME-theme.md-primary {    color: '{{primary-color}}'; }  .md-subheader.md-THEME_NAME-theme.md-accent {    color: '{{accent-color}}'; }  .md-subheader.md-THEME_NAME-theme.md-warn {    color: '{{warn-color}}'; }md-switch.md-THEME_NAME-theme .md-ink-ripple {  color: '{{background-500}}'; }md-switch.md-THEME_NAME-theme .md-thumb {  background-color: '{{background-50}}'; }md-switch.md-THEME_NAME-theme .md-bar {  background-color: '{{background-500}}'; }md-switch.md-THEME_NAME-theme.md-checked .md-ink-ripple {  color: '{{accent-color}}'; }md-switch.md-THEME_NAME-theme.md-checked .md-thumb {  background-color: '{{accent-color}}'; }md-switch.md-THEME_NAME-theme.md-checked .md-bar {  background-color: '{{accent-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-focused .md-thumb:before {  background-color: '{{accent-color-0.26}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary .md-ink-ripple {  color: '{{primary-color}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary .md-thumb {  background-color: '{{primary-color}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary .md-bar {  background-color: '{{primary-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary.md-focused .md-thumb:before {  background-color: '{{primary-color-0.26}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn .md-ink-ripple {  color: '{{warn-color}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn .md-thumb {  background-color: '{{warn-color}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn .md-bar {  background-color: '{{warn-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn.md-focused .md-thumb:before {  background-color: '{{warn-color-0.26}}'; }md-switch.md-THEME_NAME-theme[disabled] .md-thumb {  background-color: '{{background-400}}'; }md-switch.md-THEME_NAME-theme[disabled] .md-bar {  background-color: '{{foreground-4}}'; }md-tabs.md-THEME_NAME-theme md-tabs-wrapper {  background-color: transparent;  border-color: '{{foreground-4}}'; }md-tabs.md-THEME_NAME-theme .md-paginator md-icon {  color: '{{primary-color}}'; }md-tabs.md-THEME_NAME-theme md-ink-bar {  color: '{{accent-color}}';  background: '{{accent-color}}'; }md-tabs.md-THEME_NAME-theme .md-tab {  color: '{{foreground-2}}'; }  md-tabs.md-THEME_NAME-theme .md-tab[disabled], md-tabs.md-THEME_NAME-theme .md-tab[disabled] md-icon {    color: '{{foreground-3}}'; }  md-tabs.md-THEME_NAME-theme .md-tab.md-active, md-tabs.md-THEME_NAME-theme .md-tab.md-active md-icon, md-tabs.md-THEME_NAME-theme .md-tab.md-focused, md-tabs.md-THEME_NAME-theme .md-tab.md-focused md-icon {    color: '{{primary-color}}'; }  md-tabs.md-THEME_NAME-theme .md-tab.md-focused {    background: '{{primary-color-0.1}}'; }  md-tabs.md-THEME_NAME-theme .md-tab .md-ripple-container {    color: '{{accent-A100}}'; }md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper {  background-color: '{{accent-color}}'; }  md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {    color: '{{accent-A100}}'; }    md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {      color: '{{accent-contrast}}'; }    md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {      background: '{{accent-contrast-0.1}}'; }  md-tabs.md-THEME_NAME-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-ink-bar {    color: '{{primary-600-1}}';    background: '{{primary-600-1}}'; }md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper {  background-color: '{{primary-color}}'; }  md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {    color: '{{primary-100}}'; }    md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {      color: '{{primary-contrast}}'; }    md-tabs.md-THEME_NAME-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {      background: '{{primary-contrast-0.1}}'; }md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper {  background-color: '{{warn-color}}'; }  md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {    color: '{{warn-100}}'; }    md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {      color: '{{warn-contrast}}'; }    md-tabs.md-THEME_NAME-theme.md-warn > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {      background: '{{warn-contrast-0.1}}'; }md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper {  background-color: '{{primary-color}}'; }  md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {    color: '{{primary-100}}'; }    md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {      color: '{{primary-contrast}}'; }    md-toolbar > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {      background: '{{primary-contrast-0.1}}'; }md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper {  background-color: '{{accent-color}}'; }  md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {    color: '{{accent-A100}}'; }    md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {      color: '{{accent-contrast}}'; }    md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {      background: '{{accent-contrast-0.1}}'; }  md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-ink-bar {    color: '{{primary-600-1}}';    background: '{{primary-600-1}}'; }md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper {  background-color: '{{warn-color}}'; }  md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {    color: '{{warn-100}}'; }    md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {      color: '{{warn-contrast}}'; }    md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {      background: '{{warn-contrast-0.1}}'; }md-toast.md-THEME_NAME-theme .md-toast-content {  background-color: #323232;  color: '{{background-50}}'; }  md-toast.md-THEME_NAME-theme .md-toast-content .md-button {    color: '{{background-50}}'; }    md-toast.md-THEME_NAME-theme .md-toast-content .md-button.md-highlight {      color: '{{accent-color}}'; }      md-toast.md-THEME_NAME-theme .md-toast-content .md-button.md-highlight.md-primary {        color: '{{primary-color}}'; }      md-toast.md-THEME_NAME-theme .md-toast-content .md-button.md-highlight.md-warn {        color: '{{warn-color}}'; }md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar) {  background-color: '{{primary-color}}';  color: '{{primary-contrast}}'; }  md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar) md-icon {    color: '{{primary-contrast}}';    fill: '{{primary-contrast}}'; }  md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar) .md-button[disabled] md-icon {    color: '{{primary-contrast-0.26}}';    fill: '{{primary-contrast-0.26}}'; }  md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar).md-accent {    background-color: '{{accent-color}}';    color: '{{accent-contrast}}'; }    md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar).md-accent .md-ink-ripple {      color: '{{accent-contrast}}'; }    md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar).md-accent md-icon {      color: '{{accent-contrast}}';      fill: '{{accent-contrast}}'; }    md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar).md-accent .md-button[disabled] md-icon {      color: '{{accent-contrast-0.26}}';      fill: '{{accent-contrast-0.26}}'; }  md-toolbar.md-THEME_NAME-theme:not(.md-menu-toolbar).md-warn {    background-color: '{{warn-color}}';    color: '{{warn-contrast}}'; }md-tooltip.md-THEME_NAME-theme {  color: '{{background-700-contrast}}'; }  md-tooltip.md-THEME_NAME-theme .md-content {    background-color: '{{background-700}}'; }/*  Only used with Theme processes */html.md-THEME_NAME-theme, body.md-THEME_NAME-theme {  color: '{{foreground-1}}';  background-color: '{{background-color}}'; }");})();})(window,window.angular);;window.ngMaterial={version:{full:"1.1.1"}};
 
 /***/ },
+<<<<<<< HEAD
 /* 145 */
+=======
+/* 149 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
+<<<<<<< HEAD
 	__webpack_require__(146);
 	module.exports = 'ngMessages';
 
 /***/ },
 /* 146 */
+=======
+	__webpack_require__(150);
+	module.exports = 'ngMessages';
+
+/***/ },
+/* 150 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	'use strict';
@@ -46893,14 +47361,23 @@
 	})(window, window.angular);
 
 /***/ },
+<<<<<<< HEAD
 /* 147 */
+=======
+/* 151 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
+<<<<<<< HEAD
 /* 148 */,
 /* 149 */
+=======
+/* 152 */,
+/* 153 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module) {'use strict';
@@ -47207,7 +47684,11 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)(module)))
 
 /***/ },
+<<<<<<< HEAD
 /* 150 */
+=======
+/* 154 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	'use strict';
@@ -47266,7 +47747,21 @@
 	    data: {
 	      requiresAuth: true
 	    },
+<<<<<<< HEAD
 	    component: 'positionDetail'
+=======
+	    views: {
+	      header: {
+	        component: 'header'
+	      },
+	      main: {
+	        component: 'position'
+	      },
+	      footer: {
+	        component: 'footer'
+	      }
+	    }
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	  }).state('actions', {
 	    url: '/actions/:parentId/:parentName/:which',
 	    resolve: {
@@ -47283,7 +47778,21 @@
 	    data: {
 	      requiresAuth: true
 	    },
+<<<<<<< HEAD
 	    component: 'actionItemList'
+=======
+	    views: {
+	      header: {
+	        component: 'header'
+	      },
+	      main: {
+	        component: 'actionItemList'
+	      },
+	      footer: {
+	        component: 'footer'
+	      }
+	    }
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 	  }).state('contacts', {
 	    url: '/contacts',
 	    data: {
@@ -47309,7 +47818,11 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
 /* 151 */
+=======
+/* 155 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47356,7 +47869,11 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
 /* 152 */
+=======
+/* 156 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	'use strict';
@@ -47396,7 +47913,11 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
 /* 153 */
+=======
+/* 157 */
+>>>>>>> ea25a714c506bf3dfda7fd95c1c468ba69bfb8e0
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
