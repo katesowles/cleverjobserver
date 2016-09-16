@@ -20583,6 +20583,7 @@
 	
 	  this.add = function (actionItem, userId) {
 	    actionItemService.addForPosOrComp(actionItem, userId).then(function (addedItem) {
+	      console.log('addedItem', addedItem);
 	      $mdDialog.hide(addedItem);
 	    }).catch(function (err) {
 	      return console.log(err);
@@ -21087,8 +21088,6 @@
 	  value: true
 	});
 	
-	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-	
 	var _dashboard = __webpack_require__(42);
 	
 	var _dashboard2 = _interopRequireDefault(_dashboard);
@@ -21112,33 +21111,18 @@
 	  this.styles = _dashboard4.default;
 	  this.userId = $window.localStorage['id'];
 	
-	  Promise.all([actionItemService.getDueAndOverdue(this.userId), companyService.getByUser(this.userId), companyService.getCountForWeek(this.userId), contactService.getByUser(this.userId), contactService.getCountForWeek(this.userId), positionService.getByUser(this.userId), positionService.getCountForWeek(this.userId)]).then(function (_ref) {
-	    var _ref2 = _slicedToArray(_ref, 7);
-	
-	    var actionItems = _ref2[0];
-	    var companies = _ref2[1];
-	    var companiesWeek = _ref2[2];
-	    var contacts = _ref2[3];
-	    var contactsWeek = _ref2[4];
-	    var positions = _ref2[5];
-	    var positionsWeek = _ref2[6];
-	
-	    _this.almostDue = actionItems.almostDue;
-	    _this.overDue = actionItems.overDue;
-	    _this.companies = companies;
-	    _this.numCompanies = companies.length;
-	    _this.companyCount = companiesWeek;
-	    _this.contacts = contacts;
-	    _this.numContacts = contacts.length;
-	    _this.contactCount = contactsWeek;
-	    _this.positions = positions;
-	    _this.numPositions = positions.length;
-	    _this.positionCount = positionsWeek;
+	  actionItemService.getDueAndOverdue(this.userId).then(function (items) {
+	    console.log('get due and overdue called');
+	    console.log(items);
+	    _this.almostDue = items.almostDue;
+	    _this.overDue = items.overDue;
 	  }).catch(function (err) {
-	    return console.log(err);
+	    console.log(err);
 	  });
 	
 	  this.complete = function (id, category) {
+	    console.log(id);
+	    console.log(category);
 	    actionItemService.remove(id).then(function (removed) {
 	      if (category === 'due') {
 	        _this.almostDue.forEach(function (e, i) {
@@ -21156,6 +21140,44 @@
 	      console.log(removed);
 	    });
 	  };
+	
+	  companyService.getByUser(this.userId).then(function (result) {
+	    _this.companies = result;
+	    _this.numCompanies = result.length;
+	  }).catch(function (err) {
+	    console.log(err);
+	  });
+	
+	  companyService.getCountForWeek(this.userId).then(function (result) {
+	    _this.companyCount = result;
+	  }).catch(function (err) {
+	    console.log(err);
+	  });
+	
+	  contactService.getByUser(this.userId).then(function (result) {
+	    _this.numContacts = result.length;
+	  }).catch(function (err) {
+	    console.log(err);
+	  });
+	
+	  contactService.getCountForWeek(this.userId).then(function (result) {
+	    _this.contactCount = result;
+	  }).catch(function (err) {
+	    console.log(err);
+	  });
+	
+	  positionService.getByUser(this.userId).then(function (result) {
+	    _this.positions = result;
+	    _this.numPositions = result.length;
+	  }).catch(function (err) {
+	    console.log(err);
+	  });
+	
+	  positionService.getCountForWeek(this.userId).then(function (result) {
+	    _this.positionCount = result;
+	  }).catch(function (err) {
+	    console.log(err);
+	  });
 	
 	  //adds new position
 	  this.addPosition = function (positionToAdd, userId) {
@@ -21258,7 +21280,7 @@
 /* 42 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.dashboard\" ng-cloak>\n  <h1>Dashboard</h1>\n\n  <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.newPosition($event)\">Add Position</md-button>\n  <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.newCompany($event)\">Add Company</md-button>\n  <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.newContact($event)\">Add Contact</md-button>\n\n  <md-card>\n    <md-card-header>\n      <md-card-header-text>\n        <h2>Overdue Action Items</h2>\n      </md-card-header-text>\n    </md-card-header>\n    <md-card-content>\n      <h3 ng-if=\"!$ctrl.overDue.length\">You do not currently have overdue action items.</h3>\n      <div ng-if=\"$ctrl.overDue.length\" ng-repeat=\"overDue in $ctrl.overDue\">\n        <md-list flex>\n          <md-list-item class=\"md-3-line\">\n            <md-button class=\"md-secondary md-icon-button\"\n            ng-click=\"$ctrl.complete(overDue._id, 'overdue')\">Action Completed</md-button>\n            <div class=\"md-list-item-text\" layout=\"column\">\n              <h3>Position: {{overDue.position.title || 'No Position Specified'}} at {{overDue.company.name || 'No Company Specified'}}</h3>\n              <h4>Date Due: {{overDue.dateDue | date: 'shortDate'}}</h4>\n              <p>Action: {{overDue.action}}</p>\n            </div>\n          </md-list-item>\n          <md-divider></md-divider>\n        </md-list>\n      </div>\n    </md-card-content>\n  </md-card>\n\n  <md-card>\n    <md-card-header>\n      <md-card-header-text>\n        <h2>Upcoming Action Items</h2>\n      </md-card-header-text>\n    </md-card-header>\n    <md-card-content>\n      <h3 ng-if=\"!$ctrl.almostDue.length\">You do not currently have upcoming action items.</h3>\n      <div ng-if=\"$ctrl.almostDue.length\" ng-repeat=\"almostDue in $ctrl.almostDue\">\n        <md-list flex>\n          <md-list-item class=\"md-3-line\">\n            <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.complete(almostDue._id, 'due')\">Action Completed</md-button>\n            <div class=\"md-list-item-text\" layout=\"column\">\n              <h3>Position: {{almostDue.position.title || 'No Position Specified'}} at {{almostDue.company.name || 'No Company Specified'}}</h3>\n              <h4>Date Due: {{almostDue.dateDue | date: 'shortDate'}}</h4>\n              <p>Action: {{almostDue.action}}</p>\n            </div>\n          </md-list-item>\n          <md-divider ></md-divider>\n        </md-list>\n      </div>\n    </md-card-content>\n  </md-card>\n\n  <md-card>\n    <md-card-header>\n      <md-card-header-text>\n        <h2>Stats</h2>\n      </md-card-header-text>\n    </md-card-header>\n    <md-card-content>\n      <div class=\"statBlock\">\n        <h3>Positions Applied For</h3>\n        <p>Total: {{$ctrl.numPositions}}</p>\n        <p>This Week: {{$ctrl.positionCount}}</p>\n      </div>\n\n      <div class=\"statBlock\">\n        <h3>Companies Researched</h3>\n        <p>Total: {{$ctrl.numCompanies}}</p>\n        <p>This Week: {{$ctrl.companyCount}}</p>\n      </div>\n\n      <div class=\"statBlock\">\n        <h3>Contacts Made</h3>\n        <p>Total: {{$ctrl.numContacts}}</p>\n        <p>This Week: {{$ctrl.contactCount}}</p>\n      </div>\n    </md-card-content>\n  </md-card>\n\n  <md-card>\n    <md-card-header>\n      <md-card-header-text>\n        <h2>Goal Visualizations</h2>\n      </md-card-header-text>\n    </md-card-header>\n    <md-card-content>\n      <visualizations>Loading...</visualizations>\n    </md-card-content>\n  </md-card>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.dashboard\" ng-cloak>\n  <h1>Dashboard</h1>\n\n  <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.newPosition($event)\">Add Position</md-button>\n  <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.newCompany($event)\">Add Company</md-button>\n  <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.newContact($event)\">Add Contact</md-button>\n\n  <md-card>\n    <md-card-header>\n      <md-card-header-text>\n        <h2>Overdue Action Items</h2>\n      </md-card-header-text>\n    </md-card-header>\n    <md-card-content>\n      <div ng-repeat=\"overDue in $ctrl.overDue\">\n        <md-list flex>\n          <md-list-item class=\"md-3-line\">\n            <md-button class=\"md-secondary md-icon-button\"\n            ng-click=\"$ctrl.complete(overDue._id, 'overdue')\">Action Completed</md-button>\n            <div class=\"md-list-item-text\" layout=\"column\">\n              <h3>Position: {{overDue.position.title}} at {{overDue.company.name}}</h3>\n              <h4>Date Due: {{overDue.dateDue | date: 'shortDate'}}</h4>\n              <p>Action: {{overDue.action}}</p>\n            </div>\n          </md-list-item>\n          <md-divider></md-divider>\n        </md-list>\n      </div>\n    </md-card-content>\n  </md-card>\n\n  <md-card>\n    <md-card-header>\n      <md-card-header-text>\n        <h2>Upcoming Action Items</h2>\n      </md-card-header-text>\n    </md-card-header>\n    <md-card-content>\n      <div ng-repeat=\"almostDue in $ctrl.almostDue\">\n        <md-list flex>\n          <md-list-item class=\"md-3-line\">\n            <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.complete(almostDue._id, 'due')\">Action Completed</md-button>\n            <div class=\"md-list-item-text\" layout=\"column\">\n              <h3>Position: {{almostDue.position.title}} at {{almostDue.company.name}}</h3>\n              <h4>Date Due: {{almostDue.dateDue | date: 'shortDate'}}</h4>\n              <p>Action: {{almostDue.action}}</p>\n            </div>\n          </md-list-item>\n          <md-divider ></md-divider>\n        </md-list>\n      </div>\n    </md-card-content>\n  </md-card>\n\n  <md-card>\n    <md-card-header>\n      <md-card-header-text>\n        <h2>Stats</h2>\n      </md-card-header-text>\n    </md-card-header>\n    <md-card-content>\n      <div class=\"statBlock\">\n        <h3>Positions Applied For</h3>\n        <p>Total: {{$ctrl.numPositions}}</p>\n        <p>This Week: {{$ctrl.positionCount}}</p>\n      </div>\n\n      <div class=\"statBlock\">\n        <h3>Companies Researched</h3>\n        <p>Total: {{$ctrl.numCompanies}}</p>\n        <p>This Week: {{$ctrl.companyCount}}</p>\n      </div>\n\n      <div class=\"statBlock\">\n        <h3>Contacts Made</h3>\n        <p>Total: {{$ctrl.numContacts}}</p>\n        <p>This Week: {{$ctrl.contactCount}}</p>\n      </div>\n    </md-card-content>\n  </md-card>\n  \n  <md-card>\n    <md-card-header>\n      <md-card-header-text>\n        <h2>Goal Visualizations</h2>\n      </md-card-header-text>\n    </md-card-header>\n    <md-card-content>\n      <visualizations>Loading...</visualizations>\n    </md-card-content>\n  </md-card>\n</section>\n";
 
 /***/ },
 /* 43 */
@@ -21278,8 +21300,6 @@
 	  value: true
 	});
 	
-	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-	
 	var _chart = __webpack_require__(46);
 	
 	var _chart2 = _interopRequireDefault(_chart);
@@ -21298,36 +21318,16 @@
 	};
 	
 	
-	controller.$inject = ['companyService', 'contactService', 'positionService', '$window', 'userService'];
-	
-	function controller(companyService, contactService, positionService, $window, userService) {
-	  var _this = this;
-	
+	function controller() {
 	  // this.styles = styles;
-	  this.userId = $window.localStorage['id'];
 	
-	  Promise.all([companyService.getCountForWeek(this.userId), positionService.getCountForWeek(this.userId), contactService.getCountForWeek(this.userId), userService.getMe(this.userId)]).then(function (_ref) {
-	    var _ref2 = _slicedToArray(_ref, 4);
-	
-	    var numCompanies = _ref2[0];
-	    var numPositions = _ref2[1];
-	    var numContacts = _ref2[2];
-	    var user = _ref2[3];
-	
-	    _this.renderViz('application', 'Applications', 'Sent', numPositions, user.positionGoal);
-	    _this.renderViz('brand', 'Companies', 'Researched', numCompanies, user.companyGoal);
-	    _this.renderViz('contact', 'New Contacts', 'Made', numContacts, user.contactGoal);
-	  }).catch(function (err) {
-	    return console.log(err);
-	  });
-	
-	  this.renderViz = function (element, objTracked, objVerb, completed, goal) {
+	  this.renderViz = function (element, objTracked, objVerb, completed, total) {
 	    // this hides the legend on each chart
 	    _chart2.default.defaults.global.legend.display = false;
 	
 	    // this tells the chart where to render, ID for the canvas
 	    var context = document.getElementById(element);
-	    var remaining = goal - completed;
+	    var remaining = completed - total;
 	
 	    // eslint-disable-next-line
 	    var myChart = new _chart2.default(context, {
@@ -21344,6 +21344,14 @@
 	      }
 	    });
 	  };
+	
+	  this.renderViz('application', 'Applications', 'Sent', 5, 1);
+	
+	  this.renderViz('brand', 'Online Interactions', 'Complete', 10, 5);
+	
+	  this.renderViz('contact', 'New Contacts', 'Made', 20, 3);
+	
+	  // this.renderViz('event', 'Events', 'Attended', 1000, 750);
 	};
 
 /***/ },
@@ -32396,7 +32404,7 @@
 /* 96 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.landing\">\n  <h1>Welcome to Clever Job Hunter </h1>\n\n  <h3>Throw away those spreadsheets and todo apps!</h3>\n\n  <h3>Clever Job Hunter is a central location where you can keep information about positions, companies, and contacts related to jobs that you've applied for or would like to apply.</h3>\n\n  <h3>...but if you want a spreadsheet, we do offer the ability to export information in a .csv format.</h3>\n\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.landing\">\n  <!-- TODO : insert **real** app name here once we've decided on it -->\n  <h1>Welcome to Clever Job Hunter </h1>\n\n  <!-- TODO : maybe we'll have some description here of the app and what it is, similar to the front page of any service? -->\n  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed diam eget risus varius blandit sit amet non magna. Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla.</p>\n\n</section>\n";
 
 /***/ },
 /* 97 */
@@ -32524,7 +32532,7 @@
 /* 100 */
 /***/ function(module, exports) {
 
-	module.exports = "<!--template for detailed company view-->\n\n<section ng-class=\"$ctrl.styles.companyDetail\">\n    <md-card>\n        <md-card-header>\n            <md-card-header-text>\n            <span class=\"md-title\">{{$ctrl.company.name}}</span>\n            <span class=\"md-subhead\">{{$ctrl.company.location}}</span>\n            </md-card-header-text>\n        </md-card-header>\n        <md-card-content>\n            <h4>Action Items:</h4>\n            <md-list flex ng-repeat=\"actionItem in $ctrl.actionItems\">\n                <md-list-item class=\"md-3-line\">\n                    <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.complete(actionItem._id)\">Action Completed</md-button>\n                    <div class=\"md-list-item-text\" layout=\"column\">\n                    <p>Date Due: {{actionItem.dateDue | date: 'shortDate'}} - Action: {{actionItem.action}}</p>\n                    </div>\n                </md-list-item>\n            </md-list>\n            <md-divider></md-divider>\n\n            <p>Services Offered: {{$ctrl.company.service}}</p>\n            <p>Company Info: {{$ctrl.company.info}}</p>\n            <p>Tech Stack: {{$ctrl.company.tech}}</p>\n        </md-card-content>\n        <md-card-header>\n            <md-card-header-text>\n            <span class=\"md-title\">Company Contacts</span>\n            </md-card-header-text>\n        </md-card-header>\n        <md-card-content>\n            <p ng-repeat=\"contact in $ctrl.companyContacts\">{{contact.name || 'No company contacts'}}</p>\n        </md-card-content>\n        <md-list>\n          <md-header>Company Pros:</md-header>\n          <md-list-item ng-repeat=\"pro in $ctrl.company.pros\">\n            <p> {{ pro.pro || 'No Pros Yet'}} </p>\n          </md-list-item>\n          <md-divider></md-divider>\n        </md-list>\n        <md-list>\n          <md-header>Company Cons:</md-header>\n          <md-list-item ng-repeat=\"con in $ctrl.company.cons\">\n            <p> {{ con.con || 'No Cons Yet'}} </p>\n          </md-list-item>\n          <md-divider></md-divider>\n        </md-list>\n        <md-list>\n          <md-header>Questions:</md-header>\n          <md-list-item ng-repeat=\"question in $ctrl.company.questions\">\n            <p> {{ question.question || 'No Questions Yet'}} </p>\n          </md-list-item>\n          <md-divider></md-divider>\n        </md-list>\n\n        <md-card-actions layout=\"row\" layout-align=\"end center\">\n            <md-button class=\"md-secondary md-icon-button\"\n            ui-sref=\"actions({parentId: $ctrl.company._id, which: $ctrl.which, parentName: $ctrl.company.name})\"\n            >View Current Action Items\n            </md-button>\n            <!-- <md-button>Questions</md-button> -->\n            <md-button ng-click=\"$ctrl.newActionItem($event)\">Add Action Item</md-button>\n            <md-button ng-click=\"$ctrl.edit()\">Edit Company<md-button>\n        </md-card-actions>\n    </md-card>\n</section>\n";
+	module.exports = "<!--template for detailed company view-->\n\n<section ng-class=\"$ctrl.styles.companyDetail\">\n    <md-card>\n        <md-card-header>\n            <md-card-header-text>\n            <span class=\"md-title\">{{$ctrl.company.name}}</span>\n            <span class=\"md-subhead\">{{$ctrl.company.location}}</span>\n            </md-card-header-text>\n        </md-card-header>\n        <md-card-content>\n            <h4>Action Items:</h4>\n            <md-list flex ng-repeat=\"actionItem in $ctrl.actionItems\">\n                <md-list-item class=\"md-3-line\">\n                    <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.complete(actionItem._id)\">Action Completed</md-button>\n                    <div class=\"md-list-item-text\" layout=\"column\">\n                    <p>Date Due: {{actionItem.dateDue | date: 'shortDate'}} - Action: {{actionItem.action}}</p>\n                    </div>\n                </md-list-item>\n            </md-list>\n            <md-divider></md-divider>\n            \n            <p>Services Offered: {{$ctrl.company.service}}</p>\n            <p>Company Info: {{$ctrl.company.info}}</p>\n            <p>Tech Stack: {{$ctrl.company.tech}}</p>\n        </md-card-content>\n        <md-card-header>\n            <md-card-header-text>\n            <span class=\"md-title\">Company Contacts</span>\n            </md-card-header-text>\n        </md-card-header>\n        <md-card-content>\n            <p ng-repeat=\"contact in $ctrl.companyContacts\">{{contact.name || 'No company contacts'}}</p>\n        </md-card-content>\n\n        <md-card-actions layout=\"row\" layout-align=\"end center\">\n            <md-button class=\"md-secondary md-icon-button\"\n            ui-sref=\"actions({parentId: $ctrl.company._id, which: $ctrl.which, parentName: $ctrl.company.name})\"\n            >View Current Action Items\n            </md-button>\n            <md-button>Questions</md-button>\n            <md-button ng-click=\"$ctrl.newActionItem($event)\">Add Action Item</md-button>\n            <md-button ng-click=\"$ctrl.edit()\">Edit Company<md-button>\n        </md-card-actions>\n    </md-card>\n</section>\n";
 
 /***/ },
 /* 101 */
@@ -32637,7 +32645,6 @@
 	  //adds a new company
 	  this.add = function (companyToAdd, userId) {
 	    companyService.add(companyToAdd, userId).then(function (addedcompany) {
-	      console.log(addedcompany);
 	      _this.companies.unshift(addedcompany);
 	    }).catch(function (err) {
 	      return console.log(err);
@@ -32766,13 +32773,10 @@
 	  var _this = this;
 	
 	  this.userId = $window.localStorage['id'];
+	  console.log(this.userId);
 	
 	  var resetCompany = function resetCompany() {
-	    _this.company = {
-	      pros: [],
-	      cons: [],
-	      questions: []
-	    };
+	    _this.company = {};
 	  };
 	
 	  resetCompany();
@@ -32781,20 +32785,9 @@
 	    $mdDialog.hide();
 	  };
 	
-	  this.addProsInput = function () {
-	    _this.company.pros.unshift({});
-	  };
-	
-	  this.addConsInput = function () {
-	    _this.company.cons.unshift({});
-	  };
-	
-	  this.addQuestionsInput = function () {
-	    _this.company.questions.unshift({});
-	  };
-	
 	  //gives the form info to add a new company
 	  this.submit = function () {
+	    console.log('got here to new-company form submit');
 	    $mdDialog.hide(_this.company);
 	    _this.add(_this.company, _this.userId);
 	    resetCompany();
@@ -32807,7 +32800,7 @@
 /* 110 */
 /***/ function(module, exports) {
 
-	module.exports = "<!--html template for new company dialog-->\n    <md-dialog-content>\n        <form name=\"newCompany\" ng-submit=\"newCompany.$valid && $ctrl.submit()\" layout=\"row\" novalidate>\n          <div layout=\"column\">\n            <md-input-container>\n                <label>Name:</label>\n                <input\n                    name=\"addName\"\n                    required\n                    ng-model=\"$ctrl.company.name\"/>\n                    <div ng-messages=\"addCompany.addName.$error\" role=\"alert\">\n                        <div ng-message=\"required\">A name is required</div>\n                    </div>\n            </md-input-container>\n            <md-input-container>\n                <label>Location:</label>\n                <input\n                    name=\"addLocation\"\n                    required\n                    ng-model=\"$ctrl.company.location\"/>\n            </md-input-container>\n            <md-input-container>\n                <label>Service:</label>\n                <input\n                    name=\"addService\"\n                    required\n                    ng-model=\"$ctrl.company.service\"/>\n            </md-input-container>\n            <md-input-container>\n                <label>Technologies Used:</label>\n                <input name=\"addTech\" required ng-model=\"$ctrl.company.tech\"/>\n            </md-input-container>\n            <md-button ng-click=\"$ctrl.addProsInput()\">Add A Pro</md-button>\n            <div ng-repeat=\"each in $ctrl.company.pros\">\n              <md-input-container>\n                   <input aria-label=\"Company Pro\" ng-model=\"each.pro\" placeholder=\"Pro:\"\\>\n              </md-input-container>\n            </div>\n            <md-button ng-click=\"$ctrl.addConsInput()\">Add A Con</md-button>\n            <div ng-repeat=\"each in $ctrl.company.cons\">\n              <md-input-container>\n                   <input aria-label=\"Company Con\" ng-model=\"each.con\" placeholder=\"Con:\"\\>\n              </md-input-container>\n            </div>\n            <md-button ng-click=\"$ctrl.addQuestionsInput()\">Add a Question</md-button>\n            <div ng-repeat=\"each in $ctrl.company.questions\">\n              <md-input-container>\n                   <input aria-label=\"Questions\" ng-model=\"each.question\" placeholder=\"Question:\"\\>\n              </md-input-container>\n            </div>\n          </div>\n          <div layout=\"column\">\n            <md-input-container>\n              <label>Details About Company:</label>\n              <textarea name=\"addInfo\" ng-model=\"$ctrl.company.info\" rows=\"10\"></textarea>\n            </md-input-container>\n          </div>\n        </form>\n    </md-dialog-content>\n    <md-dialog-actions>\n        <md-button ng-click=\"$ctrl.submit()\" class=\"md-primary\">Save Company</md-button>\n        <md-button ng-click=\"$ctrl.cancel()\" class=\"md-primary\">Cancel</md-button>\n    </md-dialog-actions>\n";
+	module.exports = "<!--html template for new company dialog-->\n    <md-dialog-content>\n        <form name=\"newCompany\" ng-submit=\"newCompany.$valid && $ctrl.submit()\"\n            novalidate>\n            <md-input-container>\n                <label>Name:</label>\n                <input\n                    name=\"addName\"\n                    required\n                    ng-model=\"$ctrl.company.name\"/>\n                    <div ng-messages=\"addCompany.addName.$error\" role=\"alert\">\n                        <div ng-message=\"required\">A name is required</div>\n                    </div>\n            </md-input-container>\n            <md-input-container>\n                <label>Service:</label>\n                <input\n                    name=\"addService\"\n                    required\n                    ng-model=\"$ctrl.company.service\"/>\n                <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An Service is required</div>\n                </div> -->\n            </md-input-container>\n            <md-input-container>\n                <label>Location:</label>\n                <input\n                    name=\"addLocation\"\n                    required\n                    ng-model=\"$ctrl.company.location\"/>\n                <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> -->\n            </md-input-container>\n            <md-input-container>\n                <label>Info:</label>\n                <!-- <select>\n                For selecting company from companies that already exist?\n                </select>\n                <p>Would also need option to add company if it does not exist. -->\n                <input\n                    name=\"addInfo\"\n                    ng-model=\"$ctrl.company.info\"/>\n                <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> -->\n            </md-input-container>\n            <md-input-container>\n                <label>Tech:</label>\n                <input\n                    name=\"addTech\"\n                    required\n                    ng-model=\"$ctrl.company.tech\"/>\n                <!-- <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> -->\n            </md-input-container>\n            <!--<md-input-container>\n                <label>Pros:</label>\n                <textarea\n                    name=\"addPros\"\n                    required\n                    ng-model=\"$ctrl.company.info\">\n                <div ng-messages=\"addPosition.addInformation.$error\" role=\"alert\">\n                    <ng-message when=\"required\">This field is required</ng-message>\n                </div> \n                </textarea>\n            </md-input-container>-->\n            <!--<md-input-container>\n                <label>Questions:</label>\n                <select>\n                For selecting company from companies that already exist?\n                </select>\n                <input\n                    name=\"addQuestions\"\n                    \n                    ng-model=\"$ctrl.company.company\"/>\n                <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> \n            </md-input-container>-->\n            <!--<md-input-container>\n                <label>Contact:</label>\n                <select>\n                For selecting company from companies that already exist?\n                </select>\n                <input\n                    name=\"addContact\"\n                    \n                    ng-model=\"$ctrl.company.company\"/>\n                <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> \n            </md-input-container>-->\n            <!--<md-input-container>\n                <label>Links:</label>\n                <input\n                    name=\"addLinks\"\n                    \n                    ng-model=\"$ctrl.company.links\"/>\n                <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> \n            </md-input-container>-->\n            <!--<md-input-container>\n                <label>Action Items:</label>\n                <select>\n                For selecting company from companies that already exist?\n                </select>\n                <input\n                    name=\"addActionItems\"\n                    \n                    ng-model=\"$ctrl.company.actionItems\"/>\n                <div ng-messages=\"addPosition.addEmail.$error\" role=\"alert\">\n                    <div ng-message=\"required\">An e-mail is required</div>\n                </div> \n            </md-input-container>-->\n        </form>\n    </md-dialog-content>\n    <md-dialog-actions>\n        <md-button ng-click=\"$ctrl.submit()\" class=\"md-primary\">Save Company</md-button>\n        <md-button ng-click=\"$ctrl.cancel()\" class=\"md-primary\">Cancel</md-button>\n    </md-dialog-actions>\n\n";
 
 /***/ },
 /* 111 */
@@ -33062,19 +33055,13 @@
 	  this.userId = $window.localStorage['id'];
 	
 	  var resetPosition = function resetPosition() {
-	    _this.position = {
-	      questions: []
-	    };
+	    _this.position = {};
 	  };
 	
 	  resetPosition();
 	
 	  this.cancel = function () {
 	    $mdDialog.hide();
-	  };
-	
-	  this.addQuestionsInput = function () {
-	    _this.position.questions.unshift({});
 	  };
 	
 	  //saves and adds information to user's positions
@@ -33091,7 +33078,7 @@
 /* 122 */
 /***/ function(module, exports) {
 
-	module.exports = "<!--template for the dialog form to add a new position-->\n    <md-dialog-content>\n        <form name=\"newPosition\" ng-submit=\"newPosition.$valid && $ctrl.submit()\" novalidate layout=\"row\">\n          <div layout=\"column\">\n            <md-input-container>\n              <label>Job Title:</label>\n              <input name=\"addTitle\" required ng-model=\"$ctrl.position.title\"/>\n            </md-input-container>\n            <md-input-container>\n              <label>Add Company Name:</label>\n              <input name=\"addNewCompany\" required ng-model=\"$ctrl.position.newCompany\"/>\n            </md-input-container>\n            - OR -\n            <md-input-container>\n              <md-select ng-model=\"$ctrl.position.company\" placeholder=\"Select Existing Company\">\n                <md-option ng-value=\"company._id\" ng-repeat=\"company in $ctrl.companies\">{{company.name}}</md-option>\n              </md-select>\n            </md-input-container>\n            <md-input-container>\n                <label>Posting Method:</label>\n                <input name=\"addMethod\" required ng-model=\"$ctrl.position.method\"/>\n            </md-input-container>\n            <md-input-container>\n              <label>Date Posted:</label>\n              <div flex-gt-xs>\n                 <md-datepicker ng-model=\"$ctrl.position.dateAdvertised\"></md-datepicker>\n               </div>\n            </md-input-container>\n            <md-input-container>\n              <label>Date Applied:</label>\n              <div flex-gt-xs>\n                <md-datepicker ng-model=\"$ctrl.position.dateApplied\"></md-datepicker>\n              </div>\n            </md-input-container>\n            <md-button ng-click=\"$ctrl.addQuestionsInput()\">Add a Question</md-button>\n            <div ng-repeat=\"each in $ctrl.position.questions\">\n              <md-input-container>\n                   <input aria-label=\"Questions\" ng-model=\"each.question\" placeholder=\"Question:\"\\>\n              </md-input-container>\n            </div>\n          </div>\n          <div layout=\"column\">\n            <md-input-container>\n                <label>Job Posting Text:</label>\n                <textarea name=\"addPostingInfo\" ng-model=\"$ctrl.position.postingInfo\" rows=\"10\"></textarea>\n            </md-input-container>\n          </div>\n        </form>\n    </md-dialog-content>\n    <md-dialog-actions>\n        <md-button ng-click=\"$ctrl.submit()\" class=\"md-primary\">Save Position</md-button>\n        <md-button ng-click=\"$ctrl.cancel()\" class=\"md-primary\">Cancel</md-button>\n    </md-dialog-actions>\n";
+	module.exports = "<!--template for the dialog form to add a new position-->\n    <md-dialog-content>\n        <form name=\"newPosition\" ng-submit=\"newPosition.$valid && $ctrl.submit()\" novalidate layout=\"row\">\n          <div layout=\"column\">\n            <md-input-container>\n              <label>Job Title:</label>\n              <input name=\"addTitle\" required ng-model=\"$ctrl.position.title\"/>\n            </md-input-container>\n            <md-input-container>\n              <label>Add Company Name:</label>\n              <input name=\"addNewCompany\" required ng-model=\"$ctrl.position.newCompany\"/>\n            </md-input-container>\n            - OR -\n            <md-input-container>\n              <md-select ng-model=\"$ctrl.position.company\" placeholder=\"Select Existing Company\">\n                <md-option ng-value=\"company._id\" ng-repeat=\"company in $ctrl.companies\">{{company.name}}</md-option>\n              </md-select>\n            </md-input-container>\n            <md-input-container>\n                <label>Posting Method:</label>\n                <input name=\"addMethod\" required ng-model=\"$ctrl.position.method\"/>\n            </md-input-container>\n            <md-input-container>\n              <label>Date Posted:</label>\n              <div flex-gt-xs>\n                 <md-datepicker ng-model=\"$ctrl.position.dateAdvertised\"></md-datepicker>\n               </div>\n            </md-input-container>\n            <md-input-container>\n              <label>Date Applied:</label>\n              <div flex-gt-xs>\n                <md-datepicker ng-model=\"$ctrl.position.dateApplied\"></md-datepicker>\n              </div>\n            </md-input-container>\n          </div>\n          <div layout=\"column\">\n            <md-input-container>\n                <label>Job Posting Text:</label>\n                <textarea name=\"addPostingInfo\" ng-model=\"$ctrl.position.postingInfo\" rows=\"10\"></textarea>\n            </md-input-container>\n          </div>\n        </form>\n    </md-dialog-content>\n    <md-dialog-actions>\n        <md-button ng-click=\"$ctrl.submit()\" class=\"md-primary\">Save Position</md-button>\n        <md-button ng-click=\"$ctrl.cancel()\" class=\"md-primary\">Cancel</md-button>\n    </md-dialog-actions>\n";
 
 /***/ },
 /* 123 */
@@ -33263,7 +33250,7 @@
 /* 126 */
 /***/ function(module, exports) {
 
-	module.exports = "<!--template for a detailed position view-->\n\n<section ng-class=\"$ctrl.styles.positionDetail\">\n    <md-card>\n        <md-card-header>\n            <md-card-header-text>\n            <h2 class=\"md-title\">{{$ctrl.position.title}}</h2>\n            <span class=\"md-subhead\">{{$ctrl.position.company.name}}</span>\n            </md-card-header-text>\n        </md-card-header>\n\n        <md-card-content>\n            <h4>Action Items:</h4>\n            <md-list flex ng-repeat=\"actionItem in $ctrl.actionItems\">\n                <md-list-item class=\"md-3-line\">\n                    <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.complete(actionItem._id)\">Action Completed</md-button>\n                    <div class=\"md-list-item-text\" layout=\"column\">\n                    <p>Date Due: {{actionItem.dateDue | date: 'shortDate'}} - Action: {{actionItem.action}}</p>\n                    </div>\n                </md-list-item>\n            </md-list>\n            <md-divider></md-divider>\n\n            <p>Date Advertised: {{$ctrl.position.dateAdvertised | date: 'shortDate'}}</p>\n            <p>Date Applied: {{$ctrl.position.dateApplied | date: 'shortDate'}}</p>\n            <p>Application Method: {{$ctrl.position.method}}</p>\n            <md-list>\n              <md-header>Questions:</md-header>\n              <md-list-item ng-repeat=\"question in $ctrl.position.questions\">\n                <p> {{ question.question || 'No Questions Yet'}} </p>\n              </md-list-item>\n              <md-divider></md-divider>\n            </md-list>\n            <p>Position Info: {{$ctrl.position.postingInfo}}</p>\n        </md-card-content>\n        <md-card-actions layout=\"row\" layout-align=\"end center\">\n\n          <md-button class=\"md-secondary md-icon-button\"\n            ui-sref=\"actions({parentId: $ctrl.position._id, which: $ctrl.which, parentName: $ctrl.position.title})\"\n            >View Current Action Items\n          </md-button>\n            <!--<md-button>Questions</md-button>-->\n            <md-button ng-click=\"$ctrl.newActionItem($event)\">Add Action Item</md-button>\n            <md-button ng-click=\"$ctrl.edit()\">Edit Position</md-button>\n        </md-card-actions>\n    </md-card>\n\n</section>\n";
+	module.exports = "<!--template for a detailed position view-->\n\n<section ng-class=\"$ctrl.styles.positionDetail\">\n    <md-card>\n        <md-card-header>\n            <md-card-header-text>\n            <h2 class=\"md-title\">{{$ctrl.position.title}}</h2>\n            <span class=\"md-subhead\">{{$ctrl.position.company.name}}</span>\n            </md-card-header-text>\n        </md-card-header>\n\n        <md-card-content>\n            <h4>Action Items:</h4>\n            <md-list flex ng-repeat=\"actionItem in $ctrl.actionItems\">\n                <md-list-item class=\"md-3-line\">\n                    <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.complete(actionItem._id)\">Action Completed</md-button>\n                    <div class=\"md-list-item-text\" layout=\"column\">\n                    <p>Date Due: {{actionItem.dateDue | date: 'shortDate'}} - Action: {{actionItem.action}}</p>\n                    </div>\n                </md-list-item>\n            </md-list>\n            <md-divider></md-divider>\n\n            <p>Date Advertised: {{$ctrl.position.dateAdvertised | date: 'shortDate'}}</p>\n            <p>Date Applied: {{$ctrl.position.dateApplied | date: 'shortDate'}}</p>\n            <p>Application Method: {{$ctrl.position.method}}</p>\n            <p>Position Info: {{$ctrl.position.postingInfo}}</p>\n        </md-card-content>\n        <md-card-actions layout=\"row\" layout-align=\"end center\">\n\n          <md-button class=\"md-secondary md-icon-button\"\n            ui-sref=\"actions({parentId: $ctrl.position._id, which: $ctrl.which, parentName: $ctrl.position.title})\"\n            >View Current Action Items\n          </md-button>\n            <!--<md-button>Questions</md-button>-->\n            <md-button ng-click=\"$ctrl.newActionItem($event)\">Add Action Item</md-button>\n            <md-button ng-click=\"$ctrl.edit()\">Edit Position</md-button>\n        </md-card-actions>\n    </md-card>\n\n</section>\n";
 
 /***/ },
 /* 127 */
