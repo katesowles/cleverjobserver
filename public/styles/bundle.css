@@ -24016,6 +24016,10 @@ Saumon f85a5a
 Yellow ebfc5c
 Yellow dcfa51
 */
+.load-header {
+  text-align: center;
+  margin: 3rem auto; }
+
 .container {
   position: absolute;
   top: 50%;
