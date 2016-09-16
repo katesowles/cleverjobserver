@@ -20916,10 +20916,12 @@
 	
 	      headerList.forEach(function (item) {
 	        var val = void 0;
-	        if (item != 'company') {
-	          val = contact[item] || '';
-	        } else {
+	        if (item === 'company') {
 	          contact.company ? val = contact.company.name : val = '';
+	        } else if (item === 'info') {
+	          val = '"' + contact[item] + '"';
+	        } else {
+	          val = contact[item] || '';
 	        }
 	        val = val.replace(',', ' ');
 	        array.push(val);
@@ -32522,7 +32524,7 @@
 /* 100 */
 /***/ function(module, exports) {
 
-	module.exports = "<!--template for detailed company view-->\n\n<section ng-class=\"$ctrl.styles.companyDetail\">\n    <md-card>\n        <md-card-header>\n            <md-card-header-text>\n            <span class=\"md-title\">{{$ctrl.company.name}}</span>\n            <span class=\"md-subhead\">{{$ctrl.company.location}}</span>\n            </md-card-header-text>\n        </md-card-header>\n        <md-card-content>\n            <h4>Action Items:</h4>\n            <md-list flex ng-repeat=\"actionItem in $ctrl.actionItems\">\n                <md-list-item class=\"md-3-line\">\n                    <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.complete(actionItem._id)\">Action Completed</md-button>\n                    <div class=\"md-list-item-text\" layout=\"column\">\n                    <p>Date Due: {{actionItem.dateDue | date: 'shortDate'}} - Action: {{actionItem.action}}</p>\n                    </div>\n                </md-list-item>\n            </md-list>\n            <md-divider></md-divider>\n\n            <p>Services Offered: {{$ctrl.company.service}}</p>\n            <p>Company Info: {{$ctrl.company.info}}</p>\n            <p>Tech Stack: {{$ctrl.company.tech}}</p>\n        </md-card-content>\n        <md-card-header>\n            <md-card-header-text>\n            <span class=\"md-title\">Company Contacts</span>\n            </md-card-header-text>\n        </md-card-header>\n        <md-card-content>\n            <p ng-repeat=\"contact in $ctrl.companyContacts\">{{contact.name || 'No company contacts'}}</p>\n        </md-card-content>\n        <md-list>\n          <md-header>Company Pros:</md-header>\n          <md-list-item ng-repeat=\"pro in $ctrl.company.pros\">\n            <p> {{ pro.pro || 'No Pros Yet'}} </p>\n          </md-list-item>\n          <md-divider></md-divider>\n        </md-list>\n        <md-list>\n          <md-header>Company Cons:</md-header>\n          <md-list-item ng-repeat=\"con in $ctrl.company.cons\">\n            <p> {{ con.con || 'No Cons Yet'}} </p>\n          </md-list-item>\n          <md-divider></md-divider>\n        </md-list>\n        <md-list>\n          <md-header>Questions:</md-header>\n          <md-list-item ng-repeat=\"question in $ctrl.company.questions\">\n            <p> {{ question.question || 'No Questions Yet'}} </p>\n          </md-list-item>\n          <md-divider></md-divider>\n        </md-list>\n\n        <md-card-actions layout=\"row\" layout-align=\"end center\">\n            <md-button class=\"md-secondary md-icon-button\"\n            ui-sref=\"actions({parentId: $ctrl.company._id, which: $ctrl.which, parentName: $ctrl.company.name})\"\n            >View Current Action Items\n            </md-button>\n            <md-button>Questions</md-button>\n            <md-button ng-click=\"$ctrl.newActionItem($event)\">Add Action Item</md-button>\n            <md-button ng-click=\"$ctrl.edit()\">Edit Company<md-button>\n        </md-card-actions>\n    </md-card>\n</section>\n";
+	module.exports = "<!--template for detailed company view-->\n\n<section ng-class=\"$ctrl.styles.companyDetail\">\n    <md-card>\n        <md-card-header>\n            <md-card-header-text>\n            <span class=\"md-title\">{{$ctrl.company.name}}</span>\n            <span class=\"md-subhead\">{{$ctrl.company.location}}</span>\n            </md-card-header-text>\n        </md-card-header>\n        <md-card-content>\n            <h4>Action Items:</h4>\n            <md-list flex ng-repeat=\"actionItem in $ctrl.actionItems\">\n                <md-list-item class=\"md-3-line\">\n                    <md-button class=\"md-secondary md-icon-button\" ng-click=\"$ctrl.complete(actionItem._id)\">Action Completed</md-button>\n                    <div class=\"md-list-item-text\" layout=\"column\">\n                    <p>Date Due: {{actionItem.dateDue | date: 'shortDate'}} - Action: {{actionItem.action}}</p>\n                    </div>\n                </md-list-item>\n            </md-list>\n            <md-divider></md-divider>\n\n            <p>Services Offered: {{$ctrl.company.service}}</p>\n            <p>Company Info: {{$ctrl.company.info}}</p>\n            <p>Tech Stack: {{$ctrl.company.tech}}</p>\n        </md-card-content>\n        <md-card-header>\n            <md-card-header-text>\n            <span class=\"md-title\">Company Contacts</span>\n            </md-card-header-text>\n        </md-card-header>\n        <md-card-content>\n            <p ng-repeat=\"contact in $ctrl.companyContacts\">{{contact.name || 'No company contacts'}}</p>\n        </md-card-content>\n        <md-list>\n          <md-header>Company Pros:</md-header>\n          <md-list-item ng-repeat=\"pro in $ctrl.company.pros\">\n            <p> {{ pro.pro || 'No Pros Yet'}} </p>\n          </md-list-item>\n          <md-divider></md-divider>\n        </md-list>\n        <md-list>\n          <md-header>Company Cons:</md-header>\n          <md-list-item ng-repeat=\"con in $ctrl.company.cons\">\n            <p> {{ con.con || 'No Cons Yet'}} </p>\n          </md-list-item>\n          <md-divider></md-divider>\n        </md-list>\n        <md-list>\n          <md-header>Questions:</md-header>\n          <md-list-item ng-repeat=\"question in $ctrl.company.questions\">\n            <p> {{ question.question || 'No Questions Yet'}} </p>\n          </md-list-item>\n          <md-divider></md-divider>\n        </md-list>\n\n        <md-card-actions layout=\"row\" layout-align=\"end center\">\n            <md-button class=\"md-secondary md-icon-button\"\n            ui-sref=\"actions({parentId: $ctrl.company._id, which: $ctrl.which, parentName: $ctrl.company.name})\"\n            >View Current Action Items\n            </md-button>\n            <!-- <md-button>Questions</md-button> -->\n            <md-button ng-click=\"$ctrl.newActionItem($event)\">Add Action Item</md-button>\n            <md-button ng-click=\"$ctrl.edit()\">Edit Company<md-button>\n        </md-card-actions>\n    </md-card>\n</section>\n";
 
 /***/ },
 /* 101 */
@@ -32688,7 +32690,12 @@
 	      var array = [];
 	
 	      headerList.forEach(function (item) {
-	        var val = company[item] || '';
+	        var val = void 0;
+	        if (item === 'info') {
+	          val = '"' + company[item] + '"';
+	        } else {
+	          val = company[item] || '';
+	        }
 	        val = val.replace(',', ' ');
 	        array.push(val);
 	      });
@@ -33367,12 +33374,12 @@
 	      var array = [];
 	      array.push(position._id || '');
 	      array.push(position.title || '');
-	      position.company ? array.push(position.company.name || '') : array.push('');
+	      position.company ? array.push('"' + position.company.name + '"') : array.push('');
 	      array.push(position.dateAdvertised || '');
 	      array.push(position.dateApplied || '');
 	      array.push(position.method || '');
 	      position.questions ? array.push(position.questions.join('\n') || '') : array.push('');
-	      array.push(position.postingInfo || '');
+	      array.push('"' + position.postingInfo + '"');
 	      return array.join(',');
 	    }).join('\n');
 	
