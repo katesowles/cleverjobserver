@@ -74,7 +74,7 @@
 	_app2.default.config(_routes2.default);
 	_app2.default.run(_auth2.default);
 	
-	_app2.default.value('apiUrl', ("http://localhost:3000/api") || '/api');
+	_app2.default.value('apiUrl', (undefined) || '/api');
 	
 	_angular2.default.bootstrap(document, [_app2.default.name]);
 
